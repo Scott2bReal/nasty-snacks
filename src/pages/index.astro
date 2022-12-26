@@ -1,5 +1,5 @@
 ---
-import { Image, Picture } from "@astrojs/image/components";
+import { Image } from "@astrojs/image/components";
 import Socials from "../components/Socials.astro";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -8,6 +8,7 @@ import Layout from "../layouts/Layout.astro";
   <main>
     <!-- Band info -->
     <section class="mx-auto text-center pt-24" id="band">
+      <h2 class="tracking-widest text-3xl pb-6">WE ARE NASTY SNACKS</h2>
       <div
         class="flex lg:flex-row flex-col max-w[850px] text-center lg:justify-center px-4"
       >
@@ -30,23 +31,22 @@ import Layout from "../layouts/Layout.astro";
     <!-- Music -->
     <section id="music" class="text-center pt-24">
       <h3 class="tracking-wider text-3xl pb-6">MUSIC</h3>
-      <div id="player" class="flex lg:flex-row flex-col justify-center gap-8">
+      <div id="player" class="flex lg:flex-row flex-col items-center justify-center gap-8">
         <a
           href="https://open.spotify.com/album/7mLF0VbXdSgJalOclhMAJa?si=jf53fU3zRrSCJAKj0TC-tA"
           target="_blank"
           ><Image
             src="images/smoke_signals.jpg"
-            height='450px'
+            height="450px"
             width="450px"
             alt="Smoke Signals EP Cover"
-            format='jpeg'
+            format="jpeg"
           />
         </a>
 
         <iframe
           src="https://open.spotify.com/embed/album/7mLF0VbXdSgJalOclhMAJa?utm_source=generator"
-          width="50%"
-          height="380"
+          class='lg:h-[380px] lg:max-w-[50vw]'
           allowfullscreen=""
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         ></iframe>
