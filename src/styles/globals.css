@@ -15,6 +15,10 @@
 }
 
 @layer components {
+  .page-header-main {
+    @apply text-3xl tracking-widest text-center
+  }
+
   .text-gradient {
     @apply text-transparent bg-gradient-to-r from-purple-700 to-pink-700 bg-clip-text;
   }
