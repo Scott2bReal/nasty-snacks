@@ -2,6 +2,8 @@
 import { Image } from "@astrojs/image/components";
 import Socials from "../components/Socials.astro";
 import Layout from "../layouts/Layout.astro";
+import groupPhoto from "../../public/images/group_photo.jpg"
+import smokeSignals from "../../public/images/smoke_signals.jpg"
 ---
 
 <Layout title="Nasty Snacks">
@@ -12,7 +14,7 @@ import Layout from "../layouts/Layout.astro";
       <div
         class="flex lg:flex-row flex-col max-w[850px] text-center lg:justify-center px-4"
       >
-        <img src="images/group_photo.jpg" alt="Group Photo" width="500px" />
+        <Image src={groupPhoto} alt="Group Photo" width="500px" />
         <ul class="text-left px-4 child:py-2 child:text-sm">
           <li><em>Drums / Don Allen Jr.</em></li>
           <li><em>Keys / Keith Brooks II</em></li>
@@ -36,11 +38,9 @@ import Layout from "../layouts/Layout.astro";
           href="https://open.spotify.com/album/7mLF0VbXdSgJalOclhMAJa?si=jf53fU3zRrSCJAKj0TC-tA"
           target="_blank"
           ><Image
-            src="images/smoke_signals.jpg"
-            height="450px"
+            src={smokeSignals}
             width="450px"
             alt="Smoke Signals EP Cover"
-            format="jpeg"
           />
         </a>
 
