@@ -1,10 +1,10 @@
 ---
-import RandomSnacksVid from "../components/RandomSnacksVid.astro";
+import {RandomSnacksVid} from "../components/RandomSnacksVid";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Nasty Nacks | Media">
-  <div class='text-center w-[100vw]'>
-    <RandomSnacksVid />
+  <div class='w-[100vw]'>
+    <RandomSnacksVid client:load />
   </div>
 </Layout>
