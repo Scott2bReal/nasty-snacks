@@ -1,81 +1,40 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import TopNav from "../components/TopNav.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+<Layout title="Nasty Snacks">
+  <header>
+    <TopNav />
+  </header>
+  <main>
+    <div class="mx-auto text-center pt-24" id="band">
+      <h2 class="text-3xl p-6 tracking-widest">
+        WE ARE NASTY SNACKS
+      </h2>
+      <div
+        class="flex lg:flex-row flex-col max-w[850px] text-center lg:justify-center px-4"
+      >
+        <img src="group_photo.jpg" alt='Group Photo' width="500px" />
+        <ul class="text-left px-4 child:py-2 child:text-sm">
+          <li><em>Drums / Don Allen Jr.</em></li>
+          <li><em>Keys / Keith Brooks II</em></li>
+          <li><em>Guitar / Colin Fahey</em></li>
+          <li><em>Bass / Martin Farrelly</em></li>
+          <li><em>Tenor Sax / Alex Francois</em></li>
+          <li><em>Guitar / Ryan Gac</em></li>
+          <li><em>Trumpet / Scott Hoecker</em></li>
+          <li><em>Trombone / Matt Jarosch</em></li>
+          <li><em>Trumpet / Caleb Mitchell</em></li>
+          <li><em>Vocals / Stefanie Mitchell</em></li>
+        </ul>
+      </div>
+    </div>
+    <div id="music" class="text-center pt-24">
+      <h3 class="tracking-wider text-3xl pb-6">MUSIC</h3>
+      <div id='player' class='flex lg:flex-row flex-col justify-center'>
+        <img src='smoke_signals.jpg' width='450px' alt='Smoke Signals EP Cover'/>
+      </div>
+    </div>
+  </main>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-</style>
