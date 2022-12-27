@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'preact/hooks'
-import { DesktopNav } from './DesktopNav'
+import { TopNav } from './TopNav'
 import { MobileNav } from './MobileNav'
 
 export const Nav = () => {
@@ -37,6 +37,6 @@ export const Nav = () => {
   return mobileOpen ? (
     <MobileNav mobileControlData={mobileControlData} />
   ) : (
-    <DesktopNav mobileControlData={mobileControlData} />
+    <TopNav mobileControlData={mobileControlData} />
   )
 }

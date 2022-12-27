@@ -8,20 +8,13 @@ interface Props {
   }
 }
 
-export const MobileNav = ({ mobileControlData }: Props) => {
+export const TopNav = ({ mobileControlData }: Props) => {
   const { overlay, mobileOpen, setMobileOpen } = mobileControlData
 
   return (
-    <nav className={`h-[100vh] w-[100vw] z-[2] text-center`}>
-      <div class='flex gap-2 justify-evenly items-center'>
-        <button
-          className={`ml-6`}
-          id='closeMobileNav'
-          onClick={() => {
-            setMobileOpen(false)
-            overlay(mobileOpen)
-          }}
-        >
+    <nav className='text-center'>
+      <div class='flex gap-2 items-center justify-evenly'>
+        <button id='openMobileNav' className='lg:hidden ml-6 md:ml-0'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -29,15 +22,19 @@ export const MobileNav = ({ mobileControlData }: Props) => {
             stroke-width='1.5'
             stroke='currentColor'
             class='w-8 h-8'
+            onClick={() => {
+              setMobileOpen(true)
+              overlay(mobileOpen)
+            }}
           >
             <path
               stroke-linecap='round'
               stroke-linejoin='round'
-              d='M6 18L18 6M6 6l12 12'
+              d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
             ></path>
           </svg>
         </button>
-        <h1 className='p-2 -translate-x-6'>
+        <h1 className='p-2 -translate-x-6 md:-translate-x-4'>
           <a href='/'>
             <span className='text-gradient text-5xl font-extrabold tracking-widest'>
               NASTY SNACKS
@@ -45,7 +42,7 @@ export const MobileNav = ({ mobileControlData }: Props) => {
           </a>
         </h1>
       </div>
-      <ul className='mt-6 text-gradient text-center font-extrabold my-auto lg:flex gap-12 flex flex-col items-center justify-center p-6 child-hover:scale-105 child:hover-grow max-w-[100vw]'>
+      <ul className='text-gradient text-center font-extrabold lg:flex gap-12 flex-row hidden lg:visible items-center justify-center p-6 child-hover:scale-105 child:hover-grow max-w-[100vw]'>
         <li>
           <a href='/#band'>BAND</a>
         </li>
