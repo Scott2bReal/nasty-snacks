@@ -10,6 +10,7 @@ interface Props {
 
 export const MobileNav = ({ mobileControlData }: Props) => {
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
+
   const sections = ['band', 'music', 'tour', 'media', 'merch', 'contact']
   const homeSections = ['band', 'music', 'tour']
 

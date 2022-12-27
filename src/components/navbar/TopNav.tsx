@@ -13,10 +13,10 @@ export const TopNav = ({ mobileControlData }: Props) => {
 
   return (
     <nav className='text-center bg-neutral-900/90 mx-auto top-0'>
-      <div class='flex gap-2 items-center justify-evenly -translate-x-6 md:translate-x-0'>
+      <div class='flex gap-2 items-center justify-evenly '>
         <button
           id='openMobileNav'
-          class='pl-12 -pr-6 md:hidden'
+          class='ml-6 md:hidden'
           onClick={() => {
             setMobileOpen(true)
             lockScroll(mobileOpen)
@@ -37,7 +37,7 @@ export const TopNav = ({ mobileControlData }: Props) => {
             ></path>
           </svg>
         </button>
-        <h1 className='p-2 md:-translate-x-4'>
+        <h1 className='p-2 -translate-x-6 md:-translate-x-0'>
           <a href='/'>
             <span className='text-gradient text-5xl font-extrabold tracking-widest'>
               NASTY SNACKS
