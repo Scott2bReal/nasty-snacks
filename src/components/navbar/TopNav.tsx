@@ -2,30 +2,33 @@ import type { StateUpdater } from 'preact/hooks'
 
 interface Props {
   mobileControlData: {
-    overlay: (mobileOpen: boolean) => void
+    lockScroll: (mobileOpen: boolean) => void
     mobileOpen: boolean
     setMobileOpen: StateUpdater<boolean>
   }
 }
 
 export const TopNav = ({ mobileControlData }: Props) => {
-  const { overlay, mobileOpen, setMobileOpen } = mobileControlData
+  const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
 
   return (
-    <nav className='text-center'>
+    <nav className='text-center bg-neutral-900/90 w-[100vw] top-0 shadow-lg shadow-neutral-900'>
       <div class='flex gap-2 items-center justify-evenly'>
-        <button id='openMobileNav' className='lg:hidden ml-6 md:ml-0'>
+        <button
+          id='openMobileNav'
+          class='lg:hidden ml-6 md:ml-0'
+          onClick={() => {
+            setMobileOpen(true)
+            lockScroll(mobileOpen)
+          }}
+        >
           <svg
+            className='w-8 h-8'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'
             stroke-width='1.5'
             stroke='currentColor'
-            class='w-8 h-8'
-            onClick={() => {
-              setMobileOpen(true)
-              overlay(mobileOpen)
-            }}
           >
             <path
               stroke-linecap='round'
@@ -42,7 +45,7 @@ export const TopNav = ({ mobileControlData }: Props) => {
           </a>
         </h1>
       </div>
-      <ul className='text-gradient text-center font-extrabold lg:flex gap-12 flex-row hidden lg:visible items-center justify-center p-6 child-hover:scale-105 child:hover-grow max-w-[100vw]'>
+      <ul className='sticky top-0 text-gradient text-center font-extrabold lg:flex gap-12 flex-row hidden lg:visible items-center justify-center p-3 child-hover:scale-105 child:hover-grow max-w-[100vw]'>
         <li>
           <a href='/#band'>BAND</a>
         </li>

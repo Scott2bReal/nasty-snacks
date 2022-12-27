@@ -2,33 +2,35 @@ import type { StateUpdater } from 'preact/hooks'
 
 interface Props {
   mobileControlData: {
-    overlay: (mobileOpen: boolean) => void
+    lockScroll: (mobileOpen: boolean) => void
     mobileOpen: boolean
     setMobileOpen: StateUpdater<boolean>
   }
 }
 
 export const MobileNav = ({ mobileControlData }: Props) => {
-  const { overlay, mobileOpen, setMobileOpen } = mobileControlData
+  const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
+  const sections = ['band', 'music', 'tour', 'media', 'merch', 'contact']
+  const homeSections = ['band', 'music', 'tour']
 
   return (
-    <nav className={`h-[100vh] w-[100vw] z-[2] text-center`}>
+    <nav className={`h-[100vh] w-[100vw] z-[2] text-center bg-neutral-900`}>
       <div class='flex gap-2 justify-evenly items-center'>
         <button
           className={`ml-6`}
           id='closeMobileNav'
           onClick={() => {
             setMobileOpen(false)
-            overlay(mobileOpen)
+            lockScroll(mobileOpen)
           }}
         >
           <svg
+            class='w-8 h-8'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'
             stroke-width='1.5'
             stroke='currentColor'
-            class='w-8 h-8'
           >
             <path
               stroke-linecap='round'
@@ -46,24 +48,25 @@ export const MobileNav = ({ mobileControlData }: Props) => {
         </h1>
       </div>
       <ul className='mt-6 text-gradient text-center font-extrabold my-auto lg:flex gap-12 flex flex-col items-center justify-center p-6 child-hover:scale-105 child:hover-grow max-w-[100vw]'>
-        <li>
-          <a href='/#band'>BAND</a>
-        </li>
-        <li>
-          <a href='/#music'>MUSIC</a>
-        </li>
-        <li>
-          <a href='/#tour'>TOUR</a>
-        </li>
-        <li>
-          <a href='/media'>MEDIA</a>
-        </li>
-        <li>
-          <a href='/merch'>MERCH</a>
-        </li>
-        <li>
-          <a href='/contact'>CONTACT</a>
-        </li>
+        {sections.map((section) => {
+          return (
+            <li>
+              <a
+                href={`${
+                  homeSections.includes(section)
+                    ? `/#${section}`
+                    : `/${section}`
+                }`}
+                onClick={() => {
+                  setMobileOpen(false)
+                  lockScroll(mobileOpen)
+                }}
+              >
+                {section.toUpperCase()}
+              </a>
+            </li>
+          )
+        })}
       </ul>
     </nav>
   )

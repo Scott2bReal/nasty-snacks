@@ -5,7 +5,7 @@ import { MobileNav } from './MobileNav'
 export const Nav = () => {
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  const overlay = (mobileOpen: boolean) => {
+  const lockScroll = (mobileOpen: boolean) => {
     if (mobileOpen) {
       document.body.classList.toggle('overflow-hidden')
     } else {
@@ -17,19 +17,17 @@ export const Nav = () => {
     function handleResize() {
       if (window.innerWidth > 1024) {
         setMobileOpen(false)
-        overlay(false)
+        lockScroll(false)
       }
     }
 
-    window.addEventListener('resize', handleResize)
-
     return () => {
-      window.removeEventListener('resize', handleResize)
+      window.addEventListener('resize', handleResize)
     }
   }, [])
 
   const mobileControlData = {
-    overlay: overlay,
+    lockScroll: lockScroll,
     mobileOpen: mobileOpen,
     setMobileOpen: setMobileOpen,
   }

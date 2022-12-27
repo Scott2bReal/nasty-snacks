@@ -17,14 +17,15 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
+  <header class='sticky top-0'>
+    <Nav client:idle />
+  </header>
   <body>
-    <header class="w-[100vw] lg:relative fixed bg-neutral-900">
-      <Nav client:load />
-    </header>
     <slot />
   </body>
 
   <style is:global>
     @import "../styles/globals.css";
   </style>
+
 </html>
