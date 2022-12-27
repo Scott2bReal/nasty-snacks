@@ -12,11 +12,11 @@ export const TopNav = ({ mobileControlData }: Props) => {
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
 
   return (
-    <nav className='text-center bg-neutral-900/90 w-[100vw] top-0'>
-      <div class='flex gap-2 items-center justify-evenly'>
+    <nav className='text-center bg-neutral-900/90 mx-auto top-0'>
+      <div class='flex gap-2 items-center justify-evenly -translate-x-6 md:translate-x-0'>
         <button
           id='openMobileNav'
-          class='lg:hidden ml-6 md:ml-0'
+          class='pl-12 -pr-6 md:hidden'
           onClick={() => {
             setMobileOpen(true)
             lockScroll(mobileOpen)
@@ -37,7 +37,7 @@ export const TopNav = ({ mobileControlData }: Props) => {
             ></path>
           </svg>
         </button>
-        <h1 className='p-2 -translate-x-6 md:-translate-x-4'>
+        <h1 className='p-2 md:-translate-x-4'>
           <a href='/'>
             <span className='text-gradient text-5xl font-extrabold tracking-widest'>
               NASTY SNACKS
@@ -45,7 +45,7 @@ export const TopNav = ({ mobileControlData }: Props) => {
           </a>
         </h1>
       </div>
-      <ul className='sticky top-0 text-gradient text-center font-extrabold lg:flex gap-12 flex-row hidden lg:visible items-center justify-center p-3 child-hover:scale-105 child:hover-grow max-w-[100vw]'>
+      <ul className='sticky top-0 text-gradient text-center font-extrabold md:flex gap-12 flex-row hidden md:visible items-center justify-center p-3 child-hover:scale-105 child:hover-grow max-w-[100vw] mx-auto'>
         <li>
           <a href='/#band'>BAND</a>
         </li>
