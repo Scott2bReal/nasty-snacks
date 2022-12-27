@@ -28,7 +28,7 @@ export const TopNav = () => {
 
   return mobileOpen ? (
     <nav
-      className={`h-[100vh] w-[100vw] z-[2] text-center flex flex-col items-center justify-center`}
+      className={`h-[100vh] w-[100vw] z-[2] text-center`}
     >
       <button
         className={`absolute top-6 left-6 lg:hidden mobileOpen`}
@@ -60,7 +60,7 @@ export const TopNav = () => {
           </span>
         </a>
       </h1>
-      <ul className='text-gradient text-center font-extrabold my-auto lg:flex gap-12 flex flex-col items-center justify-center p-6 child-hover:scale-105 child:hover-grow max-w-[100vw]'>
+      <ul className='mt-6 text-gradient text-center font-extrabold my-auto lg:flex gap-12 flex flex-col items-center justify-center p-6 child-hover:scale-105 child:hover-grow max-w-[100vw]'>
         <li>
           <a href='/#band'>BAND</a>
         </li>
