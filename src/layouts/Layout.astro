@@ -1,5 +1,5 @@
 ---
-import { TopNav } from "../components/TopNav";
+import { Nav } from "../components/navbar/Nav";
 
 export interface Props {
   title: string;
@@ -19,7 +19,7 @@ const { title } = Astro.props;
   </head>
   <body>
     <header class="w-[100vw] relative">
-      <TopNav client:load />
+      <Nav client:load />
     </header>
     <slot />
   </body>
