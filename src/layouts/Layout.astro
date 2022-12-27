@@ -19,7 +19,7 @@ const { title } = Astro.props;
   </head>
   <body>
     <header class="w-[100vw] relative">
-      <TopNav client:media="(min-width: 1024px)" />
+      <TopNav client:load />
     </header>
     <slot />
   </body>
@@ -28,10 +28,3 @@ const { title } = Astro.props;
     @import "../styles/globals.css";
   </style>
 </html>
-<style>
-  @media screen and (max-width: 1024px) {
-    .mobileOpen {
-      display: none;
-    }
-  }
-</style>
