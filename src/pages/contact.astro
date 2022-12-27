@@ -3,5 +3,46 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Nasty Snacks | Contact">
-  <h1 class='page-header-main pt-16'>Contact Us</h1>
+  <h1 class="page-header-main -mt-10">Contact Us</h1>
+
+  <form
+    action="/contact"
+    method="POST"
+    name="contact"
+    id="contact"
+    class="flex flex-col gap-2 flex-grow flex-wrap p-4 items-center lg:w-[75vw] w-full mx-auto child:w-full"
+  >
+    <div class="flex w-full gap-2 child:flex-grow">
+      <div class="child:w-full">
+        <label for="firstName">First Name</label>
+        <input id="firstName" />
+      </div>
+      <div class="child:w-full">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" />
+      </div>
+    </div>
+
+    <label for="email">Email Address</label>
+    <input id="email" type="email" />
+
+    <label for="subject">Subject</label>
+    <input id="subject" />
+    <label for="message">Message</label>
+    <textarea id="message"></textarea>
+
+    <button
+      class="p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6"
+      type="submit">Submit</button
+    >
+  </form>
 </Layout>
+<style>
+  input {
+    @apply text-neutral-900 px-2;
+  }
+
+  textarea {
+    @apply text-neutral-900 px-2;
+  }
+</style>
