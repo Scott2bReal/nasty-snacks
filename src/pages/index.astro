@@ -1,9 +1,9 @@
 ---
-import { Image } from "@astrojs/image/components";
 import Socials from "../components/Socials.astro";
 import Layout from "../layouts/Layout.astro";
-import groupPhoto from "../../public/images/group_photo.jpg"
-import smokeSignals from "../../public/images/smoke_signals.jpg"
+import SpotifyPreview from "../components/SpotifyPreview.astro";
+import UpcomingShows from "../components/UpcomingShows.astro";
+import BandInfo from "../components/BandInfo.astro";
 ---
 
 <Layout title="Nasty Snacks">
@@ -11,74 +11,19 @@ import smokeSignals from "../../public/images/smoke_signals.jpg"
     <!-- Band info -->
     <section class="mx-auto text-center pt-24" id="band">
       <h2 class="tracking-widest text-3xl pb-6">WE ARE NASTY SNACKS</h2>
-      <div
-        class="flex lg:flex-row flex-col max-w[850px] text-center lg:justify-center px-4"
-      >
-        <Image src={groupPhoto} alt="Group Photo" width="500px" />
-        <ul class="text-left px-4 child:py-2 child:text-sm">
-          <li><em>Drums / Don Allen Jr.</em></li>
-          <li><em>Keys / Keith Brooks II</em></li>
-          <li><em>Guitar / Colin Fahey</em></li>
-          <li><em>Bass / Martin Farrelly</em></li>
-          <li><em>Tenor Sax / Alex Francois</em></li>
-          <li><em>Guitar / Ryan Gac</em></li>
-          <li><em>Trumpet / Scott Hoecker</em></li>
-          <li><em>Trombone / Matt Jarosch</em></li>
-          <li><em>Trumpet / Caleb Mitchell</em></li>
-          <li><em>Vocals / Stefanie Mitchell</em></li>
-        </ul>
-      </div>
+      <BandInfo />
     </section>
 
     <!-- Music -->
     <section id="music" class="text-center pt-24">
       <h3 class="tracking-wider text-3xl pb-6">MUSIC</h3>
-      <div id="player" class="flex lg:flex-row flex-col items-center justify-center gap-8">
-        <a
-          href="https://open.spotify.com/album/7mLF0VbXdSgJalOclhMAJa?si=jf53fU3zRrSCJAKj0TC-tA"
-          target="_blank"
-          ><Image
-            src={smokeSignals}
-            width="450px"
-            alt="Smoke Signals EP Cover"
-          />
-        </a>
-
-        <iframe
-          src="https://open.spotify.com/embed/album/7mLF0VbXdSgJalOclhMAJa?utm_source=generator"
-          class='lg:h-[380px] lg:max-w-[50vw]'
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        ></iframe>
-      </div>
+      <SpotifyPreview />
     </section>
 
     <!-- Upcoming Shows -->
     <section id="tour" class="text-center pt-24">
       <h3 class="tracking-wider text-3xl pb-6">Upcoming Shows</h3>
-      <ul class="mx-auto tracking-wider w-fit flex flex-col gap-2 text-left">
-        <li>
-          <em>
-            <strong>FITZGERALDS SIDEBAR, BERWYN, IL</strong> NASTY SNACKS PRESENTS:
-            MIDNIGHT SNACKS // EVERY 1st THURSDAY
-          </em>
-        </li>
-        <li>
-          <em>
-            <strong>MARTYRS, CHICAGO, IL</strong> FRIDAY DECEMBER 09 w/ VICTOR TORRES
-            BAND &gt;&gt;
-            <a href="http://martyrslive.com/calendar" target="_blank"
-              ><strong>TICKETS</strong>
-            </a>
-          </em>
-        </li>
-        <li>
-          <em>
-            <strong>DORIAN’S THROUGH THE RECORD SHOP, CHICAGO, IL</strong> THURSDAY
-            DECEMBER 29
-          </em>
-        </li>
-      </ul>
+      <UpcomingShows />
     </section>
   </main>
   <footer class="text-center pt-12 pb-4">

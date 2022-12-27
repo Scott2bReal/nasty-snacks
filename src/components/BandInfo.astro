@@ -1,0 +1,22 @@
+---
+import { Image } from "@astrojs/image/components";
+import groupPhoto from '../../public/images/group_photo.jpg'
+---
+
+<div
+  class="flex lg:flex-row flex-col max-w[850px] text-center lg:justify-center px-4"
+>
+  <Image src={groupPhoto} alt="Group Photo" width="500px" />
+  <ul class="text-left px-4 child:py-2 child:text-sm">
+    <li><em>Drums / Don Allen Jr.</em></li>
+    <li><em>Keys / Keith Brooks II</em></li>
+    <li><em>Guitar / Colin Fahey</em></li>
+    <li><em>Bass / Martin Farrelly</em></li>
+    <li><em>Tenor Sax / Alex Francois</em></li>
+    <li><em>Guitar / Ryan Gac</em></li>
+    <li><em>Trumpet / Scott Hoecker</em></li>
+    <li><em>Trombone / Matt Jarosch</em></li>
+    <li><em>Trumpet / Caleb Mitchell</em></li>
+    <li><em>Vocals / Stefanie Mitchell</em></li>
+  </ul>
+</div>

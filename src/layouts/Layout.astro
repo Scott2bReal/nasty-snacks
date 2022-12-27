@@ -1,5 +1,5 @@
 ---
-import TopNav from "../components/TopNav.astro";
+import { TopNav } from "../components/TopNav";
 
 export interface Props {
   title: string;
@@ -18,8 +18,8 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <header class='w-[100vw]'>
-      <TopNav />
+    <header class="w-[100vw] relative">
+      <TopNav client:media="(min-width: 1024px)" />
     </header>
     <slot />
   </body>
@@ -28,3 +28,10 @@ const { title } = Astro.props;
     @import "../styles/globals.css";
   </style>
 </html>
+<style>
+  @media screen and (max-width: 1024px) {
+    .mobileOpen {
+      display: none;
+    }
+  }
+</style>

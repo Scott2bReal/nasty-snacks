@@ -1,0 +1,22 @@
+---
+import { Image } from '@astrojs/image/components';
+import smokeSignals from '../../public/images/smoke_signals.jpg'
+---
+
+<div
+  id="player"
+  class="flex lg:flex-row flex-col items-center justify-center gap-8"
+>
+  <a
+    href="https://open.spotify.com/album/7mLF0VbXdSgJalOclhMAJa?si=jf53fU3zRrSCJAKj0TC-tA"
+    target="_blank"
+    ><Image src={smokeSignals} width="450px" alt="Smoke Signals EP Cover" />
+  </a>
+
+  <iframe
+    src="https://open.spotify.com/embed/album/7mLF0VbXdSgJalOclhMAJa?utm_source=generator"
+    class="lg:h-[380px] lg:max-w-[50vw]"
+    allowfullscreen=""
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+  ></iframe>
+</div>
