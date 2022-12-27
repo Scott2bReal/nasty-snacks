@@ -18,7 +18,7 @@ export const RandomSnacksVid = () => {
   }
 
   return (
-    <div class='flex flex-col items-center justify-center'>
+    <div class='flex flex-col items-center justify-center pt-16'>
       <iframe
         width='560'
         height='315'

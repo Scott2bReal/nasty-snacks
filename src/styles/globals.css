@@ -16,7 +16,7 @@
 
 @layer components {
   .page-header-main {
-    @apply text-3xl tracking-widest text-center
+    @apply text-3xl tracking-widest text-center pt-16
   }
 
   .text-gradient {

@@ -12,7 +12,7 @@ export const TopNav = ({ mobileControlData }: Props) => {
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
 
   return (
-    <nav className='text-center bg-neutral-900/90 w-[100vw] top-0 shadow-lg shadow-neutral-900'>
+    <nav className='text-center bg-neutral-900/90 w-[100vw] top-0'>
       <div class='flex gap-2 items-center justify-evenly'>
         <button
           id='openMobileNav'
