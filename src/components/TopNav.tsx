@@ -83,9 +83,9 @@ export const TopNav = () => {
     </nav>
   ) : (
     <nav className='text-center'>
-      <button id='openMobileNav' className='absolute top-6 left-6'>
+      <button id='openMobileNav' className='lg:hidden absolute top-6 left-6'>
         <svg
-          className='h-8 w-8 lg:hidden'
+          className='h-8 w-8'
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
           viewBox='0 0 24 24'
