@@ -21,3 +21,4 @@ pnpm-debug.log*
 .netlify/functions-internal
 .netlify
 public/images/group_photo_big.jpg
+public/images/smoke_signals_big.jpg
