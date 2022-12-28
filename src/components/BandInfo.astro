@@ -1,13 +1,13 @@
 ---
 import { Image } from "@astrojs/image/components";
-import groupPhoto from "images/group_photo.jpg";
+// import groupPhoto from "../../public/images/group_photo.jpg";
 ---
 
 <h2 class="tracking-widest text-3xl py-6">WE ARE NASTY SNACKS</h2>
 <div
   class="flex lg:flex-row flex-col max-w[850px] text-center lg:justify-center px-4"
 >
-  <Image src={groupPhoto} alt="Group Photo" width="500px" />
+  <Image src={import('../../public/images/group_photo.jpg')} alt="Group Photo" width="500px" />
   <ul class="text-left px-4 child:py-2 child:text-sm">
     <li><em>Drums / Don Allen Jr.</em></li>
     <li><em>Keys / Keith Brooks II</em></li>

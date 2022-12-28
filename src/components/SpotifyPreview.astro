@@ -1,6 +1,6 @@
 ---
 import { Image } from "@astrojs/image/components";
-import smokeSignals from "images/smoke_signals.jpg";
+// import smokeSignals from "../../public/images/smoke_signals.jpg";
 ---
 
 <h3 class="tracking-wider text-3xl pb-6">MUSIC</h3>
@@ -11,7 +11,7 @@ import smokeSignals from "images/smoke_signals.jpg";
   <a
     href="https://open.spotify.com/album/7mLF0VbXdSgJalOclhMAJa?si=jf53fU3zRrSCJAKj0TC-tA"
     target="_blank"
-    ><Image src={smokeSignals} width="450px" alt="Smoke Signals EP Cover" />
+    ><Image src={import('../../public/images/smoke_signals.jpg')} width="450px" alt="Smoke Signals EP Cover" />
   </a>
 
   <iframe
