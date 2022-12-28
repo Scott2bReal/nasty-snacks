@@ -16,6 +16,7 @@ export const TopNav = ({ mobileControlData }: Props) => {
       <div class='flex gap-2 items-center justify-evenly '>
         <button
           id='openMobileNav'
+          name='openMobileNav'
           class='ml-6 md:hidden'
           onClick={() => {
             setMobileOpen(true)

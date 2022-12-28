@@ -20,6 +20,7 @@ export const MobileNav = ({ mobileControlData }: Props) => {
         <button
           className={`ml-6`}
           id='closeMobileNav'
+          name='closeMobileNav'
           onClick={() => {
             setMobileOpen(false)
             lockScroll(mobileOpen)
