@@ -4,12 +4,21 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Nasty Snacks | Contact">
   <form
+    data-netlify="true"
+    netlify-honeypot
     action="/contact"
     method="POST"
     name="contact"
     id="contact"
     class="flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full"
   >
+    <p class="hidden">
+      <label>
+        Don’t fill this out if you’re human: <input name="bot-field" />
+      </label>
+    </p>
+
+    <input type="hidden" name="form-name" value="contact" />
     <div class="flex w-full gap-2 child:flex-grow">
       <div class="child:w-full">
         <label for="firstName"><em>First Name*</em></label>
@@ -28,7 +37,8 @@ import Layout from "../layouts/Layout.astro";
     <input id="subject" required />
 
     <label for="message"><em>Message*</em></label>
-    <textarea id="message" rows="4" class='text-neutral-900' required></textarea>
+    <textarea id="message" rows="4" class="text-neutral-900" required
+    ></textarea>
 
     <button
       class="p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 tracking-widest"
