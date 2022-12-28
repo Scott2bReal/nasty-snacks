@@ -2,7 +2,7 @@ import { randomNumber } from '../utils/helpers'
 import { useState } from 'preact/hooks'
 
 export const RandomSnacksVid = () => {
-  const buttonStylesUp = 'tracking-widest mt-4 p-2 rounded-lg hover:bg-pink-700 bg-purple-700 text-neutral-900 shadow-black shadow-md transition duration-150 ease-in-out'
+  const buttonStylesUp = 'bg-gradient-to-br to-purple-700 from-pink-700 tracking-widest mt-4 p-2 rounded-lg shadow-black shadow-md transition duration-150 ease-in-out'
   const buttonStylesDown = buttonStylesUp + ' scale-95'
 
   const snacksVids = [
@@ -20,8 +20,6 @@ export const RandomSnacksVid = () => {
     const unusedUrls = snacksVids.filter((url) => url !== currentUrl)
     return unusedUrls[randomNumber(unusedUrls.length)]
   }
-
-
 
   return (
     <div class='flex flex-col items-center justify-center pt-8'>

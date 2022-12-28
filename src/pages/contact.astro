@@ -12,22 +12,22 @@ import Layout from "../layouts/Layout.astro";
   >
     <div class="flex w-full gap-2 child:flex-grow">
       <div class="child:w-full">
-        <label for="firstName"><em>First Name</em></label>
+        <label for="firstName"><em>First Name*</em></label>
         <input id="firstName" required />
       </div>
       <div class="child:w-full">
         <label for="lastName"><em>Last Name</em></label>
-        <input id="lastName" required />
+        <input id="lastName" />
       </div>
     </div>
 
-    <label for="email"><em>Email Address</em></label>
+    <label for="email"><em>Email Address*</em></label>
     <input id="email" type="email" required />
 
-    <label for="subject"><em>Subject</em></label>
+    <label for="subject"><em>Subject*</em></label>
     <input id="subject" required />
 
-    <label for="message"><em>Message</em></label>
+    <label for="message"><em>Message*</em></label>
     <textarea id="message" rows="4" required></textarea>
 
     <button
