@@ -4,17 +4,21 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Nasty Snacks | Contact">
   <form
-    data-netlify='true'
-    netlify-honeypot='bot-field'
+    data-netlify="true"
+    netlify-honeypot="bot-field"
     action="/contact"
     method="POST"
     name="contact"
     id="contact"
     class="flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full"
   >
+    <input type="hidden" name="form-name" value="contact" />
     <p class="hidden">
       <label>
-        Don’t fill this out if you’re human: <input name="bot-field" />
+        Don’t fill this out if you’re human: <input
+          name="bot-field"
+          value="contact"
+        />
       </label>
     </p>
 
