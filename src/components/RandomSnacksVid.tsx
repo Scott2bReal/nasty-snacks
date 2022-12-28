@@ -2,6 +2,9 @@ import { randomNumber } from '../utils/helpers'
 import { useState } from 'preact/hooks'
 
 export const RandomSnacksVid = () => {
+  const buttonStylesUp = 'tracking-widest mt-4 p-2 rounded-lg hover:bg-pink-700 bg-purple-700 text-neutral-900 shadow-black shadow-md transition duration-150 ease-in-out'
+  const buttonStylesDown = buttonStylesUp + ' scale-95'
+
   const snacksVids = [
     'https://www.youtube.com/embed/ThavI6vr6sY',
     'https://www.youtube.com/embed/FNQh0UWbohU',
@@ -10,12 +13,15 @@ export const RandomSnacksVid = () => {
     'https://www.youtube.com/embed/a6wQ8Z8Kxvw',
   ]
 
-  let [url, setUrl] = useState(snacksVids[randomNumber(snacksVids.length)])
+  const [url, setUrl] = useState(snacksVids[randomNumber(snacksVids.length)])
+  const [buttonStyles, setButtonStyles] = useState(buttonStylesUp)
 
   const findNewUrl = (currentUrl: string) => {
     const unusedUrls = snacksVids.filter((url) => url !== currentUrl)
     return unusedUrls[randomNumber(unusedUrls.length)]
   }
+
+
 
   return (
     <div class='flex flex-col items-center justify-center pt-8'>
@@ -31,7 +37,9 @@ export const RandomSnacksVid = () => {
       ></iframe>
       <button
         onClick={() => setUrl(findNewUrl(url))}
-        class='tracking-widest mt-4 p-2 rounded-lg hover:bg-pink-700 hover:scale-95 bg-purple-700 text-neutral-900 shadow-black shadow-md transition duration-300 ease-in-out'
+        onMouseDown={() => setButtonStyles(buttonStylesDown)}
+        onMouseUp={() => setButtonStyles(buttonStylesUp)}
+        class={`${buttonStyles}`}
       >
         Random Video
       </button>
