@@ -15,8 +15,16 @@
 }
 
 @layer components {
+  input {
+    @apply p-2 text-neutral-900;
+  }
+
+  label {
+    @apply text-sm;
+  }
+
   .page-header-main {
-    @apply text-3xl tracking-widest text-center pt-16
+    @apply text-3xl tracking-widest text-center pt-16;
   }
 
   .text-gradient {
