@@ -4,13 +4,13 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
-import image from '@astrojs/image';
+// import image from '@astrojs/image';
 
 // https://astro.build/config
 import preact from "@astrojs/preact";
 
 // https://astro.build/config
-import netlify from "@astrojs/netlify/functions";
+import netlify from "@astrojs/netlify/edge-functions";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,6 +19,6 @@ export default defineConfig({
     config: {
       applyBaseStyles: false
     }
-  }), image(), preact()],
+  }), preact()],
   adapter: netlify()
 });
