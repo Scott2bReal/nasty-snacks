@@ -18,6 +18,7 @@ export const ContactForm = () => {
 
   return (
     <form
+      data-netlify='true'
       name='contact'
       id='contact'
       class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
