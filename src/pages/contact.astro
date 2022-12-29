@@ -5,11 +5,12 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Nasty Snacks | Contact">
   <form
     data-netlify="true"
-    name="contact"
+    name="contactUs"
     class="flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full"
     action="/success"
     method="post"
   >
+    <input class="hidden" name="form-name" value="contactUs" />
     <div class="flex w-full gap-2 child:flex-grow">
       <div class="child:w-full">
         <label for="firstName">
