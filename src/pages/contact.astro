@@ -3,62 +3,60 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Nasty Snacks | Contact">
-  <form data-netlify="true" name="contactUs" action="/success" method="post">
-    <input class="hidden" name="form-name" value="contactUs" />
+  <main class="text-center">
+    <form
+      data-netlify="true"
+      name="contactUs"
+      action="/success"
+      method="post"
+      class="flex flex-col gap-2 items-start w-fit md:w-[50vw] mx-auto"
+    >
+      <input class="hidden" name="form-name" value="contactUs" />
 
-    <div class="flex w-full gap-2 child:flex-grow">
-      <label class="w-full">
-        <p>
-          <em>First Name*</em>
-        </p>
-        <input name="firstName" class="w-full p-1" required />
+      <div class='flex gap-2 w-full'>
+        <label class='w-full'>
+          <p class='text-start'>
+            <em>First Name*</em>
+          </p>
+          <input name="firstName" class='w-full' required />
+        </label>
+        <label class='w-full'>
+          <p class='text-start w-full'>
+            <em>Last Name</em>
+          </p>
+          <input name="lastName" class='w-full' />
+        </label>
+      </div>
+
+      <label class=' w-full'>
+        <em>Email Address*</em>
+        <input name="email" type="email" class='w-full' required />
       </label>
 
-      <label class="w-full">
+      <label class=' w-full'>
         <p>
-          <em>Last Name</em>
+          <em>Subject*</em>
         </p>
-        <input name="lastName" class="w-full p-1" required />
+        <input name="email" class='w-full' required />
       </label>
-    </div>
 
-    <p>
-      <label>
+      <label class='w-full '>
         <p>
-          <em class="text-sm">Email Address*</em>
+          <em>Message*</em>
         </p>
-        <input type="email" name="email" class="p-1" required />
-      </label>
-    </p>
-
-    <p>
-      <label>
-        <p>
-          <em class="text-sm">Subject*</em>
-        </p>
-        <input name="subject" required />
-      </label>
-    </p>
-
-    <p>
-      <label>
-        <p>
-          <em class="text-sm">Message*</em>
-        </p>
-        <textarea name="message" rows={4} class="text-neutral-900 p-1"
+        <textarea name="message" class="text-neutral-900 w-full" rows={4} required
         ></textarea>
       </label>
-    </p>
-
-    <button
-      disabled
-      class="p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 tracking-widest opacity-50"
-      type="submit"
-      id="submitContactForm"
-    >
-      Submit
-    </button>
-  </form>
+      <button
+        disabled
+        class="p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 tracking-widest opacity-50 w-full"
+        type="submit"
+        id="submitContactForm"
+      >
+        Submit
+      </button>
+    </form>
+  </main>
 </Layout>
 <script>
   const button = document.getElementById("submitContactForm");
