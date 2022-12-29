@@ -19,6 +19,14 @@ export const ContactForm = () => {
     setIsDisabled(true)
   }
 
+  const encode = (data: { [key: string]: string }) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+      )
+      .join('&')
+  }
+
   if (firstName && email && subject && message) {
     setIsDisabled(false)
   } else {
@@ -33,16 +41,16 @@ export const ContactForm = () => {
       id='contact'
       class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
       onSubmit={async (e) => {
-        e.preventDefault()
-        const form = e.currentTarget
-        const formData = new FormData(form)
-
+        // e.preventDefault()
+        // const formData = new FormData(e.currentTarget)
+        // const foo = {...formData}
+        // console.log(foo)
         try {
           setSubmitLoading(true)
           await fetch('/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: { ...formData },
+            // body: { ...formData },
           })
           clearForm()
           setSubmitLoading(false)
