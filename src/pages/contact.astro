@@ -1,16 +1,100 @@
 ---
-import { ContactForm } from "../components/contact-form/ContactForm";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Nasty Snacks | Contact">
-<form data-netlify='true' name="contact" method='post' action='/success' class='hidden'>
-  <input type="hidden" name="form-name" value="contact" />
-  <input id="firstName" name='firstName' required />
-  <input id="lastName" name='lastName' />
-  <input id="email" type="email" name='email' required />
-  <input id="subject" required />
-  <textarea id="message" rows="4" name='message' class="text-neutral-900" required></textarea>
-</form>
-  <ContactForm client:load />
+  <form
+    data-netlify="true"
+    name="contact"
+    id="contactForm"
+    class="flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full"
+    action="/success"
+    method="POST"
+  >
+    <input class="hidden" name="form-name" value="contact" />
+    <div class="flex w-full gap-2 child:flex-grow">
+      <div class="child:w-full">
+        <label for="firstName">
+          <em>First Name*</em>
+        </label>
+        <input id="firstName" name="firstName" required />
+      </div>
+      <div class="child:w-full">
+        <label for="lastName">
+          <em>Last Name</em>
+        </label>
+        <input id="lastName" name="lastName" />
+      </div>
+    </div>
+
+    <label for="email">
+      <em>Email Address*</em>
+    </label>
+    <input id="email" name="email" type="email" required />
+
+    <label for="subject">
+      <em>Subject*</em>
+    </label>
+    <input id="subject" name="subject" required />
+
+    <label for="message">
+      <em>Message*</em>
+    </label>
+    <textarea
+      id="message"
+      rows={4}
+      class="text-neutral-900 p-1"
+      name="message"
+      required></textarea>
+    <button
+      disabled
+      class="p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 tracking-widest opacity-50"
+      type="submit"
+      id="submitContactForm"
+    >
+      Submit
+    </button>
+  </form>
 </Layout>
+<script>
+  const button = document.getElementById("submitContactForm");
+  const form = document.querySelector('form')
+  function animateButton(button: HTMLElement | null) {
+    if (!button) return;
+
+    button.addEventListener("mousedown", () => {
+      return button.classList.add("scale-95");
+    });
+
+    button.addEventListener("mouseup", () => {
+      return button.classList.remove("scale-95");
+    });
+  }
+
+  function disableButton(
+    button: HTMLElement | null,
+    form: HTMLElement | null,
+  ) {
+    if (!button || !form ) return;
+
+    const fields = form.querySelectorAll('[required]') as NodeListOf<HTMLInputElement | HTMLTextAreaElement>
+
+    form.addEventListener('change', () => {
+      // If any field value is empty, just return
+      for (let i = 0; i < fields.length; i += 1) {
+        const field = fields[i]
+        if (field.value === '') {
+          return;
+        }
+      }
+
+      // They filled out the whole form!
+      button.removeAttribute('disabled')
+      button.classList.remove('opacity-50')
+      animateButton(button);
+    })
+
+  }
+
+  disableButton(button, form)
+</script>
