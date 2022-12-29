@@ -36,6 +36,7 @@ export const ContactForm = () => {
         e.preventDefault()
         const form = e.currentTarget
         const formData = new FormData(form)
+
         try {
           setSubmitLoading(true)
           await fetch('/api/contact', {
