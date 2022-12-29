@@ -4,9 +4,6 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
-// import image from '@astrojs/image';
-
-// https://astro.build/config
 import preact from "@astrojs/preact";
 
 // https://astro.build/config
