@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Nasty Snacks | Contact">
-  <main>
+  <main class='text-start'>
     <form
       data-netlify="true"
       name="contactUs"
@@ -13,7 +13,7 @@ import Layout from "../layouts/Layout.astro";
     >
       <input class="hidden" name="form-name" value="contactUs" />
 
-      <div class="flex w-full gap-2 child:flex-grow">
+      <div class="flex w-full gap-2 child:flex-grow items-start">
         <div class="child:w-full">
           <label for="firstName">
             <em>First Name*</em>
