@@ -18,8 +18,14 @@ export const ContactForm = () => {
       method='POST'
       onSubmit={(e) => {
         e.preventDefault()
-        const form = e.currentTarget
-        const formData = new FormData(form)
+
+        const data = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          subject: subject,
+          message: message,
+        }
 
         const encode = (data: { [key: string]: string }) => {
           return Object.keys(data)
@@ -37,7 +43,7 @@ export const ContactForm = () => {
           },
           body: encode({
             'form-name': 'contactUs',
-            ...Object.fromEntries(formData.entries())
+            ...data
           })
         })
           .then(() => alert('Thanks for reaching out!'))
