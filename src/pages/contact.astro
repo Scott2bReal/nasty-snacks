@@ -6,12 +6,10 @@ import Layout from "../layouts/Layout.astro";
   <form
     data-netlify="true"
     name="contact"
-    id="contactForm"
     class="flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full"
     action="/success"
-    method="POST"
+    method="post"
   >
-    <input class="hidden" name="form-name" value="contact" />
     <div class="flex w-full gap-2 child:flex-grow">
       <div class="child:w-full">
         <label for="firstName">
@@ -58,7 +56,7 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 <script>
   const button = document.getElementById("submitContactForm");
-  const form = document.querySelector('form')
+  const form = document.querySelector("form");
   function animateButton(button: HTMLElement | null) {
     if (!button) return;
 
@@ -71,30 +69,28 @@ import Layout from "../layouts/Layout.astro";
     });
   }
 
-  function disableButton(
-    button: HTMLElement | null,
-    form: HTMLElement | null,
-  ) {
-    if (!button || !form ) return;
+  function disableButton(button: HTMLElement | null, form: HTMLElement | null) {
+    if (!button || !form) return;
 
-    const fields = form.querySelectorAll('[required]') as NodeListOf<HTMLInputElement | HTMLTextAreaElement>
+    const fields = form.querySelectorAll("[required]") as NodeListOf<
+      HTMLInputElement | HTMLTextAreaElement
+    >;
 
-    form.addEventListener('change', () => {
+    form.addEventListener("change", () => {
       // If any field value is empty, just return
       for (let i = 0; i < fields.length; i += 1) {
-        const field = fields[i]
-        if (field.value === '') {
+        const field = fields[i];
+        if (field.value === "") {
           return;
         }
       }
 
       // They filled out the whole form!
-      button.removeAttribute('disabled')
-      button.classList.remove('opacity-50')
+      button.removeAttribute("disabled");
+      button.classList.remove("opacity-50");
       animateButton(button);
-    })
-
+    });
   }
 
-  disableButton(button, form)
+  disableButton(button, form);
 </script>
