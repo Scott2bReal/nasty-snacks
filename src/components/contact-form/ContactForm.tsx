@@ -35,7 +35,7 @@ export const ContactForm = () => {
 
   return (
     <form
-      action='/contact'
+      action='/success'
       method='POST'
       name='contact'
       id='contact'
@@ -53,7 +53,7 @@ export const ContactForm = () => {
 
         try {
           setSubmitLoading(true)
-          await fetch('/api/contact', {
+          await fetch('/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: encode({ 'form-name': 'contact', ...formData }),
