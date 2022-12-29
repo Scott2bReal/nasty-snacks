@@ -9,8 +9,7 @@
   }
 
   body {
-    @apply bg-neutral-900 text-neutral-100;
-    @apply scroll-smooth;
+    @apply bg-neutral-900 text-neutral-100 scroll-smooth text-center;
   }
 }
 
