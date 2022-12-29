@@ -41,16 +41,22 @@ export const ContactForm = () => {
       id='contact'
       class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
       onSubmit={async (e) => {
-        // e.preventDefault()
+        e.preventDefault()
         // const formData = new FormData(e.currentTarget)
-        // const foo = {...formData}
-        // console.log(foo)
+        const formData = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          subject: subject,
+          message: message,
+        }
+
         try {
           setSubmitLoading(true)
           await fetch('/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            // body: { ...formData },
+            body: encode({ 'form-name': 'contact', ...formData }),
           })
           clearForm()
           setSubmitLoading(false)
