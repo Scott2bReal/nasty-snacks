@@ -1,12 +1,22 @@
 import { useState } from 'preact/hooks'
 import { SubmitButton } from './SubmitButton'
+import { SuccessMessage } from './SuccessMessage'
 
 export const ContactForm = () => {
   const [firstName, setFirstName] = useState('')
-  const [lastName, setlastName] = useState('')
+  const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const clearForm = () => {
+    setFirstName('')
+    setLastName('')
+    setEmail('')
+    setSubject('')
+    setMessage('')
+  }
 
   return (
     <form
@@ -16,7 +26,7 @@ export const ContactForm = () => {
       class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
       action='/success'
       method='POST'
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault()
 
         const data = {
@@ -36,17 +46,20 @@ export const ContactForm = () => {
             .join('&')
         }
 
-        fetch('/', {
+        fetch('/api/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
           body: encode({
             'form-name': 'contactUs',
-            ...data
-          })
+            ...data,
+          }),
         })
-          .then(() => alert('Thanks for reaching out!'))
+          .then(() => {
+            clearForm()
+            setIsSubmitted(true)
+          })
           .catch((e) => console.error(e))
       }}
     >
@@ -72,7 +85,7 @@ export const ContactForm = () => {
             id='lastName'
             name='lastName'
             value={lastName}
-            onChange={(e) => setlastName(e.currentTarget.value)}
+            onChange={(e) => setLastName(e.currentTarget.value)}
           />
         </div>
       </div>
@@ -113,7 +126,13 @@ export const ContactForm = () => {
         required
       ></textarea>
 
-      <SubmitButton isDisabled={!(firstName && email && subject && message)} />
+      {isSubmitted ? (
+        <SuccessMessage />
+      ) : (
+        <SubmitButton
+          isDisabled={!(firstName && email && subject && message)}
+        />
+      )}
     </form>
   )
 }
