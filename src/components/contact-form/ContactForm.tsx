@@ -46,7 +46,9 @@ export const ContactForm = () => {
             .join('&')
         }
 
-        fetch('/', {
+        const postUrl = '/?t=' + Math.floor(Date.now() / 1000);
+
+        fetch(postUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
