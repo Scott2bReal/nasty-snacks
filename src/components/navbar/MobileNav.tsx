@@ -12,7 +12,7 @@ export const MobileNav = ({ mobileControlData }: Props) => {
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
 
   const sections = ['band', 'music', 'tour', 'media', 'merch', 'contact']
-  const homeSections = ['band', 'music', 'tour']
+  const homeSections = ['band', 'tour']
 
   return (
     <nav className={`h-[100vh] w-[100vw] z-[2] text-center bg-neutral-900`}>

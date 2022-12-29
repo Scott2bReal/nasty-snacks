@@ -10,6 +10,8 @@ interface Props {
 
 export const TopNav = ({ mobileControlData }: Props) => {
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
+  const sections = ['band', 'music', 'tour', 'media', 'merch', 'contact']
+  const homeSections = ['band', 'tour']
 
   return (
     <nav className='text-center bg-neutral-900/90 mx-auto top-0'>
@@ -46,25 +48,21 @@ export const TopNav = ({ mobileControlData }: Props) => {
           </a>
         </h1>
       </div>
-      <ul className='sticky top-0 text-gradient text-center font-extrabold md:flex gap-12 flex-row hidden md:visible items-center justify-center p-3 child-hover:scale-105 child:hover-grow max-w-[100vw] mx-auto'>
-        <li>
-          <a href='/#band'>BAND</a>
-        </li>
-        <li>
-          <a href='/#music'>MUSIC</a>
-        </li>
-        <li>
-          <a href='/#tour'>TOUR</a>
-        </li>
-        <li>
-          <a href='/media'>MEDIA</a>
-        </li>
-        <li>
-          <a href='/merch'>MERCH</a>
-        </li>
-        <li>
-          <a href='/contact'>CONTACT</a>
-        </li>
+      <ul className='top-0 text-gradient text-center font-extrabold md:flex gap-12 flex-row hidden md:visible items-center justify-center p-3 child-hover:scale-105 child:hover-grow max-w-[100vw] mx-auto'>
+        {sections.map((section) => {
+          return (
+            <li>
+              <a
+                href={`${homeSections.includes(section)
+                    ? `/#${section}`
+                    : `/${section}`
+                  }`}
+              >
+                {section.toUpperCase()}
+              </a>
+            </li>
+          )
+        })}
       </ul>
     </nav>
   )
