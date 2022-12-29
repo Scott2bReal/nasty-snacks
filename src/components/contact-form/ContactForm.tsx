@@ -18,14 +18,8 @@ export const ContactForm = () => {
       method='POST'
       onSubmit={(e) => {
         e.preventDefault()
-
-        const data = {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          subject: subject,
-          message: message,
-        }
+        const form = e.currentTarget
+        const formData = new FormData(form)
 
         const encode = (data: { [key: string]: string }) => {
           return Object.keys(data)
@@ -40,18 +34,17 @@ export const ContactForm = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            body: encode({
-              'form-name': 'contactUs',
-              ...data,
-            }),
           },
+          body: encode({
+            'form-name': 'contactUs',
+            ...Object.fromEntries(formData.entries())
+          })
         })
-          .then(() => console.log('Success!'))
+          .then(() => alert('Thanks for reaching out!'))
           .catch((e) => console.error(e))
       }}
-
     >
-      <input class='hidden' name='form-name' value='contact' />
+      <input class='hidden' name='form-name' value='contactUs' />
       <div class='flex w-full gap-2 child:flex-grow'>
         <div class='child:w-full'>
           <label for='firstName'>
@@ -114,9 +107,7 @@ export const ContactForm = () => {
         required
       ></textarea>
 
-      <SubmitButton
-        isDisabled={!(firstName && email && subject && message)}
-      />
+      <SubmitButton isDisabled={!(firstName && email && subject && message)} />
     </form>
   )
 }
