@@ -59,27 +59,6 @@ import Layout from "../layouts/Layout.astro";
   const button = document.getElementById("submitContactForm");
   const form = document.querySelector("form");
 
-  function submitForm(form: HTMLFormElement | null) {
-    const handleSubmit = (e: Event) => {
-      e.preventDefault();
-
-      const form = document.querySelector("form");
-      if (!form) return;
-      const formData = new FormData(form);
-
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData,
-      })
-        .then(() => Astro.redirect("/success"))
-        .catch((error) => alert(error));
-    };
-
-    if (!form) return;
-    form.addEventListener("submit", handleSubmit);
-  }
-
   function animateButton(button: HTMLElement | null) {
     if (!button) return;
 
@@ -116,5 +95,4 @@ import Layout from "../layouts/Layout.astro";
   }
 
   disableButton(button, form);
-  submitForm(form);
 </script>
