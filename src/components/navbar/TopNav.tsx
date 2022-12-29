@@ -6,12 +6,12 @@ interface Props {
     mobileOpen: boolean
     setMobileOpen: StateUpdater<boolean>
   }
+  sections: string[]
+  homeSections: string[]
 }
 
-export const TopNav = ({ mobileControlData }: Props) => {
+export const TopNav = ({ mobileControlData, sections, homeSections }: Props) => {
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
-  const sections = ['band', 'music', 'tour', 'media', 'merch', 'contact']
-  const homeSections = ['band', 'tour']
 
   return (
     <nav className='text-center bg-neutral-900/90 mx-auto top-0'>
