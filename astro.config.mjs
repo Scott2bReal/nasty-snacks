@@ -12,6 +12,9 @@ import netlify from "@astrojs/netlify/edge-functions";
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
+  experimental: {
+    prerender: true,
+  },
   integrations: [tailwind({
     config: {
       applyBaseStyles: false
