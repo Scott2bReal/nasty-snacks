@@ -19,7 +19,7 @@ export const ContactForm = () => {
       onSubmit={(e) => {
         e.preventDefault()
 
-        const formData = {
+        const data = {
           firstName: firstName,
           lastName: lastName,
           email: email,
@@ -42,13 +42,14 @@ export const ContactForm = () => {
             'Content-Type': 'application/x-www-form-urlencoded',
             body: encode({
               'form-name': 'contactUs',
-              ...formData,
+              ...data,
             }),
           },
         })
           .then(() => console.log('Success!'))
           .catch((e) => console.error(e))
       }}
+
     >
       <input class='hidden' name='form-name' value='contact' />
       <div class='flex w-full gap-2 child:flex-grow'>
