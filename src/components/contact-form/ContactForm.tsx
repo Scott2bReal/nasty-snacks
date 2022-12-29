@@ -24,7 +24,7 @@ export const ContactForm = () => {
       name='contactUs'
       id='contactUs'
       class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
-      action='/success'
+      action='/'
       method='POST'
       onSubmit={async (e) => {
         e.preventDefault()
@@ -46,7 +46,7 @@ export const ContactForm = () => {
             .join('&')
         }
 
-        fetch('/api/contact', {
+        fetch('/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
