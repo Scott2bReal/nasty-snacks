@@ -36,7 +36,7 @@ export const ContactForm = () => {
             .join('&')
         }
 
-        fetch('/api/contact', {
+        fetch('/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
