@@ -24,6 +24,7 @@ export const ContactForm = () => {
       action='/success'
       method='POST'
     >
+      <input class='hidden' name='form-name' value='contact' />
       <div class='flex w-full gap-2 child:flex-grow'>
         <div class='child:w-full'>
           <label for='firstName'>
