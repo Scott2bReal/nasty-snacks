@@ -38,31 +38,8 @@ export const ContactForm = () => {
       name='contact'
       id='contact'
       class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
-      onSubmit={async (e) => {
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget)
-        // const formData = {
-        //   firstName: firstName,
-        //   lastName: lastName,
-        //   email: email,
-        //   subject: subject,
-        //   message: message,
-        // }
-
-        try {
-          setSubmitLoading(true)
-          await fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            // body: encode({ 'form-name': 'contact', ...formData }),
-            body: { ...formData },
-          })
-          clearForm()
-          setSubmitLoading(false)
-        } catch (e) {
-          console.log(e)
-        }
-      }}
+      action='/success'
+      method='POST'
     >
       <div class='flex w-full gap-2 child:flex-grow'>
         <div class='child:w-full'>
