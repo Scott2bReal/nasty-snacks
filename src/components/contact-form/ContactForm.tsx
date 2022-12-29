@@ -10,23 +10,6 @@ export const ContactForm = () => {
   const [isDisabled, setIsDisabled] = useState(true)
   const [submitLoading, setSubmitLoading] = useState(false)
 
-  const clearForm = () => {
-    setFirstName('')
-    setlastName('')
-    setEmail('')
-    setSubject('')
-    setMessage('')
-    setIsDisabled(true)
-  }
-
-  const encode = (data: { [key: string]: string }) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
-      )
-      .join('&')
-  }
-
   if (firstName && email && subject && message) {
     setIsDisabled(false)
   } else {
