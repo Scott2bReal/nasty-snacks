@@ -1,7 +1,10 @@
 import type { APIRoute } from "astro"
 
-export const post: APIRoute = async ({ request, redirect }) => {
-  console.log(Object.fromEntries(await request.formData()))
+export const post: APIRoute = async () => {
 
-  return redirect('/success', 302)
+  return {
+    body: JSON.stringify({
+      message: 'Form data received!'
+    })
+  }
 }
