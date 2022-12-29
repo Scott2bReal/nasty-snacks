@@ -7,23 +7,48 @@ export const ContactForm = () => {
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
-  const [isDisabled, setIsDisabled] = useState(true)
-  const [submitLoading, setSubmitLoading] = useState(false)
-
-  if (firstName && email && subject && message) {
-    setIsDisabled(false)
-  } else {
-    setIsDisabled(true)
-  }
 
   return (
     <form
       data-netlify='true'
-      name='contact'
-      id='contact'
+      name='contactUs'
+      id='contactUs'
       class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
       action='/success'
       method='POST'
+      onSubmit={(e) => {
+        e.preventDefault()
+
+        const formData = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          subject: subject,
+          message: message,
+        }
+
+        const encode = (data: { [key: string]: string }) => {
+          return Object.keys(data)
+            .map(
+              (key) =>
+                encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+            )
+            .join('&')
+        }
+
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            body: encode({
+              'form-name': 'contactUs',
+              ...formData,
+            }),
+          },
+        })
+          .then(() => console.log('Success!'))
+          .catch((e) => console.error(e))
+      }}
     >
       <input class='hidden' name='form-name' value='contact' />
       <div class='flex w-full gap-2 child:flex-grow'>
@@ -88,7 +113,9 @@ export const ContactForm = () => {
         required
       ></textarea>
 
-      <SubmitButton isDisabled={isDisabled} submitLoading={submitLoading} />
+      <SubmitButton
+        isDisabled={!(firstName && email && subject && message)}
+      />
     </form>
   )
 }

@@ -1,12 +1,10 @@
 import { useState } from 'preact/hooks'
-import { LoadingSpinner } from './LoadingSpinner'
 
 interface Props {
   isDisabled: boolean
-  submitLoading: boolean
 }
 
-export const SubmitButton = ({ isDisabled, submitLoading }: Props) => {
+export const SubmitButton = ({ isDisabled }: Props) => {
   // Animating submit button
   const buttonUpStyles =
     'p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 tracking-widest'
@@ -30,7 +28,7 @@ export const SubmitButton = ({ isDisabled, submitLoading }: Props) => {
       onMouseDown={() => setSubmitStyles(buttonDownStyles)}
       onMouseUp={() => setSubmitStyles(buttonUpStyles)}
     >
-      {submitLoading ? <LoadingSpinner /> : 'Submit' }
+        Submit
     </button>
   )
 }
