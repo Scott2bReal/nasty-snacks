@@ -14,7 +14,7 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
 
   return (
-    <nav className={`h-[100vh] w-[100vw] z-[2] text-center bg-neutral-900`}>
+    <nav className={`h-[100vh] w-[100vw] z-[5] text-center bg-neutral-900`}>
       <div class='flex gap-2 justify-evenly items-center'>
         <button
           className={`ml-6`}
