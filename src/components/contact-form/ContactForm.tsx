@@ -22,9 +22,7 @@ export const ContactForm = () => {
     <form
       data-netlify='true'
       name='contactUs'
-      id='contactUs'
       class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
-      action='/'
       method='POST'
       onSubmit={async (e) => {
         e.preventDefault()
@@ -46,9 +44,7 @@ export const ContactForm = () => {
             .join('&')
         }
 
-        const postUrl = '/?t=' + Math.floor(Date.now() / 1000);
-
-        fetch(postUrl, {
+        fetch('/forms/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
