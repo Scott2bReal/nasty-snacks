@@ -48,7 +48,7 @@ export const TopNav = ({ mobileControlData, sections, homeSections }: Props) => 
           </a>
         </h1>
       </div>
-      <ul className='top-0 text-gradient text-center font-extrabold md:flex gap-12 flex-row hidden md:visible items-center justify-center p-3 child-hover:scale-105 child:hover-grow max-w-[100vw] mx-auto'>
+      <ul className='top-0 text-gradient text-center font-extrabold md:flex gap-12 flex-row hidden md:visible items-center justify-center p-3 max-w-[100vw] mx-auto'>
         {sections.map((section) => {
           return (
             <li>
