@@ -10,8 +10,6 @@ const result = await fetch(url)
   .then((res) => res.json())
   .catch((e) => console.error(e));
 
-console.log(url)
-console.log(JSON.stringify(result, null, 2))
 const roster = result.result as BandMember[];
 ---
 
