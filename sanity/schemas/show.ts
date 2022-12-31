@@ -1,7 +1,7 @@
 export default {
   name: 'show',
   type: 'document',
-  title: 'Show',
+  title: 'Shows',
   fields: [
     {
       name: 'venueName',
