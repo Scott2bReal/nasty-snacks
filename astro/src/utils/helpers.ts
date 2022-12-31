@@ -1,5 +1,5 @@
-import dotenv from 'dotenv'
-dotenv.config()
+// import dotenv from 'dotenv'
+// dotenv.config()
 
 export function randomNumber(max: number): number {
   return Math.floor(Math.random() * max)
