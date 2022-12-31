@@ -2,7 +2,8 @@
 import type { Show } from "../types";
 import { dateFormatter, generateSanityURL } from "../utils/helpers";
 
-const projectId = import.meta.env.SANITY_PROJECT_ID ?? ''
+// @ts-ignore
+const projectId = import.meta.env.SANITY_PROJECT_ID ?? Deno?.env?.get("SANITY_PROJECT_ID")
 const url = generateSanityURL(projectId, "production", "show");
 console.log(url)
 
