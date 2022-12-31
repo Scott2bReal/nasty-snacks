@@ -1,13 +1,8 @@
 ---
 import type { Show } from "../types";
-import dayjs from 'dayjs'
-import customParseFormat from 'dayjs/plugin/customParseFormat'
-
-dayjs.extend(customParseFormat)
 
 const PROJECT_ID = import.meta.env.SANITY_PROJECT_ID;
 const DATASET = "production";
-if (typeof PROJECT_ID !== "string" || typeof DATASET !== "string") return;
 const QUERY = encodeURIComponent('*[_type == "show"]');
 
 const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
@@ -32,7 +27,7 @@ const shows = result.result as Show[];
             <strong>{show.venueName.toUpperCase()}</strong>{" "}
             {show.subtitle?.toUpperCase() ?? ""}{" "}
             {show.description ? `// ${show.description.toUpperCase()}` : ""}
-            {show.date ? dayjs(show.date, 'MMMM-D') : ""}
+            {show.date ? new Date(show.date).toDateString().toUpperCase() : ""}
           </em>
         </li>
       );
