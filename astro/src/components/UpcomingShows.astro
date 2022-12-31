@@ -1,10 +1,8 @@
 ---
-import dotenv from 'dotenv'
 import type { Show } from "../types";
 import { dateFormatter, generateSanityURL } from "../utils/helpers";
-dotenv.config()
 
-const projectId = process.env.SANITY_PROJECT_ID ?? ''
+const projectId = import.meta.env.SANITY_PROJECT_ID ?? ''
 const url = generateSanityURL(projectId, "production", "show");
 console.log(url)
 
