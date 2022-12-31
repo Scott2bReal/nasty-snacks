@@ -1,9 +1,12 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 export function randomNumber(max: number): number {
   return Math.floor(Math.random() * max)
 }
 
 export function generateSanityURL(dataset: string, docType: string) {
-  const sanityProjectId = import.meta.env.SANITY_PROJECT_ID
+  const sanityProjectId = process.env.SANITY_PROJECT_ID
   const query = encodeURIComponent(`*[_type == "${docType}"]`)
 
   return `https://${sanityProjectId}.api.sanity.io/v2021-10-21/data/query/${dataset}?query=${query}`
