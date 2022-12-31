@@ -1,8 +1,11 @@
 ---
+import dotenv from 'dotenv'
 import type { Show } from "../types";
 import { dateFormatter, generateSanityURL } from "../utils/helpers";
+dotenv.config()
 
-const url = generateSanityURL("production", "show");
+const projectId = process.env.SANITY_PROJECT_ID ?? ''
+const url = generateSanityURL(projectId, "production", "show");
 console.log(url)
 
 const result = await fetch(url)
