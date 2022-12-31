@@ -3,6 +3,7 @@ import type { Show } from "../types";
 import { dateFormatter, generateSanityURL } from "../utils/helpers";
 
 const url = generateSanityURL("production", "show");
+console.log(url)
 
 const result = await fetch(url)
   .then((res) => res.json())
@@ -17,7 +18,7 @@ const shows = result.result as Show[];
   id="showList"
 >
   {
-    shows.map((show) => {
+    shows?.map((show) => {
       return (
         <li>
           <em>
