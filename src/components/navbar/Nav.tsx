@@ -4,8 +4,8 @@ import { MobileNav } from './MobileNav'
 
 export const Nav = () => {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const sections = ['band', 'shows', 'music', 'video', 'contact']
-  const homeSections = ['band', 'shows']
+  const sections = ['shows', 'music', 'video', 'contact']
+  const homeSections = ['shows']
 
   const lockScroll = (mobileOpen: boolean) => {
     if (mobileOpen) {
