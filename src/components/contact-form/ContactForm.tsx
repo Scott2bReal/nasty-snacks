@@ -3,13 +3,16 @@ import { SubmitButton } from './SubmitButton'
 import { SuccessMessage } from './SuccessMessage'
 
 export const ContactForm = () => {
+  // Form fields
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [botField, setBotField] = useState('')
 
+  // Form handling
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const clearForm = () => {
     setFirstName('')
     setLastName('')
@@ -21,6 +24,7 @@ export const ContactForm = () => {
   return (
     <form
       data-netlify='true'
+      netlify-honeypot="botField"
       name='contactUs'
       class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
       method='POST'
@@ -30,6 +34,7 @@ export const ContactForm = () => {
         const data = {
           firstName: firstName,
           lastName: lastName,
+          botField: botField,
           email: email,
           subject: subject,
           message: message,
@@ -62,6 +67,14 @@ export const ContactForm = () => {
       }}
     >
       <input class='hidden' name='form-name' value='contactUs' />
+      <p class='hidden'>
+        Don't fill this out if you're human!
+        <input
+          name='botField'
+          class='hidden'
+          onChange={(e) => setBotField(e.currentTarget.value)}
+        />
+      </p>
       <div class='flex w-full gap-2 child:flex-grow'>
         <div class='child:w-full'>
           <label for='firstName'>
