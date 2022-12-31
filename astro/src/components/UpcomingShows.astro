@@ -1,8 +1,36 @@
+---
+const PROJECT_ID = import.meta.env.SANITY_PROJECT_ID;
+const DATASET = "production";
+if (typeof PROJECT_ID !== "string" || typeof DATASET !== "string") return;
+const QUERY = encodeURIComponent('*[_type == "show"]');
+
+const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+
+const result = await fetch(URL)
+  .then((res) => res.json())
+  .catch((e) => console.error(e));
+
+const shows = result.result;
+console.log(JSON.stringify(result.result, null, 2));
+---
+
 <h3 class="tracking-wider text-3xl pb-6">Upcoming Shows</h3>
 <ul
   class="mx-auto tracking-wider w-fit flex flex-col gap-2 text-left pl-2 opacity-0 transition duration-500 ease-in"
   id="showList"
 >
+  {
+    shows.map((show: any) => {
+      return (
+        <li>
+          <em>
+            <strong>{show.venueName.toUpperCase()}</strong>{" "}
+            {new Date(show.date).toDateString().toUpperCase()}
+          </em>
+        </li>
+      );
+    })
+  }
   <li>
     <em>
       <strong>FITZGERALDS SIDEBAR, BERWYN, IL</strong> NASTY SNACKS PRESENTS: MIDNIGHT
@@ -28,10 +56,10 @@
 
       if (window.scrollY > top || isAtBottom()) {
         shows.classList.add("opacity-100");
-        shows.classList.remove("-translate-x-6")
+        shows.classList.remove("-translate-x-6");
       } else {
         shows.classList.remove("opacity-100");
-        shows.classList.add("-translate-x-6")
+        shows.classList.add("-translate-x-6");
       }
     };
 
