@@ -1,13 +1,10 @@
 ---
 import type { Show } from "../types";
+import {dateFormatter, generateSanityURL} from "../utils/helpers"
 
-const PROJECT_ID = import.meta.env.SANITY_PROJECT_ID;
-const DATASET = "production";
-const QUERY = encodeURIComponent('*[_type == "show"]');
+const url = generateSanityURL('production', 'show')
 
-const URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
-
-const result = await fetch(URL)
+const result = await fetch(url)
   .then((res) => res.json())
   .catch((e) => console.error(e));
 
@@ -27,7 +24,7 @@ const shows = result.result as Show[];
             <strong>{show.venueName.toUpperCase()}</strong>{" "}
             {show.subtitle?.toUpperCase() ?? ""}{" "}
             {show.description ? `// ${show.description.toUpperCase()}` : ""}
-            {show.date ? new Date(show.date).toDateString().toUpperCase() : ""}
+            {show.date ? dateFormatter(show.date) : ""}
           </em>
         </li>
       );
