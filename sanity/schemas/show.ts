@@ -9,6 +9,11 @@ export default {
       title: 'Venue Name',
     },
     {
+      name: 'subtitle',
+      type: 'string',
+      title: 'Subtitle',
+    },
+    {
       name: 'date',
       type: 'date',
       title: 'Date',

@@ -1,4 +1,10 @@
 ---
+import type { Show } from "../types";
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+
+dayjs.extend(customParseFormat)
+
 const PROJECT_ID = import.meta.env.SANITY_PROJECT_ID;
 const DATASET = "production";
 if (typeof PROJECT_ID !== "string" || typeof DATASET !== "string") return;
@@ -10,8 +16,7 @@ const result = await fetch(URL)
   .then((res) => res.json())
   .catch((e) => console.error(e));
 
-const shows = result.result;
-console.log(JSON.stringify(result.result, null, 2));
+const shows = result.result as Show[];
 ---
 
 <h3 class="tracking-wider text-3xl pb-6">Upcoming Shows</h3>
@@ -20,29 +25,19 @@ console.log(JSON.stringify(result.result, null, 2));
   id="showList"
 >
   {
-    shows.map((show: any) => {
+    shows.map((show) => {
       return (
         <li>
           <em>
             <strong>{show.venueName.toUpperCase()}</strong>{" "}
-            {new Date(show.date).toDateString().toUpperCase()}
+            {show.subtitle?.toUpperCase() ?? ""}{" "}
+            {show.description ? `// ${show.description.toUpperCase()}` : ""}
+            {show.date ? dayjs(show.date, 'MMMM-D') : ""}
           </em>
         </li>
       );
     })
   }
-  <li>
-    <em>
-      <strong>FITZGERALDS SIDEBAR, BERWYN, IL</strong> NASTY SNACKS PRESENTS: MIDNIGHT
-      SNACKS // EVERY 1st THURSDAY
-    </em>
-  </li>
-  <li>
-    <em>
-      <strong>DORIAN’S THROUGH THE RECORD SHOP, CHICAGO, IL</strong> THURSDAY JANUARY
-      26
-    </em>
-  </li>
 </ul>
 <script>
   function fadeInShows() {
