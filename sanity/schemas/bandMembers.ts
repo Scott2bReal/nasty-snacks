@@ -1,5 +1,5 @@
 export default {
-  name: 'bandMember',
+  name: 'bandMembers',
   type: 'document',
   title: 'Band Members',
   fields: [

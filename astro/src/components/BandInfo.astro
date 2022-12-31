@@ -1,6 +1,23 @@
+---
+import type { BandMember } from "../types";
+import { generateSanityURL, rosterSort } from "../utils/helpers";
+
+// @ts-ignore
+const id = import.meta.env.SANITY_PROJECT_ID ?? Deno?.env?.get("SANITY_PROJECT_ID");
+const url = generateSanityURL(id, "production", "bandMembers");
+
+const result = await fetch(url)
+  .then((res) => res.json())
+  .catch((e) => console.error(e));
+
+console.log(url)
+console.log(JSON.stringify(result, null, 2))
+const roster = result.result as BandMember[];
+---
+
 <h2
   id="bandInfoHeader"
-  class="tracking-widest text-3xl py-6 opacity-0 transition duration-500 ease-in "
+  class="tracking-widest text-3xl py-6 opacity-0 transition duration-500 ease-in"
 >
   WE ARE NASTY SNACKS
 </h2>
@@ -19,16 +36,17 @@
     class="text-left px-4 child:py-2 child:text-sm opacity-0 transition duration-700 ease-in"
     id="roster"
   >
-    <li><em>Drums / Don Allen Jr.</em></li>
-    <li><em>Keys / Keith Brooks II</em></li>
-    <li><em>Guitar / Colin Fahey</em></li>
-    <li><em>Bass / Martin Farrelly</em></li>
-    <li><em>Tenor Sax / Alex Francois</em></li>
-    <li><em>Guitar / Ryan Gac</em></li>
-    <li><em>Trumpet / Scott Hoecker</em></li>
-    <li><em>Trombone / Matt Jarosch</em></li>
-    <li><em>Trumpet / Caleb Mitchell</em></li>
-    <li><em>Vocals / Stefanie Mitchell</em></li>
+    {
+      roster.sort(rosterSort).map((member) => {
+        return (
+          <li>
+            <em>
+              {member.instrument} / {member.name}
+            </em>
+          </li>
+        );
+      })
+    }
   </ul>
 </div>
 <script>

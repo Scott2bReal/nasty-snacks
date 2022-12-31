@@ -7,3 +7,8 @@ export type Show = {
   ticketLink?: string
   description?: string
 }
+
+export type BandMember = {
+  name: string
+  instrument: string
+}

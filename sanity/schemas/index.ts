@@ -1,4 +1,4 @@
 import bandMembers from "./bandMembers";
-import show from "./show";
+import shows from "./shows";
 
-export const schemaTypes = [show, bandMembers]
+export const schemaTypes = [shows, bandMembers]
