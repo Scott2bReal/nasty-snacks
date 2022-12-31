@@ -27,7 +27,7 @@
   }
 
   .page-header-main {
-    @apply text-3xl tracking-widest text-center pt-16;
+    @apply text-3xl tracking-widest text-center pt-8;
   }
 
   .text-gradient {

@@ -1,14 +1,24 @@
-<h2 class="tracking-widest text-3xl py-6">WE ARE NASTY SNACKS</h2>
+<h2
+  id="bandInfoHeader"
+  class="tracking-widest text-3xl py-6 opacity-0 transition duration-500 ease-in "
+>
+  WE ARE NASTY SNACKS
+</h2>
 <div
-  class="flex md:flex-row flex-col max-w[850px] text-center md:justify-center px-4"
+  class="flex md:flex-row flex-col max-w[850px] text-center md:justify-center px-4 opacity-0 transition duration-700 ease-in"
+  id="bandPic"
 >
   <img
     src="images/group_photo.webp"
     width="500px"
     height="434px"
+    id="bandPic"
     alt="Nasty Snacks Group Photo"
   />
-  <ul class="text-left px-4 child:py-2 child:text-sm">
+  <ul
+    class="text-left px-4 child:py-2 child:text-sm opacity-0 transition duration-700 ease-in"
+    id="roster"
+  >
     <li><em>Drums / Don Allen Jr.</em></li>
     <li><em>Keys / Keith Brooks II</em></li>
     <li><em>Guitar / Colin Fahey</em></li>
@@ -21,3 +31,38 @@
     <li><em>Vocals / Stefanie Mitchell</em></li>
   </ul>
 </div>
+<script>
+  function animateHeader(header: HTMLElement) {
+    setTimeout(() => {
+      header.classList.add("opacity-100");
+      // header.classList.add("translate-x-6")
+    }, 300); // 1000 milliseconds = 1 second
+  }
+
+  function animateBandInfo(bandPic: HTMLElement) {
+    setTimeout(() => {
+      bandPic.classList.add("opacity-100");
+    }, 700); // 1000 milliseconds = 1 second
+  }
+
+  function animateRoster(roster: HTMLElement) {
+    setTimeout(() => {
+      roster.classList.add("opacity-100");
+    }, 1200); // 1000 milliseconds = 1 second
+  }
+
+  function fadeIn() {
+    const bandPic = document.getElementById("bandPic");
+    const header = document.getElementById("bandInfoHeader");
+    const roster = document.getElementById("roster");
+    const shows = document.getElementById("shows");
+
+    if (!bandPic || !header || !roster || !shows) return;
+
+    animateBandInfo(bandPic);
+    animateHeader(header);
+    animateRoster(roster);
+  }
+
+  fadeIn();
+</script>

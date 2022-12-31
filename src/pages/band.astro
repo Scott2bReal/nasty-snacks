@@ -1,0 +1,45 @@
+---
+import BandCard from "../components/meet-the-band/BandCard.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Nasty Snacks | Band">
+  <main>
+    <h1 class="page-header-main">Meet the Band</h1>
+    <BandCard />
+    <BandCard />
+    <BandCard />
+    <BandCard />
+    <BandCard />
+    <BandCard />
+    <BandCard />
+    <BandCard />
+    <BandCard />
+    <BandCard />
+  </main>
+</Layout>
+<script>
+  const cards = document.querySelectorAll(".card");
+
+  function handleScroll() {
+    cards.forEach((card) => {
+      const top = card.getAttribute("data-top");
+      const bottom = card.getAttribute("data-bottom");
+      if (!top || !bottom) return;
+
+      if (window.scrollY < Number(top) || window.scrollY < Number(bottom)) {
+        card.classList.add("animated");
+      } else {
+        card.classList.remove("animated");
+      }
+    });
+  }
+
+  cards.forEach((card) => {
+    const rect = card.getBoundingClientRect();
+    card.setAttribute("data-top", String(rect.top));
+    card.setAttribute("data-bootom", String(rect.bottom));
+  });
+
+  window.addEventListener("scroll", handleScroll);
+</script>
