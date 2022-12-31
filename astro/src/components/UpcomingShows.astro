@@ -2,10 +2,11 @@
 import type { Show } from "../types";
 import { dateFormatter, generateSanityURL } from "../utils/helpers";
 
+// Need to ts-ignore this next line to get env vars in production
+// Don't want to install Deno as a dependency (yet), but this works!
 // @ts-ignore
 const projectId = import.meta.env.SANITY_PROJECT_ID ?? Deno?.env?.get("SANITY_PROJECT_ID")
 const url = generateSanityURL(projectId, "production", "show");
-console.log(url)
 
 const result = await fetch(url)
   .then((res) => res.json())
