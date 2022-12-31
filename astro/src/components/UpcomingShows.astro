@@ -1,8 +1,8 @@
 ---
 import type { Show } from "../types";
-import {dateFormatter, generateSanityURL} from "../utils/helpers"
+import { dateFormatter, generateSanityURL } from "../utils/helpers";
 
-const url = generateSanityURL('production', 'show')
+const url = generateSanityURL("production", "show");
 
 const result = await fetch(url)
   .then((res) => res.json())
@@ -21,7 +21,12 @@ const shows = result.result as Show[];
       return (
         <li>
           <em>
-            <strong>{show.venueName.toUpperCase()}</strong>{" "}
+            <strong>
+              {show.venueName.toUpperCase()}
+              {show.city && show.state
+                ? `- ${show.city.toUpperCase()}, ${show.state.toUpperCase()}`
+                : ""}
+            </strong>
             {show.subtitle?.toUpperCase() ?? ""}{" "}
             {show.description ? `// ${show.description.toUpperCase()}` : ""}
             {show.date ? dateFormatter(show.date) : ""}
