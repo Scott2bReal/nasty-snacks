@@ -12,3 +12,8 @@ export type BandMember = {
   name: string
   instrument: string
 }
+
+export type SnacksVid = {
+  title: string
+  id: string
+}

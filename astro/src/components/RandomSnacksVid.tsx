@@ -1,45 +1,43 @@
 import { randomNumber } from '../utils/helpers'
 import { useState } from 'preact/hooks'
+import type { SnacksVid } from '../types'
 
-export const RandomSnacksVid = () => {
+interface Props {
+  snacksVids: SnacksVid[]
+}
+export const RandomSnacksVid = ({ snacksVids }: Props) => {
   const buttonStylesUp =
     'bg-gradient-to-br to-purple-700 from-pink-700 tracking-widest mt-4 p-2 rounded-lg shadow-black shadow-md transition duration-150 ease-in-out'
   const buttonStylesDown = buttonStylesUp + ' scale-95'
 
-  const snacksVids = [
-    'https://www.youtube.com/embed/ThavI6vr6sY',
-    'https://www.youtube.com/embed/FNQh0UWbohU',
-    'https://www.youtube.com/embed/wwPFkeR5mLQ',
-    'https://www.youtube.com/embed/KkDhYj33fPU',
-    'https://www.youtube.com/embed/a6wQ8Z8Kxvw',
-    'https://www.youtube.com/embed/BVe_FvXjQJE',
-    'https://www.youtube.com/embed/F170yxhW6JU',
-    'https://www.youtube.com/embed/-Tn1PwHzqss',
-    'https://www.youtube.com/embed/BOujirHTYzs',
-  ]
+  const embedURL = 'https://www.youtube.com/embed/'
 
-  const [url, setUrl] = useState(snacksVids[randomNumber(snacksVids.length)])
+  const [vid, setVid] = useState(
+    snacksVids[randomNumber(snacksVids.length)]
+  )
   const [buttonStyles, setButtonStyles] = useState(buttonStylesUp)
 
-  const findNewUrl = (currentUrl: string) => {
-    const unusedUrls = snacksVids.filter((url) => url !== currentUrl)
-    return unusedUrls[randomNumber(unusedUrls.length)]
+  const findNewVid = (currentVid: SnacksVid) => {
+    const unusedVids = snacksVids
+      .filter((vid) => vid.id !== currentVid.id)
+    return unusedVids[randomNumber(unusedVids.length)]
   }
 
   return (
     <div class='flex flex-col items-center justify-center pt-8'>
+      <h1 class='pb-2 text-xl'>{vid.title}</h1>
       <iframe
         width='560'
         height='315'
         class='mx-auto max-w-[100vw]'
         id='iframe'
-        src={url}
+        src={`${embedURL}${vid.id}`}
         title='YouTube video player'
         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
         allowFullScreen
       ></iframe>
       <button
-        onClick={() => setUrl(findNewUrl(url))}
+        onClick={() => setVid(findNewVid(vid))}
         onMouseDown={() => setButtonStyles(buttonStylesDown)}
         onMouseUp={() => setButtonStyles(buttonStylesUp)}
         class={`${buttonStyles}`}

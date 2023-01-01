@@ -1,10 +1,13 @@
 ---
 import { RandomSnacksVid } from "../components/RandomSnacksVid";
 import Layout from "../layouts/Layout.astro";
+import { sanityAPI } from "../utils/sanity";
+import type { SnacksVid } from "../types";
+
+const result = await sanityAPI("videos");
+const snacksVids = result.result as SnacksVid[];
 ---
 
-<Layout title="Nasty Snacks | Media">
-  <div>
-    <RandomSnacksVid client:load />
-  </div>
+<Layout title="Nasty Snacks | Video">
+  <RandomSnacksVid snacksVids={snacksVids} client:load />
 </Layout>
