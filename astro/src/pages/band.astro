@@ -27,12 +27,11 @@ const bandMembers = result.result.sort(rosterSort) as BandMember[];
     if (!cards || cards.length === 0) return;
 
     const options = {
-      root: null,
-      threshold: 0.1,
+      threshold: 0.10,
       rootMargin: "-150px",
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         // console.log(entry.target);
         if (entry.isIntersecting) {
