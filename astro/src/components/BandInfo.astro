@@ -1,15 +1,9 @@
 ---
 import type { BandMember } from "../types";
-import { generateSanityURL, rosterSort } from "../utils/helpers";
+import { rosterSort } from "../utils/helpers";
+import { sanityAPI } from "../utils/sanity";
 
-// @ts-ignore
-const id = import.meta.env.SANITY_PROJECT_ID ?? Deno?.env?.get("SANITY_PROJECT_ID");
-const url = generateSanityURL(id, "production", "bandMembers");
-
-const result = await fetch(url)
-  .then((res) => res.json())
-  .catch((e) => console.error(e));
-
+const result = await sanityAPI('bandMembers')
 const roster = result.result as BandMember[];
 ---
 
