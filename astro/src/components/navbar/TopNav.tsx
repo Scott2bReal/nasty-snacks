@@ -53,6 +53,7 @@ export const TopNav = ({ mobileControlData, sections, homeSections }: Props) => 
           return (
             <li>
               <a
+                rel='prefetch'
                 href={`${homeSections.includes(section)
                     ? `/#${section}`
                     : `/${section}`
