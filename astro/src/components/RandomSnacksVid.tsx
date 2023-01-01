@@ -1,5 +1,5 @@
 import { randomNumber } from '../utils/helpers'
-import { useState } from 'preact/hooks'
+import { useEffect, useState } from 'preact/hooks'
 import type { SnacksVid } from '../types'
 
 interface Props {
@@ -16,6 +16,7 @@ export const RandomSnacksVid = ({ snacksVids }: Props) => {
     snacksVids[randomNumber(snacksVids.length)]
   )
   const [buttonStyles, setButtonStyles] = useState(buttonStylesUp)
+  const [headerStyles, setHeaderStyles] = useState('pb-2 text-xl opacity-0 transition duration-500 ease-in-out')
 
   const findNewVid = (currentVid: SnacksVid) => {
     const unusedVids = snacksVids
@@ -23,9 +24,15 @@ export const RandomSnacksVid = ({ snacksVids }: Props) => {
     return unusedVids[randomNumber(unusedVids.length)]
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      setHeaderStyles('pb-2 text-xl opacity-100 transition duration-500 ease-in-out')
+    }, 1000)
+  }, [])
+
   return (
     <div class='flex flex-col items-center justify-center pt-8'>
-      <h1 class='pb-2 text-xl'>{vid.title}</h1>
+      <h1 class={headerStyles}>{vid.title}</h1>
       <iframe
         width='560'
         height='315'
