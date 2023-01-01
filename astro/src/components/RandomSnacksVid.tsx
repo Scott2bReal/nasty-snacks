@@ -2,7 +2,8 @@ import { randomNumber } from '../utils/helpers'
 import { useState } from 'preact/hooks'
 
 export const RandomSnacksVid = () => {
-  const buttonStylesUp = 'bg-gradient-to-br to-purple-700 from-pink-700 tracking-widest mt-4 p-2 rounded-lg shadow-black shadow-md transition duration-150 ease-in-out'
+  const buttonStylesUp =
+    'bg-gradient-to-br to-purple-700 from-pink-700 tracking-widest mt-4 p-2 rounded-lg shadow-black shadow-md transition duration-150 ease-in-out'
   const buttonStylesDown = buttonStylesUp + ' scale-95'
 
   const snacksVids = [
@@ -11,6 +12,10 @@ export const RandomSnacksVid = () => {
     'https://www.youtube.com/embed/wwPFkeR5mLQ',
     'https://www.youtube.com/embed/KkDhYj33fPU',
     'https://www.youtube.com/embed/a6wQ8Z8Kxvw',
+    'https://www.youtube.com/embed/BVe_FvXjQJE',
+    'https://www.youtube.com/embed/F170yxhW6JU',
+    'https://www.youtube.com/embed/-Tn1PwHzqss',
+    'https://www.youtube.com/embed/BOujirHTYzs',
   ]
 
   const [url, setUrl] = useState(snacksVids[randomNumber(snacksVids.length)])
