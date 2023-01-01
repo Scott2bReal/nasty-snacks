@@ -1,45 +1,56 @@
 ---
 import BandCard from "../components/meet-the-band/BandCard.astro";
 import Layout from "../layouts/Layout.astro";
+import type { BandMember } from "../types";
+import { rosterSort } from "../utils/helpers";
+import { sanityAPI } from "../utils/sanity";
+
+const result = await sanityAPI("bandMembers");
+const bandMembers = result.result.sort(rosterSort) as BandMember[];
 ---
 
 <Layout title="Nasty Snacks | Band">
   <main>
     <h1 class="page-header-main">Meet the Band</h1>
-    <BandCard />
-    <BandCard />
-    <BandCard />
-    <BandCard />
-    <BandCard />
-    <BandCard />
-    <BandCard />
-    <BandCard />
-    <BandCard />
-    <BandCard />
+    <section class="band-section">
+      {
+        bandMembers.map((member, idx) => {
+          return <BandCard member={member} side={idx % 2 === 0 ? 'left' : 'right'} />;
+        })
+      }
+    </section>
   </main>
 </Layout>
 <script>
-  const cards = document.querySelectorAll(".card");
+  function fadeInCards() {
+    const cards = document.querySelectorAll(".card");
+    if (!cards || cards.length === 0) return;
 
-  function handleScroll() {
+    const options = {
+      root: null,
+      threshold: 0.1,
+      rootMargin: "-150px",
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        // console.log(entry.target);
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('left')) {
+            entry.target.classList.add("opacity-100");
+            entry.target.classList.remove("-translate-x-28");
+          } else {
+            entry.target.classList.add("opacity-100");
+            entry.target.classList.remove("translate-x-28");
+          }
+        }
+      });
+    }, options);
+
     cards.forEach((card) => {
-      const top = card.getAttribute("data-top");
-      const bottom = card.getAttribute("data-bottom");
-      if (!top || !bottom) return;
-
-      if (window.scrollY < Number(top) || window.scrollY < Number(bottom)) {
-        card.classList.add("animated");
-      } else {
-        card.classList.remove("animated");
-      }
+      observer.observe(card);
     });
   }
 
-  cards.forEach((card) => {
-    const rect = card.getBoundingClientRect();
-    card.setAttribute("data-top", String(rect.top));
-    card.setAttribute("data-bootom", String(rect.bottom));
-  });
-
-  window.addEventListener("scroll", handleScroll);
+  fadeInCards();
 </script>

@@ -1,9 +1,9 @@
 ---
 import type { Show } from "../types";
 import { dateFormatter } from "../utils/helpers";
-import {sanityAPI} from '../utils/sanity'
+import { sanityAPI } from "../utils/sanity";
 
-const result = await sanityAPI('shows')
+const result = await sanityAPI("shows");
 const shows = result.result as Show[];
 ---
 
@@ -26,6 +26,16 @@ const shows = result.result as Show[];
             {show.subtitle?.toUpperCase() ?? ""}{" "}
             {show.description ? `// ${show.description.toUpperCase()}` : ""}
             {show.date ? `// ${dateFormatter(show.date)}` : ""}
+            <strong>
+              {show.ticketLink ? (
+                <a href={show.ticketLink} target="_blank">
+                  {" "}
+                  &gt;&gt; TICKETS
+                </a>
+              ) : (
+                ""
+              )}
+            </strong>
           </em>
         </li>
       );

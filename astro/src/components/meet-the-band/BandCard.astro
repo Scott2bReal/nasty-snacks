@@ -1,2 +1,19 @@
-<div class='h-64 w-64 bg-pink-700 rounded-lg mx-auto my-12 card'>
+---
+import type { BandMember } from "../../types";
+
+interface Props {
+  member: BandMember;
+  side: "left" | "right";
+}
+
+const { member, side } = Astro.props;
+const style =
+  side === "left"
+    ? `${side} h-[50vh] w-[80%] md:w-[40%] bg-pink-700 rounded-lg mx-auto my-12 card opacity-0 transition duration-700 ease-in-out -translate-x-28`
+    : `${side} h-[50vh] w-[80%] md:w-[40%] bg-pink-700 rounded-lg mx-auto my-12 card opacity-0 transition duration-700 ease-in-out translate-x-28`;
+---
+
+<div id={member.name} class={style}>
+  <h2>{member.name}</h2>
+  <h3>{member.instrument}</h3>
 </div>
