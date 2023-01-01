@@ -31,7 +31,7 @@ const shows = result.result as Show[];
             </strong>
             {show.subtitle?.toUpperCase() ?? ""}{" "}
             {show.description ? `// ${show.description.toUpperCase()}` : ""}
-            {show.date ? dateFormatter(show.date) : ""}
+            {show.date ? `// ${dateFormatter(show.date)}` : ""}
           </em>
         </li>
       );
