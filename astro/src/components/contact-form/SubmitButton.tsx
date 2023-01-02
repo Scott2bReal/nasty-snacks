@@ -7,7 +7,7 @@ interface Props {
 export const SubmitButton = ({ isDisabled }: Props) => {
   // Animating submit button
   const buttonUpStyles =
-    'p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 tracking-widest transition duration-500 ease-in-out'
+    'p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 tracking-widest transition duration-500 ease-in-out z-[-1] relative'
   const buttonDownStyles = buttonUpStyles + ' scale-95'
   const [submitStyles, setSubmitStyles] = useState(buttonUpStyles)
 
