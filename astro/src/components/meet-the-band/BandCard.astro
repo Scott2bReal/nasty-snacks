@@ -1,5 +1,6 @@
 ---
 import type { BandMember } from "../../types";
+import { sanityImageUrl } from "../../utils/sanity";
 
 interface Props {
   member: BandMember;
@@ -9,11 +10,23 @@ interface Props {
 const { member, side } = Astro.props;
 const style =
   side === "left"
-    ? `${side} h-[50vh] w-[75vw] md:w-[40vw] bg-gradient-to-br from-pink-700 to-purple-700 rounded-lg mx-auto mt-12 card opacity-0 transition duration-700 ease-in-out -translate-x-28`
-    : `${side} h-[50vh] w-[75vw] md:w-[40vw] bg-gradient-to-br from-pink-700 to-purple-700 rounded-lg mx-auto mt-12 card opacity-0 transition duration-700 ease-in-out translate-x-28`;
+    ? `${side} h-[50vh] w-[75vw] md:w-[40vw]  rounded-lg mx-auto mt-12 card opacity-0 transition duration-700 ease-in-out -translate-x-28`
+    : `${side} h-[50vh] w-[75vw] md:w-[40vw]  rounded-lg mx-auto mt-12 card opacity-0 transition duration-700 ease-in-out translate-x-28`;
+
+const builder = member.picture ? sanityImageUrl(member.picture) : null;
 ---
 
 <div id={member.name} class={style}>
   <h2>{member.name}</h2>
   <h3>{member.instrument}</h3>
+    {
+      builder ? (
+        <img
+          class="max-h-[40vh] pt-4 m-auto"
+          src={builder.auto("format").fit("crop").url()}
+        />
+      ) : (
+        ""
+      )
+    }
 </div>

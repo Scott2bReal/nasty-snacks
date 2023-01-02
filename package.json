@@ -1,1 +1,5 @@
-{}
+{
+  "dependencies": {
+    "@sanity/image-url": "^1.0.1"
+  }
+}

@@ -12,6 +12,14 @@ export default {
       name: 'instrument',
       type: 'string',
       title: 'Instrument',
+    },
+    {
+      name: 'picture',
+      type: 'image',
+      title: 'Picture',
+      options: {
+        hotspot: true,
+      },
     }
   ],
 }
