@@ -4,12 +4,12 @@
 
 @layer base {
   html {
-    @apply scroll-smooth tracking-widest h-fit
+    @apply scroll-smooth tracking-widest h-fit overflow-x-hidden
     /* scroll-behavior: smooth; */;
   }
 
   body {
-    @apply bg-neutral-900 text-neutral-100 scroll-smooth text-center;
+    @apply bg-neutral-900 text-neutral-100 scroll-smooth text-center overflow-x-hidden pt-24;
   }
 }
 

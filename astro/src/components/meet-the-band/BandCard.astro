@@ -9,8 +9,8 @@ interface Props {
 const { member, side } = Astro.props;
 const style =
   side === "left"
-    ? `${side} h-[50vh] w-[75vw] md:w-[40vw] bg-gradient-to-br from-pink-700 to-purple-700 rounded-lg mx-auto my-12 card opacity-0 transition duration-700 ease-in-out -translate-x-28`
-    : `${side} h-[50vh] w-[75vw] md:w-[40vw] bg-gradient-to-br from-pink-700 to-purple-700 rounded-lg mx-auto my-12 card opacity-0 transition duration-700 ease-in-out translate-x-28`;
+    ? `${side} h-[50vh] w-[75vw] md:w-[40vw] bg-gradient-to-br from-pink-700 to-purple-700 rounded-lg mx-auto mt-12 card opacity-0 transition duration-700 ease-in-out -translate-x-28`
+    : `${side} h-[50vh] w-[75vw] md:w-[40vw] bg-gradient-to-br from-pink-700 to-purple-700 rounded-lg mx-auto mt-12 card opacity-0 transition duration-700 ease-in-out translate-x-28`;
 ---
 
 <div id={member.name} class={style}>

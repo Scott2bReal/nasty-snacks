@@ -33,7 +33,6 @@ const bandMembers = result.result.sort(rosterSort) as BandMember[];
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        // console.log(entry.target);
         if (entry.isIntersecting) {
           if (entry.target.classList.contains('left')) {
             entry.target.classList.add("opacity-100");
