@@ -1,10 +1,11 @@
 ---
 import type { Show } from "../types";
-import { dateFormatter } from "../utils/helpers";
+import { dateFormatter, isUpcoming } from "../utils/helpers";
 import { sanityAPI } from "../utils/sanity";
 
 const result = await sanityAPI("shows");
-const shows = result.result as Show[];
+const allShows = result.result as Show[];
+const shows = allShows.filter(isUpcoming)
 ---
 
 <h3 class="tracking-wider text-3xl pb-6">Upcoming Shows</h3>
