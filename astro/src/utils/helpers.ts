@@ -24,9 +24,9 @@ export function dateFormatter(dateString: string) {
 }
 
 export function rosterSort(a: BandMember, b: BandMember) {
-  if (a.name[0] > b.name[0]) {
+  if (a.instrument[0] > b.instrument[0]) {
     return 1
-  } else if (a.name[0] < b.name[0]) {
+  } else if (a.instrument[0] < b.instrument[0]) {
     return -1
   } else {
     return 0
