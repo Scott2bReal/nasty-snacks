@@ -14,8 +14,8 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
 
   return (
-    <nav className={`h-[100vh] w-[100vw] z-[5] text-center bg-neutral-900`}>
-      <div class='flex gap-2 justify-evenly items-center'>
+    <nav className={`h-[100vh] w-[100vw] z-[5] text-center bg-neutral-900 fixed top-0 bottom-0`}>
+      <div className='flex gap-2 justify-evenly items-center'>
         <button
           className={`ml-6`}
           id='closeMobileNav'
@@ -26,7 +26,7 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
           }}
         >
           <svg
-            class='w-8 h-8'
+            className='w-8 h-8'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'
