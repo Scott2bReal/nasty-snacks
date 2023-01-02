@@ -14,14 +14,14 @@ const builder = sanityImageUrl(album.cover);
 
 <div class="flex lg:flex-row flex-col items-center justify-center gap-8" id={album.title}>
   <a
-    href="https://open.spotify.com/album/7mLF0VbXdSgJalOclhMAJa?si=jf53fU3zRrSCJAKj0TC-tA"
+    href={album.spotifyLink}
     target="_blank"
   >
     <img
       src={builder.auto('format').url()}
       width="450px"
       height="450px"
-      alt="Smoke Signals EP Cover"
+      alt={`${album.title} Cover`}
     />
   </a>
 
