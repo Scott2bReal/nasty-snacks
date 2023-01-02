@@ -21,6 +21,7 @@ const builder = member.picture ? sanityImageUrl(member.picture) : null;
       <img
         class="max-h-[40vh] pt-4 m-auto"
         src={builder.auto("format").fit("crop").url()}
+        alt={member.name}
       />
     ) : (
       ""
