@@ -1,4 +1,4 @@
-import { randomNumber } from '../utils/helpers'
+import { getYoutubeId, randomNumber } from '../utils/helpers'
 import { useEffect, useState } from 'preact/hooks'
 import type { SnacksVid } from '../types'
 
@@ -20,7 +20,7 @@ export const RandomSnacksVid = ({ snacksVids }: Props) => {
 
   const findNewVid = (currentVid: SnacksVid) => {
     const unusedVids = snacksVids
-      .filter((vid) => vid.id !== currentVid.id)
+      .filter((vid) => vid.url !== currentVid.url)
     return unusedVids[randomNumber(unusedVids.length)]
   }
 
@@ -38,7 +38,7 @@ export const RandomSnacksVid = ({ snacksVids }: Props) => {
         height='315'
         class='mx-auto max-w-[100vw]'
         id='iframe'
-        src={`${embedURL}${vid.id}`}
+        src={`${embedURL}${getYoutubeId(vid.url)}`}
         title='YouTube video player'
         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
         allowFullScreen

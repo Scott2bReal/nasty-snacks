@@ -9,9 +9,9 @@ export default {
       title: 'Title',
     },
     {
-      name: 'id',
+      name: 'url',
       type: 'string',
-      title: 'YouTube ID',
+      title: 'YouTube Link',
     }
   ],
 }

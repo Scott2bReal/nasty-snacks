@@ -39,5 +39,5 @@ export type SanityImage =
 
 export type SnacksVid = {
   title: string
-  id: string
+  url: string
 }

@@ -26,3 +26,8 @@ export function rosterSort(a: BandMember, b: BandMember) {
     return 0
   }
 }
+
+export function getYoutubeId(url: string) {
+  const id = url.split('=')[1]
+  return id.length > 0 ? id : ''
+}
