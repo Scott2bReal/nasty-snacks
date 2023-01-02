@@ -9,5 +9,7 @@ const snacksVids = result.result as SnacksVid[];
 ---
 
 <Layout title="Nasty Snacks | Video">
-  <RandomSnacksVid snacksVids={snacksVids} client:load />
+  <main>
+    <RandomSnacksVid snacksVids={snacksVids} client:load />
+  </main>
 </Layout>

@@ -1,10 +1,21 @@
 ---
 import SpotifyPreview from "../components/SpotifyPreview.astro";
 import Layout from "../layouts/Layout.astro";
+import type { Album } from "../types";
+import { sanityAPI } from "../utils/sanity";
+const result = await sanityAPI("albums");
+const albums = result.result as Album[];
 ---
 
 <Layout title="Nasty Snacks | Music">
-  <main class='text-center'>
-    <SpotifyPreview />
+  <main>
+    <section class='flex flex-col gap-6 pt-8'>
+    <h1 class="text-3xl">MUSIC</h1>
+      {
+        albums.map((album) => {
+          return <SpotifyPreview album={album} />;
+        })
+      }
+    </section>
   </main>
 </Layout>

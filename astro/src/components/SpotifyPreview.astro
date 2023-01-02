@@ -1,52 +1,35 @@
-<section class="pt-6" id="smokeSigs">
-  <h3 class="tracking-wider text-3xl pb-8">MUSIC</h3>
-  <div
-    id="player"
-    class="flex lg:flex-row flex-col items-center justify-center gap-8"
-  >
-    <a
-      href="https://open.spotify.com/album/7mLF0VbXdSgJalOclhMAJa?si=jf53fU3zRrSCJAKj0TC-tA"
-      target="_blank"
-    >
-      <img
-        src="images/smoke_signals.webp"
-        width="450px"
-        height="450px"
-        alt="Smoke Signals EP Cover"
-      />
-    </a>
+---
+import type { Album } from "../types";
+import { generateSpotifyEmbed } from "../utils/helpers";
+import { sanityImageUrl } from "../utils/sanity";
 
-    <iframe
-      src="https://open.spotify.com/embed/album/7mLF0VbXdSgJalOclhMAJa?utm_source=generator"
-      title="Smoke Signals Spotify Preview"
-      class="lg:h-[380px] lg:max-w-[50vw]"
-      allowfullscreen=""
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    ></iframe>
-  </div>
-</section>
-<section id="snacksAlbum">
-  <div
-    id="player"
-    class="flex lg:flex-row flex-col items-center justify-center gap-8 px-6"
+interface Props {
+  album: Album;
+}
+
+const { album } = Astro.props;
+const embedUrl = generateSpotifyEmbed(album.spotifyLink);
+const builder = sanityImageUrl(album.cover);
+---
+
+<div class="flex lg:flex-row flex-col items-center justify-center gap-8" id={album.title}>
+  <a
+    href="https://open.spotify.com/album/7mLF0VbXdSgJalOclhMAJa?si=jf53fU3zRrSCJAKj0TC-tA"
+    target="_blank"
   >
-    <a
-      href="https://open.spotify.com/album/652bnBzr6Of6KaTIu934Gd?si=thWgYETsR6-0i50fkqK0tg"
-      target="_blank"
-    >
-      <img
-        src="images/album_cover.jpg"
-        width="450px"
-        height="450px"
-        alt="Smoke Signals EP Cover"
-      />
-    </a>
-    <iframe
-      title="Nasty Snacks Debut Album Spotify Preview"
-      src="https://open.spotify.com/embed/album/652bnBzr6Of6KaTIu934Gd?utm_source=generator"
-      class="lg:h-[380px] lg:max-w-[50vw] -mb-16"
-      allowfullscreen=""
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    ></iframe>
-  </div>
-</section>
+    <img
+      src={builder.auto('format').url()}
+      width="450px"
+      height="450px"
+      alt="Smoke Signals EP Cover"
+    />
+  </a>
+
+  <iframe
+    src={embedUrl}
+    title={`${album.title} Spotify Preview`}
+    class="lg:h-[380px] lg:max-w-[50vw]"
+    allowfullscreen=""
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+  ></iframe>
+</div>

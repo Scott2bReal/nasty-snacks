@@ -44,3 +44,17 @@ export function isUpcoming(show: Show) {
 
   return showDate > yesterday
 }
+
+export function generateSpotifyEmbed(spotifyLink: string) {
+  const getSpotifyId = (spotifyLink: string) => {
+    const regex = new RegExp(/album\/(.*?)\?/);
+    const match = spotifyLink.match(regex)
+    console.log(match)
+    return match ? match[0].replace('album/', '').replace('?', '') : null
+  }
+
+  const id = getSpotifyId(spotifyLink)
+
+  if (!id) return;
+  return `https://open.spotify.com/embed/album/${id}?utm_source=generator`
+}
