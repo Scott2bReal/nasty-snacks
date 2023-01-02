@@ -41,3 +41,9 @@ export type SnacksVid = {
   title: string
   url: string
 }
+
+export type Album = {
+  title: string
+  spotifyLink: string
+  cover: SanityImage
+}
