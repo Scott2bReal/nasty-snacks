@@ -49,7 +49,6 @@ export function generateSpotifyEmbed(spotifyLink: string) {
   const getSpotifyId = (spotifyLink: string) => {
     const regex = new RegExp(/album\/(.*?)\?/);
     const match = spotifyLink.match(regex)
-    console.log(match)
     return match ? match[0].replace('album/', '').replace('?', '') : null
   }
 
