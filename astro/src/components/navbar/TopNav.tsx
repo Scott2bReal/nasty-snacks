@@ -19,7 +19,7 @@ export const TopNav = ({
 
   return (
     <nav className='text-center bg-neutral-900/80 flex justify-between fixed w-full top-0 backdrop-blur-xl z-40'>
-      <h1 className='py-2 pl-4 min-w-[357px]'>
+      <h1 className='py-2 md:pl-4 min-w-[357px]'>
         <a href='/'>
           <span className='text-gradient text-4xl font-extrabold tracking-widest'>
             NASTY SNACKS
