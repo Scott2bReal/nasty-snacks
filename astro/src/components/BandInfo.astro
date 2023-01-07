@@ -9,12 +9,12 @@ const roster = result.result as BandMember[];
 
 <h2
   id="bandInfoHeader"
-  class="tracking-widest text-3xl py-6 opacity-0 transition duration-500 ease-in"
+  class="tracking-widest text-3xl py-6 opacity-0 transition duration-700 ease-in relative -translate-x-6"
 >
   WE ARE NASTY SNACKS
 </h2>
 <div
-  class="flex md:flex-row flex-col max-w[850px] text-center md:justify-center px-4 opacity-0 transition duration-700 ease-in"
+  class="flex md:flex-row flex-col max-w[850px] text-center md:justify-center px-4 opacity-0 transition duration-700 ease-in translate-y-6"
   id="bandPic"
 >
   <img
@@ -23,9 +23,10 @@ const roster = result.result as BandMember[];
     height="434px"
     id="bandPic"
     alt="Nasty Snacks Group Photo"
+    class='relative -z-10'
   />
   <ul
-    class="text-left px-4 child:py-2 child:text-sm opacity-0 transition duration-700 ease-in"
+    class="text-left px-4 child:py-2 child:text-sm opacity-0 transition duration-700 ease-in relative -z-10 translate-x-6"
     id="roster"
   >
     {
@@ -45,20 +46,23 @@ const roster = result.result as BandMember[];
   function animateHeader(header: HTMLElement) {
     setTimeout(() => {
       header.classList.add("opacity-100");
-      // header.classList.add("translate-x-6")
-    }, 300); // 1000 milliseconds = 1 second
+      header.classList.remove("-translate-x-6")
+      header.classList.add("-z-10")
+    }, 500); // 1000 milliseconds = 1 second
   }
 
   function animateBandInfo(bandPic: HTMLElement) {
     setTimeout(() => {
       bandPic.classList.add("opacity-100");
-    }, 700); // 1000 milliseconds = 1 second
+      bandPic.classList.remove("translate-y-6")
+    }, 500); // 1000 milliseconds = 1 second
   }
 
   function animateRoster(roster: HTMLElement) {
     setTimeout(() => {
       roster.classList.add("opacity-100");
-    }, 1200); // 1000 milliseconds = 1 second
+      roster.classList.remove("translate-x-6")
+    }, 500); // 1000 milliseconds = 1 second
   }
 
   function fadeIn() {

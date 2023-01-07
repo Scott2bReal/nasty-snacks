@@ -14,32 +14,8 @@ export const TopNav = ({ mobileControlData, sections, homeSections }: Props) => 
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
 
   return (
-    <nav className='text-center bg-neutral-900/90 mx-auto sticky top-0'>
+    <nav className='text-center bg-neutral-900/90 mx-auto sticky top-0 backdrop-blur-xl z-40'>
       <div class='flex gap-2 items-center justify-evenly '>
-        <button
-          id='openMobileNav'
-          aria-label='Open mobile nav'
-          class='ml-6 md:hidden'
-          onClick={() => {
-            setMobileOpen(true)
-            lockScroll(mobileOpen)
-          }}
-        >
-          <svg
-            className='w-8 h-8'
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke-width='1.5'
-            stroke='currentColor'
-          >
-            <path
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
-            ></path>
-          </svg>
-        </button>
         <h1 className='p-2 -translate-x-6 md:-translate-x-0'>
           <a href='/'>
             <span className='text-gradient text-5xl font-extrabold tracking-widest'>
@@ -65,6 +41,30 @@ export const TopNav = ({ mobileControlData, sections, homeSections }: Props) => 
           )
         })}
       </ul>
+        <button
+          id='openMobileNav'
+          aria-label='Open mobile nav'
+          class='ml-6 md:hidden'
+          onClick={() => {
+            setMobileOpen(true)
+            lockScroll(mobileOpen)
+          }}
+        >
+          <svg
+            className='w-8 h-8'
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke-width='1.5'
+            stroke='currentColor'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+            ></path>
+          </svg>
+        </button>
     </nav>
   )
 }
