@@ -9,7 +9,7 @@
   }
 
   body {
-    @apply bg-neutral-900 text-neutral-100 scroll-smooth text-center overflow-x-hidden pt-28;
+    @apply bg-neutral-900 text-neutral-100 scroll-smooth text-center overflow-x-hidden pt-14;
   }
 }
 
@@ -32,6 +32,10 @@
 
   .text-gradient {
     @apply text-transparent bg-gradient-to-r from-purple-700 to-pink-700 bg-clip-text;
+  }
+
+  .reverse-text-gradient {
+    @apply text-transparent bg-gradient-to-r from-pink-700 to-purple-700 bg-clip-text;
   }
 
   .hover-grow {
