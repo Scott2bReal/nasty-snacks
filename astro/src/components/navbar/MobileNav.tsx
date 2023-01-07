@@ -14,9 +14,9 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
 
   return (
-    <nav className={`h-[100vh] w-[100vw] z-[5] text-center bg-neutral-900 fixed top-0 bottom-0`}>
+    <nav className={`h-[100vh] w-[100vw] z-[5] text-center bg-neutral-900 top-0 bottom-0 pr-2`}>
       <div className='flex gap-2 justify-between items-center'>
-      <h1 className='py-2 pl-4 min-w-[357px]'>
+      <h1 className='p-4 md:pl-4 min-w-[357px]'>
           <a href='/'>
             <span className='text-gradient text-4xl font-extrabold tracking-widest'>
               NASTY SNACKS
@@ -24,7 +24,7 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
           </a>
         </h1>
         <button
-          className={`pr-12`}
+          className='pr-12 -translate-x-4'
           id='closeMobileNav'
           aria-label='Close mobile nav'
           onClick={() => {
