@@ -5,7 +5,7 @@ import BandInfo from "../components/BandInfo.astro";
 import { RandomSnacksVid } from "../components/RandomSnacksVid";
 import { sanityAPI, sanityImageUrl } from "../utils/sanity";
 import type { SnacksVid, BannerImage } from "../types";
-import Music from "./music.astro";
+import Music from "../components/Music.astro";
 
 const bannerResult = await sanityAPI("banner");
 const banners = bannerResult.result;
