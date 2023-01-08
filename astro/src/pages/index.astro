@@ -18,7 +18,7 @@ const builder = sanityImageUrl(banner.image);
 ---
 
 <Layout title="Nasty Snacks">
-  <main class="flex flex-col">
+  <main class="flex flex-col relative">
     <div
       class="md:h-[100vh] -z-40 overflow-hidden md:opacity-20 opacity-40 -translate-y-[64px]"
     >
@@ -30,19 +30,39 @@ const builder = sanityImageUrl(banner.image);
       />
     </div>
 
+    <!-- Scroll Prompt -->
+    <span
+      id="scrollPrompt"
+      class="fixed left-[50%] right-[50%] bottom-4 opacity-0 transition duration-700 ease-in-out translate-y-6"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-8 h-8"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5"></path>
+      </svg>
+    </span>
+
     <!-- Upcoming Shows -->
     <section id="shows" class="scroll-m-48">
       <UpcomingShows />
     </section>
 
     <!-- Music -->
-    <section id="music" class="opacity-0 transition duration-1000 ease-in-out">
+    <section id="music" class="opacity-0 transition duration-1000 ease-in-out pt-12">
       <Music />
     </section>
 
     <!-- Video -->
     <section id="video" class="opacity-0 transition duration-1000 ease-in-out">
-      <RandomSnacksVid snacksVids={snacksVids} client:visible />
+      <RandomSnacksVid snacksVids={snacksVids} client:idle />
     </section>
 
     <!-- Band info -->
@@ -51,7 +71,7 @@ const builder = sanityImageUrl(banner.image);
     </section>
 
     <!-- Go to top -->
-    <button name="scroll to top of page" id="toTop" class='p-2'>
+    <button name="scroll to top of page" id="toTop" class="p-2 opacity-0 transition duration-700 ease-in-out">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -67,6 +87,40 @@ const builder = sanityImageUrl(banner.image);
   </main>
 </Layout>
 <script>
+  const prompt = document.getElementById("scrollPrompt");
+  const top = document.getElementById("toTop");
+
+  const fadeInScrollPrompt = () => {
+    if (!prompt) return;
+    setTimeout(() => {
+      if (document.body.scrollTop === 0) {
+        prompt.classList.add("opacity-100");
+        prompt.classList.remove("translate-y-6");
+      }
+    }, 2000);
+  };
+
+  const hideScrollPrompt = () => {
+    if (!prompt) return;
+    if (window.scrollY !== 0) {
+      prompt.classList.remove('opacity-100')
+    }
+  }
+
+  const swapScrollPrompts = () => {
+    if (!prompt || !top) return;
+    window.addEventListener('scroll', () => {
+      if (window.scrollY === 0) {
+        top.classList.add('opacity-0')
+        fadeInScrollPrompt()
+      } else {
+        top.classList.remove('opacity-0')
+        prompt.classList.add('opacity-0')
+        hideScrollPrompt()
+      }
+    })
+  }
+
   const showVideo = () => {
     const video = document.getElementById("video");
     const options = {
@@ -87,8 +141,10 @@ const builder = sanityImageUrl(banner.image);
   };
 
   const toTop = () => {
-    const top = document.getElementById("toTop");
     if (!top) return;
+    if (document.body.scrollTop === 0) {
+      top.classList.add('opacity-0')
+    }
     top.addEventListener(
       "click",
       () => {
@@ -97,6 +153,7 @@ const builder = sanityImageUrl(banner.image);
       { passive: true }
     );
   };
+  swapScrollPrompts();
   toTop();
   showVideo();
 </script>
