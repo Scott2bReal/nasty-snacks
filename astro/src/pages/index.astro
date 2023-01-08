@@ -56,7 +56,10 @@ const builder = sanityImageUrl(banner.image);
     </section>
 
     <!-- Music -->
-    <section id="music" class="opacity-0 transition duration-1000 ease-in-out pt-20">
+    <section
+      id="music"
+      class="opacity-0 transition duration-1000 ease-in-out mt-20"
+    >
       <h2 class="text-3xl p-4">MUSIC</h2>
       <Music />
     </section>
@@ -73,7 +76,11 @@ const builder = sanityImageUrl(banner.image);
     </section>
 
     <!-- Go to top -->
-    <button name="scroll to top of page" id="toTop" class="p-2 opacity-0 transition duration-700 ease-in-out fixed bottom-6 right-6">
+    <button
+      name="scroll to top of page"
+      id="toTop"
+      class="p-2 opacity-0 transition duration-700 ease-in-out fixed bottom-6 right-6"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -105,29 +112,29 @@ const builder = sanityImageUrl(banner.image);
   const hideScrollPrompt = () => {
     if (!prompt) return;
     if (window.scrollY !== 0) {
-      prompt.classList.remove('opacity-100')
+      prompt.classList.remove("opacity-100");
     }
-  }
+  };
 
   const swapScrollPrompts = () => {
     if (!prompt || !top) return;
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
       if (window.scrollY === 0) {
-        top.classList.add('opacity-0')
-        fadeInScrollPrompt()
+        top.classList.add("opacity-0");
+        fadeInScrollPrompt();
       } else {
-        top.classList.remove('opacity-0')
-        prompt.classList.add('opacity-0')
-        hideScrollPrompt()
+        top.classList.remove("opacity-0");
+        prompt.classList.add("opacity-0");
+        hideScrollPrompt();
       }
-    })
-  }
+    });
+  };
 
   const showVideo = () => {
     const video = document.getElementById("video");
     const options = {
       threshold: 0.2,
-      rootMargin: "-100px",
+      rootMargin: "-50px",
     };
     if (!video) return;
     const observer = new IntersectionObserver((entries) => {
@@ -145,7 +152,7 @@ const builder = sanityImageUrl(banner.image);
   const toTop = () => {
     if (!top) return;
     if (document.body.scrollTop === 0) {
-      top.classList.add('opacity-0')
+      top.classList.add("opacity-0");
     }
     top.addEventListener(
       "click",

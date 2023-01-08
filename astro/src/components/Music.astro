@@ -17,8 +17,8 @@ const albums = result.result as Album[];
   const watchMusic = () => {
     if (!music) return;
     const options = {
-      threshold: 0.05,
-      rootMargin: "-150px",
+      threshold: 0.1,
+      rootMargin: "-50px",
     };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
