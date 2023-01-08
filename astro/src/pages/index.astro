@@ -3,11 +3,17 @@ import Layout from "../layouts/Layout.astro";
 import UpcomingShows from "../components/UpcomingShows.astro";
 import BandInfo from "../components/BandInfo.astro";
 import { RandomSnacksVid } from "../components/RandomSnacksVid";
-import { sanityAPI } from "../utils/sanity";
-import type { SnacksVid } from "../types";
+import { sanityAPI, sanityImageUrl } from "../utils/sanity";
+import type { SnacksVid, BannerImage } from "../types";
 
-const result = await sanityAPI("videos");
-const snacksVids = result.result as SnacksVid[];
+const bannerResult = await sanityAPI("banner");
+const banners = bannerResult.result
+const banner = banners[0] as BannerImage
+
+const vidResult = await sanityAPI("videos");
+const snacksVids = vidResult.result as SnacksVid[];
+
+const builder = sanityImageUrl(banner.image)
 ---
 
 <Layout title="Nasty Snacks">
@@ -15,7 +21,12 @@ const snacksVids = result.result as SnacksVid[];
     <div
       class="md:h-[100vh] -z-40 overflow-hidden md:opacity-20 opacity-40 -translate-y-[64px]"
     >
-      <img alt='Nasty Snacks at Chop Shop in Chicago, IL' src="images/inverted_snacks_big.JPG" />
+      <img
+        alt={banner.alt}
+        src={builder.auto('format').url()}
+        height='1000px'
+        width='1500px'
+      />
     </div>
 
     <!-- Upcoming Shows -->
@@ -24,7 +35,7 @@ const snacksVids = result.result as SnacksVid[];
     </section>
 
     <section id="video" class="opacity-0 transition duration-700 ease-in-out">
-      <RandomSnacksVid snacksVids={snacksVids} client:idle />
+      <RandomSnacksVid snacksVids={snacksVids} client:visible />
     </section>
 
     <!-- Band info -->
@@ -33,7 +44,7 @@ const snacksVids = result.result as SnacksVid[];
     </section>
 
     <!-- Go to top -->
-    <button id="toTop">
+    <button name="goToTop" id="toTop">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -53,7 +64,7 @@ const snacksVids = result.result as SnacksVid[];
     const video = document.getElementById("video");
     const options = {
       threshold: 0.1,
-      rootMargin: "-150px",
+      rootMargin: "-190px",
     };
     if (!video) return;
     const observer = new IntersectionObserver((entries) => {
@@ -71,9 +82,13 @@ const snacksVids = result.result as SnacksVid[];
   const toTop = () => {
     const top = document.getElementById("toTop");
     if (!top) return;
-    top.addEventListener("click", () => {
-      window.scrollTo(0, 0);
-    });
+    top.addEventListener(
+      "click",
+      () => {
+        window.scrollTo(0, 0);
+      },
+      { passive: true }
+    );
   };
   toTop();
   showVideo();

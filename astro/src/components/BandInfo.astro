@@ -1,10 +1,15 @@
 ---
-import type { BandMember } from "../types";
+import type { BandMember, GroupPhoto } from "../types";
 import { rosterSort } from "../utils/helpers";
-import { sanityAPI } from "../utils/sanity";
+import { sanityAPI, sanityImageUrl } from "../utils/sanity";
+
+const groupPhotoResult = await sanityAPI('bandPhoto')
+const groupPhoto = groupPhotoResult.result[0] as GroupPhoto
 
 const rosterResult = await sanityAPI("bandMembers");
 const roster = rosterResult.result as BandMember[];
+
+const builder = sanityImageUrl(groupPhoto.image)
 ---
 
 <div id="bandInfo">
@@ -19,11 +24,11 @@ const roster = rosterResult.result as BandMember[];
     id="bandPic"
   >
     <img
-      src="images/group_photo.webp"
+      src={builder.auto('format').url()}
       width="500px"
       height="434px"
       id="bandPic"
-      alt="Nasty Snacks Group Photo"
+      alt={groupPhoto.alt}
       class="relative -z-10"
     />
     <ul

@@ -47,3 +47,13 @@ export type Album = {
   spotifyLink: string
   cover: SanityImage
 }
+
+export type BannerImage = {
+  alt: string
+  image: SanityImage
+}
+
+export type GroupPhoto = {
+  alt: string
+  image: SanityImage
+}
