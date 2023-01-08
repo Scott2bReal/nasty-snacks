@@ -1,10 +1,18 @@
 ---
+import { SEO } from "astro-seo";
 import { Nav } from "../components/navbar/Nav";
 import Socials from "../components/Socials.astro";
+import type { BannerImage } from "../types";
+import { sanityAPI, sanityImageUrl } from "../utils/sanity";
 
 export interface Props {
   title: string;
 }
+
+const bannerResult = await sanityAPI("banner");
+const banners = bannerResult.result;
+const banner = banners[0] as BannerImage;
+const builder = sanityImageUrl(banner.image);
 
 const { title } = Astro.props;
 ---
@@ -12,13 +20,19 @@ const { title } = Astro.props;
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta
-      name="description"
-      content="Website for the band Nasty Snacks from Chicago, IL"
+    <SEO
+      title="Nasty Snacks"
+      description="Website for the band Nasty Snacks from Chicago, IL"
+      charset="UTF-8"
+      openGraph={{
+        basic: {
+          title: "Hard-hitting funk from Chicago, IL",
+          type: "website",
+          image: builder.auto("format").url(),
+        },
+      }}
     />
-    <meta name="og:image" content="/images/album_cover.jpg" />
+    <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -43,6 +57,4 @@ const { title } = Astro.props;
   <style is:global>
     @import "../styles/globals.css";
   </style>
-
-
 </html>
