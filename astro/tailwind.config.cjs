@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         'bigSnacks': 'url(images/inverted_snacks_big.JPG)'
+      },
+      screens: {
+        'wide': '890px',
       }
     },
   },
