@@ -30,11 +30,11 @@ const builder = sanityImageUrl(banner.image)
     </div>
 
     <!-- Upcoming Shows -->
-    <section id="shows" class="text-center">
+    <section id="shows" class="text-center scroll-m-28">
       <UpcomingShows />
     </section>
 
-    <section id="video" class="opacity-0 transition duration-700 ease-in-out">
+    <section id="video" class="opacity-0 transition duration-1000 ease-in-out">
       <RandomSnacksVid snacksVids={snacksVids} client:visible />
     </section>
 
@@ -63,8 +63,8 @@ const builder = sanityImageUrl(banner.image)
   const showVideo = () => {
     const video = document.getElementById("video");
     const options = {
-      threshold: 0.1,
-      rootMargin: "-190px",
+      threshold: 0.3,
+      rootMargin: "-150px",
     };
     if (!video) return;
     const observer = new IntersectionObserver((entries) => {
