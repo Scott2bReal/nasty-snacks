@@ -2,20 +2,79 @@
 import Layout from "../layouts/Layout.astro";
 import UpcomingShows from "../components/UpcomingShows.astro";
 import BandInfo from "../components/BandInfo.astro";
+import { RandomSnacksVid } from "../components/RandomSnacksVid";
+import { sanityAPI } from "../utils/sanity";
+import type { SnacksVid } from "../types";
+
+const result = await sanityAPI("videos");
+const snacksVids = result.result as SnacksVid[];
 ---
 
 <Layout title="Nasty Snacks">
+  <div
+    class="md:h-[100vh] -z-40 overflow-hidden md:opacity-20 opacity-40 -translate-y-[64px]"
+  >
+    <img src="images/inverted_snacks_big.JPG" />
+  </div>
 
-  <main>
-    <!-- Band info -->
-    <section class="mx-auto text-center pb-24">
-      <BandInfo />
-    </section>
-
+  <main class="flex flex-col gap-6">
     <!-- Upcoming Shows -->
     <section id="shows" class="text-center">
       <UpcomingShows />
     </section>
-  </main>
 
+    <section id="video" class="opacity-0 transition duration-700 ease-in-out">
+      <RandomSnacksVid snacksVids={snacksVids} client:idle />
+    </section>
+
+    <!-- Band info -->
+    <section id="band" class="text-center">
+      <BandInfo />
+    </section>
+
+    <!-- Go to top -->
+    <button id='toTop'>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="w-12 h-12 fixed bottom-8 right-8"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z"
+          clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </main>
 </Layout>
+<script>
+  const showVideo = () => {
+    const video = document.getElementById("video");
+    const options = {
+      threshold: 0.1,
+      rootMargin: "-150px",
+    };
+    if (!video) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("opacity-100");
+        } else {
+          entry.target.classList.remove("opacity-100");
+        }
+      });
+    }, options);
+    observer.observe(video);
+  };
+
+  const toTop = () => {
+    const top = document.getElementById('toTop')
+    if (!top) return;
+    top.addEventListener('click', () => {
+      window.scrollTo(0, 0)
+    })
+  }
+  toTop();
+  showVideo();
+</script>

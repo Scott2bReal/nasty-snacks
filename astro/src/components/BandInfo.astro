@@ -3,80 +3,119 @@ import type { BandMember } from "../types";
 import { rosterSort } from "../utils/helpers";
 import { sanityAPI } from "../utils/sanity";
 
-const result = await sanityAPI('bandMembers')
-const roster = result.result as BandMember[];
+const rosterResult = await sanityAPI("bandMembers");
+const roster = rosterResult.result as BandMember[];
 ---
 
-<h2
-  id="bandInfoHeader"
-  class="tracking-widest text-3xl py-6 opacity-0 transition duration-700 ease-in relative -translate-x-6"
->
-  WE ARE NASTY SNACKS
-</h2>
-<div
-  class="flex md:flex-row flex-col max-w[850px] text-center md:justify-center px-4 opacity-0 transition duration-700 ease-in translate-y-6"
-  id="bandPic"
->
-  <img
-    src="images/group_photo.webp"
-    width="500px"
-    height="434px"
-    id="bandPic"
-    alt="Nasty Snacks Group Photo"
-    class='relative -z-10'
-  />
-  <ul
-    class="text-left px-4 child:py-2 child:text-sm opacity-0 transition duration-700 ease-in relative -z-10 translate-x-6"
-    id="roster"
+<div id="bandInfo">
+  <h2
+    id="bandInfoHeader"
+    class="tracking-widest text-3xl py-6 opacity-0 transition duration-700 ease-in relative -translate-x-6"
   >
-    {
-      roster.sort(rosterSort).map((member) => {
-        return (
-          <li>
-            <em>
-              {member.instrument} / {member.name}
-            </em>
-          </li>
-        );
-      })
-    }
-  </ul>
+    WE ARE NASTY SNACKS
+  </h2>
+  <div
+    class="flex md:flex-row flex-col max-w[850px] text-center md:justify-center px-4 opacity-0 transition duration-700 ease-in translate-y-6"
+    id="bandPic"
+  >
+    <img
+      src="images/group_photo.webp"
+      width="500px"
+      height="434px"
+      id="bandPic"
+      alt="Nasty Snacks Group Photo"
+      class="relative -z-10"
+    />
+    <ul
+      class="text-left px-4 child:py-2 child:text-sm opacity-0 transition duration-700 ease-in relative -z-10 translate-x-6"
+      id="roster"
+    >
+      {
+        roster.sort(rosterSort).map((member) => {
+          return (
+            <li>
+              <em>
+                {member.instrument} / {member.name}
+              </em>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
 </div>
 <script>
-  function animateHeader(header: HTMLElement) {
-    setTimeout(() => {
-      header.classList.add("opacity-100");
-      header.classList.remove("-translate-x-6")
-      header.classList.add("-z-10")
-    }, 500); // 1000 milliseconds = 1 second
-  }
+  const bandPic = document.getElementById("bandPic");
+  const header = document.getElementById("bandInfoHeader");
+  const roster = document.getElementById("roster");
+  const bandInfo = document.getElementById("bandInfo");
 
-  function animateBandInfo(bandPic: HTMLElement) {
-    setTimeout(() => {
-      bandPic.classList.add("opacity-100");
-      bandPic.classList.remove("translate-y-6")
-    }, 500); // 1000 milliseconds = 1 second
-  }
+  const animateOnScroll = () => {
+    if (!bandPic || !header || !roster || !bandInfo) return;
 
-  function animateRoster(roster: HTMLElement) {
-    setTimeout(() => {
-      roster.classList.add("opacity-100");
-      roster.classList.remove("translate-x-6")
-    }, 500); // 1000 milliseconds = 1 second
-  }
+    const showInfo = () => {
+      const showHeader = (header: HTMLElement) => {
+        header.classList.add("opacity-100");
+        header.classList.remove("-translate-x-6");
+        header.classList.add("-z-10");
+      };
 
-  function fadeIn() {
-    const bandPic = document.getElementById("bandPic");
-    const header = document.getElementById("bandInfoHeader");
-    const roster = document.getElementById("roster");
-    const shows = document.getElementById("shows");
+      const showBandPic = (bandPic: HTMLElement) => {
+        bandPic.classList.add("opacity-100");
+        bandPic.classList.remove("translate-y-6");
+      };
 
-    if (!bandPic || !header || !roster || !shows) return;
+      const showRoster = (roster: HTMLElement) => {
+        roster.classList.add("opacity-100");
+        roster.classList.remove("translate-x-6");
+      };
 
-    animateBandInfo(bandPic);
-    animateHeader(header);
-    animateRoster(roster);
-  }
+      showHeader(header);
+      showBandPic(bandPic);
+      showRoster(roster);
+    };
 
-  fadeIn();
+    const hideInfo = () => {
+      const hideHeader = (header: HTMLElement) => {
+        header.classList.remove("opacity-100");
+        header.classList.add("-translate-x-6");
+        header.classList.remove("-z-10");
+      };
+
+      const hideBandPic = (bandPic: HTMLElement) => {
+        bandPic.classList.remove("opacity-100");
+        bandPic.classList.add("translate-y-6");
+      };
+
+      const hideRoster = (roster: HTMLElement) => {
+        roster.classList.remove("opacity-100");
+        roster.classList.add("translate-x-6");
+      };
+
+      hideHeader(header);
+      hideBandPic(bandPic);
+      hideRoster(roster);
+    };
+
+    const options = {
+      threshold: 0.1,
+      rootMargin: "-150px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          showInfo();
+        } else {
+          hideInfo();
+        }
+      });
+    }, options);
+
+    observer.observe(bandInfo);
+  };
+
+  animateOnScroll();
+
+  // fadeIn();
 </script>

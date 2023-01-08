@@ -12,26 +12,27 @@ export const RandomSnacksVid = ({ snacksVids }: Props) => {
 
   const embedURL = 'https://www.youtube.com/embed/'
 
-  const [vid, setVid] = useState(
-    snacksVids[randomNumber(snacksVids.length)]
-  )
+  const [vid, setVid] = useState(snacksVids[randomNumber(snacksVids.length)])
   const [buttonStyles, setButtonStyles] = useState(buttonStylesUp)
-  const [headerStyles, setHeaderStyles] = useState('pb-2 text-xl opacity-0 transition duration-500 ease-in-out')
+  const [headerStyles, setHeaderStyles] = useState(
+    'pb-2 text-xl opacity-0 transition duration-500 ease-in-out'
+  )
 
   const findNewVid = (currentVid: SnacksVid) => {
-    const unusedVids = snacksVids
-      .filter((vid) => vid.url !== currentVid.url)
+    const unusedVids = snacksVids.filter((vid) => vid.url !== currentVid.url)
     return unusedVids[randomNumber(unusedVids.length)]
   }
 
   useEffect(() => {
     setTimeout(() => {
-      setHeaderStyles('pb-2 text-xl opacity-100 transition duration-500 ease-in-out')
+      setHeaderStyles(
+        'pb-2 text-xl opacity-100 transition duration-500 ease-in-out'
+      )
     }, 1000)
   }, [])
 
   return (
-    <div class='flex flex-col items-center justify-center pt-8'>
+    <div class={`flex flex-col items-center justify-center pt-8`}>
       <h1 class={headerStyles}>{vid.title}</h1>
       <iframe
         width='560'

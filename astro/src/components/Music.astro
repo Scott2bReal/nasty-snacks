@@ -1,0 +1,17 @@
+---
+import type { Album } from "../types";
+import { sanityAPI } from "../utils/sanity";
+import SpotifyPreview from "../components/SpotifyPreview.astro";
+const result = await sanityAPI("albums");
+const albums = result.result as Album[];
+---
+
+<h2 class='text-3xl'>MUSIC</h2>
+{
+  albums.map((album) => {
+    return <SpotifyPreview album={album} />;
+  })
+}
+
+<script>
+</script>
