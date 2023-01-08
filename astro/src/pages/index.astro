@@ -11,13 +11,13 @@ const snacksVids = result.result as SnacksVid[];
 ---
 
 <Layout title="Nasty Snacks">
-  <div
-    class="md:h-[100vh] -z-40 overflow-hidden md:opacity-20 opacity-40 -translate-y-[64px]"
-  >
-    <img src="images/inverted_snacks_big.JPG" />
-  </div>
+  <main class="flex flex-col gap-20">
+    <div
+      class="md:h-[100vh] -z-40 overflow-hidden md:opacity-20 opacity-40 -translate-y-[64px]"
+    >
+      <img src="images/inverted_snacks_big.JPG" />
+    </div>
 
-  <main class="flex flex-col gap-6">
     <!-- Upcoming Shows -->
     <section id="shows" class="text-center">
       <UpcomingShows />
@@ -33,7 +33,7 @@ const snacksVids = result.result as SnacksVid[];
     </section>
 
     <!-- Go to top -->
-    <button id='toTop'>
+    <button id="toTop">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -69,12 +69,12 @@ const snacksVids = result.result as SnacksVid[];
   };
 
   const toTop = () => {
-    const top = document.getElementById('toTop')
+    const top = document.getElementById("toTop");
     if (!top) return;
-    top.addEventListener('click', () => {
-      window.scrollTo(0, 0)
-    })
-  }
+    top.addEventListener("click", () => {
+      window.scrollTo(0, 0);
+    });
+  };
   toTop();
   showVideo();
 </script>

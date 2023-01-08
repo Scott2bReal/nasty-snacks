@@ -26,6 +26,10 @@
     @apply text-sm text-start;
   }
 
+  section {
+    @apply scroll-m-20
+  }
+
   .page-header-main {
     @apply text-3xl tracking-widest text-center pt-8;
   }
