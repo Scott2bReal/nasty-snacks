@@ -32,12 +32,12 @@ export const RandomSnacksVid = ({ snacksVids }: Props) => {
   }, [])
 
   return (
-    <div class={`flex flex-col items-center justify-center pt-8`}>
+    <div class={`flex flex-col items-center justify-center`}>
       <h1 class={headerStyles}>{vid.title}</h1>
       <iframe
-        width='560'
-        height='315'
-        class='mx-auto max-w-[100vw]'
+        width='560px'
+        height='315px'
+        class='mx-auto max-w-full'
         id='iframe'
         src={`${embedURL}${getYoutubeId(vid.url)}`}
         title='YouTube video player'
