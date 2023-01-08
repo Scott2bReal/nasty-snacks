@@ -20,18 +20,11 @@ const { title } = Astro.props;
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <SEO
-      title="Nasty Snacks"
-      description="Website for the band Nasty Snacks from Chicago, IL"
-      charset="UTF-8"
-      openGraph={{
-        basic: {
-          title: "Hard-hitting funk from Chicago, IL",
-          type: "website",
-          image: builder.auto("format").url(),
-        },
-      }}
-    />
+    <meta name='title' content='Nasty Snacks' />
+    <meta name='description' content='Website for the band Nasty Snacks from Chicago, IL' />
+    <meta name='og:image' content={builder.auto('format').url()} />
+    <meta name='og:title' content='Hard-hitting funk from Chicago, IL' />
+    <meta name='og:type' content='website' />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
