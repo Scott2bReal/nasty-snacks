@@ -1,5 +1,4 @@
 ---
-import { SEO } from "astro-seo";
 import { Nav } from "../components/navbar/Nav";
 import Socials from "../components/Socials.astro";
 import type { BannerImage } from "../types";
@@ -26,6 +25,7 @@ const { title } = Astro.props;
     <meta name='og:title' content='Hard-hitting funk from Chicago, IL' />
     <meta name='og:type' content='website' />
     <meta name="viewport" content="width=device-width" />
+    <meta charset='utf-8' />
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
