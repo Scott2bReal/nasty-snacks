@@ -26,7 +26,7 @@ export const TopNav = ({
           </span>
         </a>
       </h1>
-      <ul className='reverse-text-gradient font-extrabold md:flex gap-12 flex-row hidden min-[890px]:visible items-end justify-evenly p-3 max-w-[100vw]'>
+      <ul className='reverse-text-gradient font-extrabold wide:flex gap-12 flex-row hidden wide:visible items-end justify-evenly p-3 max-w-[100vw]'>
         {sections.map((section) => {
           return (
             <li>
@@ -47,7 +47,7 @@ export const TopNav = ({
         <button
           id='openMobileNav'
           aria-label='Open mobile nav'
-          class='pr-12 md:hidden -translate-x-2'
+          class='pr-12 wide:hidden -translate-x-2'
           onClick={() => {
             setMobileOpen(true)
             lockScroll(mobileOpen)

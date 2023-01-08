@@ -10,10 +10,8 @@ export const Nav = () => {
   const lockScroll = (mobileOpen: boolean) => {
     if (mobileOpen) {
       document.body.classList.toggle('overflow-hidden')
-      document.body.classList.toggle('h-[100vh]')
     } else {
       document.body.classList.toggle('overflow-hidden')
-      document.body.classList.toggle('h-[100vh]')
     }
   }
 
