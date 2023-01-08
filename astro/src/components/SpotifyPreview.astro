@@ -12,7 +12,7 @@ const embedUrl = generateSpotifyEmbed(album.spotifyLink);
 const builder = sanityImageUrl(album.cover);
 ---
 
-<div class="flex lg:flex-row flex-col items-center justify-center gap-8" id={album.title}>
+<div class="" id={album.title}>
   <a
     href={album.spotifyLink}
     target="_blank"
@@ -21,6 +21,7 @@ const builder = sanityImageUrl(album.cover);
       src={builder.auto('format').url()}
       width="450px"
       height="450px"
+      class='mx-auto'
       alt={`${album.title} Cover`}
     />
   </a>
@@ -28,8 +29,8 @@ const builder = sanityImageUrl(album.cover);
   <iframe
     src={embedUrl}
     title={`${album.title} Spotify Preview`}
-    class="lg:h-[380px] lg:max-w-[50vw]"
     allowfullscreen=""
     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    class='mx-auto pt-4'
   ></iframe>
 </div>

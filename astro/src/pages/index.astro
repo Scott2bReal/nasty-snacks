@@ -5,15 +5,16 @@ import BandInfo from "../components/BandInfo.astro";
 import { RandomSnacksVid } from "../components/RandomSnacksVid";
 import { sanityAPI, sanityImageUrl } from "../utils/sanity";
 import type { SnacksVid, BannerImage } from "../types";
+import Music from "./music.astro";
 
 const bannerResult = await sanityAPI("banner");
-const banners = bannerResult.result
-const banner = banners[0] as BannerImage
+const banners = bannerResult.result;
+const banner = banners[0] as BannerImage;
 
 const vidResult = await sanityAPI("videos");
 const snacksVids = vidResult.result as SnacksVid[];
 
-const builder = sanityImageUrl(banner.image)
+const builder = sanityImageUrl(banner.image);
 ---
 
 <Layout title="Nasty Snacks">
@@ -23,23 +24,29 @@ const builder = sanityImageUrl(banner.image)
     >
       <img
         alt={banner.alt}
-        src={builder.auto('format').url()}
-        height='1000px'
-        width='1500px'
+        src={builder.auto("format").url()}
+        height="1000px"
+        width="1500px"
       />
     </div>
 
     <!-- Upcoming Shows -->
-    <section id="shows" class="text-center scroll-m-28">
+    <section id="shows" class="scroll-m-28">
       <UpcomingShows />
     </section>
 
+    <!-- Music -->
+    <section id="music" class="opacity-0 transition duration-1000 ease-in-out">
+      <Music />
+    </section>
+
+    <!-- Video -->
     <section id="video" class="opacity-0 transition duration-1000 ease-in-out">
       <RandomSnacksVid snacksVids={snacksVids} client:visible />
     </section>
 
     <!-- Band info -->
-    <section id="band" class="text-center">
+    <section id="band">
       <BandInfo />
     </section>
 

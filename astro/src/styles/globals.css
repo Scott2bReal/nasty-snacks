@@ -27,7 +27,7 @@
   }
 
   section {
-    @apply scroll-m-24
+    @apply scroll-m-24 text-center p-4
   }
 
   .page-header-main {
