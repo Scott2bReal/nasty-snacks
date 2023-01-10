@@ -18,7 +18,7 @@ export const TopNav = ({
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
 
   return (
-    <nav className='text-center bg-neutral-900/0 flex justify-between fixed w-[100vw] top-0 left-0 backdrop-blur-xl z-40 pr-2'>
+    <nav className='text-center bg-neutral-900/20 flex justify-between fixed w-[100vw] top-0 left-0 backdrop-blur-xl z-40 pr-2'>
       <h1 className='py-4 min-w-[357px]'>
         <a href='/'>
           <span className='text-gradient text-4xl font-extrabold tracking-widest'>
