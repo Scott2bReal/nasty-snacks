@@ -1,17 +1,11 @@
 ---
 import { Nav } from "../components/navbar/Nav";
+import SEO from "../components/SEO.astro";
 import Socials from "../components/Socials.astro";
-import type { BannerImage } from "../types";
-import { sanityAPI, sanityImageUrl } from "../utils/sanity";
 
 export interface Props {
   title: string;
 }
-
-const photoResult = await sanityAPI("bandPhoto");
-const photos = photoResult.result;
-const photo = photos[0] as BannerImage;
-const builder = sanityImageUrl(photo.image);
 
 const { title } = Astro.props;
 ---
@@ -19,11 +13,7 @@ const { title } = Astro.props;
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name='title' content='Nasty Snacks' />
-    <meta name='description' content='Website for the band Nasty Snacks from Chicago, IL' />
-    <meta name='og:image' content={builder.auto('format').url()} />
-    <meta name="viewport" content="width=device-width" />
-    <meta charset='utf-8' />
+    <SEO />
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
