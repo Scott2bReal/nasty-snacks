@@ -100,11 +100,12 @@ const builder = sanityImageUrl(banner.image);
   const top = document.getElementById("toTop");
 
   const fadeInScrollPrompt = () => {
-    if (!prompt) return;
+    if (!prompt || window.scrollY !== 0) return;
     setTimeout(() => {
       if (document.body.scrollTop === 0) {
         prompt.classList.add("opacity-100");
         prompt.classList.remove("translate-y-6");
+        prompt.classList.remove('-z-60')
       }
     }, 2000);
   };
@@ -113,6 +114,7 @@ const builder = sanityImageUrl(banner.image);
     if (!prompt) return;
     if (window.scrollY !== 0) {
       prompt.classList.remove("opacity-100");
+      prompt.classList.add('-z-60');
     }
   };
 
