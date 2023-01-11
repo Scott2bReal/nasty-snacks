@@ -1,8 +1,10 @@
 # Nasty Snacks Website
 
-Website for my band [Nasty Snacks](https;//nastysnacks.netlify.app) from Chicago, IL
+Website for my band Nasty Snacks from Chicago, IL
 
-Built using the [Astro](https://astro.build) framework, pulling content from [Sanity](https://sanity.io).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/86c54fcf-c28f-47d4-a638-11413e2956c5/deploy-status)](https://app.netlify.com/sites/nastysnacks/deploys)
+
+Built using the [Astro](https://astro.build) framework, hosted on [Netlify](https://netlify.com), pulling content from [Sanity](https://sanity.io).
 
 Integration with the [Discord Snackbot](https://github.com/Scott2bReal/discord-snackbot), 
 allowing us to easily update our upcoming shows via Discord slash commands.
