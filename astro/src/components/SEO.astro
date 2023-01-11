@@ -1,10 +1,10 @@
 ---
-import type { BannerImage } from "../types";
+import type { GroupPhoto } from "../types";
 import { sanityAPI, sanityImageUrl } from "../utils/sanity";
 
 const photoResult = await sanityAPI("bandPhoto");
 const photos = photoResult.result;
-const photo = photos[0] as BannerImage;
+const photo = photos[0] as GroupPhoto;
 const builder = sanityImageUrl(photo.image);
 const siteURL = `https://nastysnacks.netlify.app`
 ---
