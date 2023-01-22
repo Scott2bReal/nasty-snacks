@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks'
+import { createSignal } from "solid-js"
 
 interface Props {
   isDisabled: boolean
@@ -9,7 +9,7 @@ export const SubmitButton = ({ isDisabled }: Props) => {
   const buttonUpStyles =
     'p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 tracking-widest transition duration-500 ease-in-out relative'
   const buttonDownStyles = buttonUpStyles + ' scale-95'
-  const [submitStyles, setSubmitStyles] = useState(buttonUpStyles)
+  const [submitStyles, setSubmitStyles] = createSignal(buttonUpStyles)
 
   return isDisabled ? (
     <button
@@ -22,7 +22,7 @@ export const SubmitButton = ({ isDisabled }: Props) => {
     </button>
   ) : (
     <button
-      class={`${submitStyles}`}
+      class={`${submitStyles()}`}
       type='submit'
       id='submitContactForm'
       onMouseDown={() => setSubmitStyles(buttonDownStyles)}

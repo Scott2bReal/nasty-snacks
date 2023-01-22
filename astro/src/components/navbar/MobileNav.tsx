@@ -1,10 +1,10 @@
-import type { StateUpdater } from 'preact/hooks'
+import type { Setter } from "solid-js"
 
 interface Props {
   mobileControlData: {
     lockScroll: (mobileOpen: boolean) => void
     mobileOpen: boolean
-    setMobileOpen: StateUpdater<boolean>
+    setMobileOpen: Setter<boolean>
   }
   sections: string[]
   homeSections: string[]
@@ -14,17 +14,17 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
 
   return (
-    <nav className={`h-[100vh] w-[100vw] z-[5] text-center bg-neutral-900 top-0 bottom-0 pr-2`}>
-      <div className='flex gap-2 justify-between items-center'>
-        <h1 className='p-4 md:pl-4 min-w-[357px] opacity-0'>
+    <nav class={`h-[100vh] w-[100vw] z-[5] text-center bg-neutral-900 top-0 bottom-0 pr-2`}>
+      <div class='flex gap-2 justify-between items-center'>
+        <h1 class='p-4 md:pl-4 min-w-[357px] opacity-0'>
           <a href='/'>
-            <span className='text-gradient text-4xl font-extrabold tracking-widest'>
+            <span class='text-gradient text-4xl font-extrabold tracking-widest'>
               NASTY SNACKS
             </span>
           </a>
         </h1>
         <button
-          className='pr-12 -translate-x-4'
+          class='pr-12 -translate-x-4'
           id='closeMobileNav'
           aria-label='Close mobile nav'
           onClick={() => {
@@ -33,7 +33,7 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
           }}
         >
           <svg
-            className='w-8 h-8'
+            class='w-8 h-8'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'
@@ -48,7 +48,7 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
           </svg>
         </button>
       </div>
-      <ul className='mt-6 text-gradient text-center font-extrabold my-auto lg:flex gap-12 flex flex-col items-center justify-center p-6 max-w-[100vw]'>
+      <ul class='mt-6 text-gradient text-center font-extrabold my-auto lg:flex gap-12 flex flex-col items-center justify-center p-6 max-w-[100vw]'>
         <li>
           <a
             href='/'
@@ -57,7 +57,7 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
               lockScroll(mobileOpen)
             }}
           >
-            <span className='text-3xl'>HOME</span>
+            <span class='text-3xl'>HOME</span>
           </a>
         </li>
         {sections.map((section) => {

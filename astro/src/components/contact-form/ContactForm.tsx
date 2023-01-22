@@ -1,18 +1,25 @@
-import { useState } from 'preact/hooks'
+import { createSignal } from 'solid-js'
 import { SubmitButton } from './SubmitButton'
 import { SuccessMessage } from './SuccessMessage'
 
+interface FormCompleteProps {
+  firstName: string
+  email: string
+  subject: string
+  message: string
+}
+
 export const ContactForm = () => {
   // Form fields
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
-  const [subject, setSubject] = useState('')
-  const [message, setMessage] = useState('')
-  const [botField, setBotField] = useState('')
+  const [firstName, setFirstName] = createSignal('')
+  const [lastName, setLastName] = createSignal('')
+  const [email, setEmail] = createSignal('')
+  const [subject, setSubject] = createSignal('')
+  const [message, setMessage] = createSignal('')
+  const [botField, setBotField] = createSignal('')
 
   // Form handling
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitted, setIsSubmitted] = createSignal(false)
   const clearForm = () => {
     setFirstName('')
     setLastName('')
@@ -21,23 +28,31 @@ export const ContactForm = () => {
     setMessage('')
   }
 
+  const isFormComplete = (data: FormCompleteProps) => {
+    if (!data.firstName) return false
+    if (!data.email) return false
+    if (!data.subject) return false
+    if (!data.message) return false
+    return true
+  }
+
   return (
     <form
       data-netlify='true'
       netlify-honeypot='botField'
       name='contactUs'
       class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
-      method='POST'
+      method='post'
       onSubmit={async (e) => {
         e.preventDefault()
 
         const data = {
-          firstName: firstName,
-          lastName: lastName,
-          botField: botField,
-          email: email,
-          subject: subject,
-          message: message,
+          firstName: firstName(),
+          lastName: lastName(),
+          botField: botField(),
+          email: email(),
+          subject: subject(),
+          message: message(),
         }
 
         const encode = (data: { [key: string]: string }) => {
@@ -65,14 +80,14 @@ export const ContactForm = () => {
       }}
     >
       <input class='hidden' name='form-name' value='contactUs' />
-      <p class='hidden'>
+      <div class='hidden'>
         Don't fill this out if you're human!
         <input
           name='botField'
           class='hidden'
           onInput={(e) => setBotField(e.currentTarget.value)}
         />
-      </p>
+      </div>
       <div class='flex w-full gap-2 child:flex-grow'>
         <div class='child:w-full'>
           <label for='firstName'>
@@ -81,7 +96,7 @@ export const ContactForm = () => {
           <input
             id='firstName'
             name='firstName'
-            value={firstName}
+            value={firstName()}
             onInput={(e) => setFirstName(e.currentTarget.value)}
             required
           />
@@ -93,7 +108,7 @@ export const ContactForm = () => {
           <input
             id='lastName'
             name='lastName'
-            value={lastName}
+            value={lastName()}
             onInput={(e) => setLastName(e.currentTarget.value)}
           />
         </div>
@@ -106,7 +121,7 @@ export const ContactForm = () => {
         id='email'
         name='email'
         type='email'
-        value={email}
+        value={email()}
         onInput={(e) => setEmail(e.currentTarget.value)}
         required
       />
@@ -118,7 +133,7 @@ export const ContactForm = () => {
         id='subject'
         name='subject'
         required
-        value={subject}
+        value={subject()}
         onInput={(e) => setSubject(e.currentTarget.value)}
       />
 
@@ -130,16 +145,16 @@ export const ContactForm = () => {
         rows={4}
         class='text-neutral-900 p-1'
         name='message'
-        value={message}
+        value={message()}
         onInput={(e) => setMessage(e.currentTarget.value)}
         required
       ></textarea>
 
-      {isSubmitted ? (
+      {isSubmitted() ? (
         <SuccessMessage />
       ) : (
         <SubmitButton
-          isDisabled={!(firstName && email && subject && message)}
+          isDisabled={!(firstName() && email() && subject() && message())}
         />
       )}
     </form>

@@ -1,10 +1,10 @@
-import type { StateUpdater } from 'preact/hooks'
+import type { Setter } from "solid-js"
 
 interface Props {
   mobileControlData: {
     lockScroll: (mobileOpen: boolean) => void
     mobileOpen: boolean
-    setMobileOpen: StateUpdater<boolean>
+    setMobileOpen: Setter<boolean>
   }
   sections: string[]
   homeSections: string[]
@@ -18,15 +18,15 @@ export const TopNav = ({
   const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
 
   return (
-    <nav className='text-center bg-neutral-900/20 flex justify-between fixed w-[100vw] top-0 left-0 backdrop-blur-xl z-40 pr-2'>
-      <h1 className='py-4 min-w-[357px]'>
+    <nav class='text-center bg-neutral-900/20 flex justify-between fixed w-[100vw] top-0 left-0 backdrop-blur-xl z-40 pr-2'>
+      <h1 class='py-4 min-w-[357px]'>
         <a href='/'>
-          <span className='text-gradient text-4xl font-extrabold tracking-widest'>
+          <span class='text-gradient text-4xl font-extrabold tracking-widest'>
             NASTY SNACKS
           </span>
         </a>
       </h1>
-      <ul className='reverse-text-gradient font-extrabold wide:flex gap-12 flex-row hidden wide:visible items-end justify-evenly p-3 max-w-[100vw]'>
+      <ul class='reverse-text-gradient font-extrabold wide:flex gap-12 flex-row hidden wide:visible items-end justify-evenly p-3 max-w-[100vw]'>
         {sections.map((section) => {
           return (
             <li>
@@ -54,7 +54,7 @@ export const TopNav = ({
           }}
         >
           <svg
-            className='w-8 h-8'
+            class='w-8 h-8'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'
