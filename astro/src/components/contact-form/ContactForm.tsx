@@ -24,7 +24,7 @@ export const ContactForm = () => {
   return (
     <form
       data-netlify='true'
-      netlify-honeypot="botField"
+      netlify-honeypot='botField'
       name='contactUs'
       class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
       method='POST'
@@ -49,7 +49,7 @@ export const ContactForm = () => {
             .join('&')
         }
 
-        fetch('/forms/contact', {
+        await fetch('/forms/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -58,12 +58,10 @@ export const ContactForm = () => {
             'form-name': 'contactUs',
             ...data,
           }),
+        }).then(() => {
+          clearForm()
+          setIsSubmitted(true)
         })
-          .then(() => {
-            clearForm()
-            setIsSubmitted(true)
-          })
-          .catch((e) => console.error(e))
       }}
     >
       <input class='hidden' name='form-name' value='contactUs' />
@@ -72,7 +70,7 @@ export const ContactForm = () => {
         <input
           name='botField'
           class='hidden'
-          onChange={(e) => setBotField(e.currentTarget.value)}
+          onInput={(e) => setBotField(e.currentTarget.value)}
         />
       </p>
       <div class='flex w-full gap-2 child:flex-grow'>
@@ -84,7 +82,7 @@ export const ContactForm = () => {
             id='firstName'
             name='firstName'
             value={firstName}
-            onChange={(e) => setFirstName(e.currentTarget.value)}
+            onInput={(e) => setFirstName(e.currentTarget.value)}
             required
           />
         </div>
@@ -96,7 +94,7 @@ export const ContactForm = () => {
             id='lastName'
             name='lastName'
             value={lastName}
-            onChange={(e) => setLastName(e.currentTarget.value)}
+            onInput={(e) => setLastName(e.currentTarget.value)}
           />
         </div>
       </div>
@@ -109,7 +107,7 @@ export const ContactForm = () => {
         name='email'
         type='email'
         value={email}
-        onChange={(e) => setEmail(e.currentTarget.value)}
+        onInput={(e) => setEmail(e.currentTarget.value)}
         required
       />
 
@@ -121,7 +119,7 @@ export const ContactForm = () => {
         name='subject'
         required
         value={subject}
-        onChange={(e) => setSubject(e.currentTarget.value)}
+        onInput={(e) => setSubject(e.currentTarget.value)}
       />
 
       <label for='message'>
@@ -133,7 +131,7 @@ export const ContactForm = () => {
         class='text-neutral-900 p-1'
         name='message'
         value={message}
-        onChange={(e) => setMessage(e.currentTarget.value)}
+        onInput={(e) => setMessage(e.currentTarget.value)}
         required
       ></textarea>
 
