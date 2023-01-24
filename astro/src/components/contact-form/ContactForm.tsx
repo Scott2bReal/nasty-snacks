@@ -1,13 +1,6 @@
-import { createSignal } from 'solid-js'
+import { createSignal, Setter } from 'solid-js'
 import { SubmitButton } from './SubmitButton'
 import { SuccessMessage } from './SuccessMessage'
-
-interface FormCompleteProps {
-  firstName: string
-  email: string
-  subject: string
-  message: string
-}
 
 export const ContactForm = () => {
   // Form fields
@@ -19,21 +12,20 @@ export const ContactForm = () => {
   const [botField, setBotField] = createSignal('')
 
   // Form handling
-  const [isSubmitted, setIsSubmitted] = createSignal(false)
-  const clearForm = () => {
-    setFirstName('')
-    setLastName('')
-    setEmail('')
-    setSubject('')
-    setMessage('')
-  }
+  const setters = [
+    setFirstName,
+    setLastName,
+    setSubject,
+    setMessage,
+    setBotField,
+  ]
 
-  const isFormComplete = (data: FormCompleteProps) => {
-    if (!data.firstName) return false
-    if (!data.email) return false
-    if (!data.subject) return false
-    if (!data.message) return false
-    return true
+  const [isSubmitted, setIsSubmitted] = createSignal(false)
+  const clearForm = (funcs: Setter<string>[]) => {
+    funcs.forEach((func) => {
+      func('')
+    })
+    return null
   }
 
   return (
@@ -74,7 +66,7 @@ export const ContactForm = () => {
             ...data,
           }),
         }).then(() => {
-          clearForm()
+          clearForm(setters)
           setIsSubmitted(true)
         })
       }}
