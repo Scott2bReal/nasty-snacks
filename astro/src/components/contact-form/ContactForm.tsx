@@ -1,9 +1,9 @@
-import { useState } from 'preact/hooks'
+import { StateUpdater, useState } from 'preact/hooks'
 import { SubmitButton } from './SubmitButton'
 import { SuccessMessage } from './SuccessMessage'
 
 export const ContactForm = () => {
-  // Form fields
+  // Form fields state
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -12,13 +12,20 @@ export const ContactForm = () => {
   const [botField, setBotField] = useState('')
 
   // Form handling
+  const setters = [
+    setFirstName,
+    setLastName,
+    setEmail,
+    setSubject,
+    setMessage,
+    setBotField,
+  ]
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const clearForm = () => {
-    setFirstName('')
-    setLastName('')
-    setEmail('')
-    setSubject('')
-    setMessage('')
+  const clearForm = (setters: StateUpdater<string>[]) => {
+    setters.forEach(setter => {
+      setter('')
+    })
+    return null
   }
 
   return (
@@ -59,7 +66,7 @@ export const ContactForm = () => {
             ...data,
           }),
         }).then(() => {
-          clearForm()
+          clearForm(setters)
           setIsSubmitted(true)
         })
       }}
