@@ -1,9 +1,9 @@
-import type { Setter } from "solid-js"
+import type { Accessor, Setter } from "solid-js"
 
 interface Props {
   mobileControlData: {
     lockScroll: (mobileOpen: boolean) => void
-    mobileOpen: boolean
+    mobileOpen: Accessor<boolean>
     setMobileOpen: Setter<boolean>
   }
   sections: string[]
@@ -15,8 +15,6 @@ export const TopNav = ({
   sections,
   homeSections,
 }: Props) => {
-  const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
-
   return (
     <nav class='text-center bg-neutral-900/20 flex justify-between fixed w-[100vw] top-0 left-0 backdrop-blur-xl z-40 pr-2'>
       <h1 class='py-4 min-w-[357px]'>
@@ -49,8 +47,8 @@ export const TopNav = ({
           aria-label='Open mobile nav'
           class='pr-12 wide:hidden -translate-x-2'
           onClick={() => {
-            setMobileOpen(true)
-            lockScroll(mobileOpen)
+            mobileControlData.setMobileOpen(true)
+            mobileControlData.lockScroll(mobileControlData.mobileOpen())
           }}
         >
           <svg

@@ -30,7 +30,7 @@ export const Nav = () => {
 
   const mobileControlData = {
     lockScroll: lockScroll,
-    mobileOpen: mobileOpen(),
+    mobileOpen: mobileOpen,
     setMobileOpen: setMobileOpen,
   }
 

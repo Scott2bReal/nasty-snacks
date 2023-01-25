@@ -1,9 +1,9 @@
-import type { Setter } from "solid-js"
+import type { Accessor, Setter } from "solid-js"
 
 interface Props {
   mobileControlData: {
     lockScroll: (mobileOpen: boolean) => void
-    mobileOpen: boolean
+    mobileOpen: Accessor<boolean>
     setMobileOpen: Setter<boolean>
   }
   sections: string[]
@@ -11,8 +11,6 @@ interface Props {
 }
 
 export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) => {
-  const { lockScroll, mobileOpen, setMobileOpen } = mobileControlData
-
   return (
     <nav class={`h-[100vh] w-[100vw] z-[5] text-center bg-neutral-900 top-0 bottom-0 pr-2`}>
       <div class='flex gap-2 justify-between items-center'>
@@ -28,8 +26,8 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
           id='closeMobileNav'
           aria-label='Close mobile nav'
           onClick={() => {
-            setMobileOpen(false)
-            lockScroll(mobileOpen)
+            mobileControlData.setMobileOpen(false)
+            mobileControlData.lockScroll(mobileControlData.mobileOpen())
           }}
         >
           <svg
@@ -53,8 +51,8 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
           <a
             href='/'
             onClick={() => {
-              setMobileOpen(false)
-              lockScroll(mobileOpen)
+              mobileControlData.setMobileOpen(false)
+              mobileControlData.lockScroll(mobileControlData.mobileOpen())
             }}
           >
             <span class='text-3xl'>HOME</span>
@@ -69,8 +67,8 @@ export const MobileNav = ({ mobileControlData, sections, homeSections }: Props) 
                     : `/${section}`
                   }`}
                 onClick={() => {
-                  setMobileOpen(false)
-                  lockScroll(mobileOpen)
+                  mobileControlData.setMobileOpen(false)
+                  mobileControlData.lockScroll(mobileControlData.mobileOpen())
                 }}
               >
                 {section.toUpperCase()}

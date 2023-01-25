@@ -6,7 +6,7 @@ const photoResult = await sanityAPI("bandPhoto");
 const photos = photoResult.result;
 const photo = photos[0] as GroupPhoto;
 const builder = sanityImageUrl(photo.image);
-const siteURL = `https://nastysnacks.netlify.app`
+const siteURL = Astro.url
 ---
 <link rel="canonical" href={siteURL}/>
 <meta name="title" content="Nasty Snacks" />

@@ -46,7 +46,6 @@ export const ContactForm = () => {
     return null
   }
   const isActive = createMemo(() => {
-    console.log(isFormComplete(requiredGetters))
     return isFormComplete(requiredGetters)
   })
   onCleanup(() => {
