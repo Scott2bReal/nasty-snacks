@@ -17,6 +17,7 @@ export const ContactForm = () => {
   const setters = [
     setFirstName,
     setLastName,
+    setEmail,
     setSubject,
     setMessage,
     setBotField,
