@@ -6,8 +6,7 @@ interface Props {
   snacksVids: SnacksVid[]
 }
 export const RandomSnacksVid = ({ snacksVids }: Props) => {
-  const buttonStylesUp =
-    'bg-gradient-to-br to-purple-700 from-pink-700 tracking-widest mt-4 p-2 rounded-lg shadow-black shadow-md transition duration-150 ease-in-out'
+  const buttonStylesUp = 'bg-gradient-to-br to-purple-700 from-pink-700 tracking-widest mt-4 p-2 rounded-lg shadow-black shadow-md transition duration-150 ease-in-out'
   const buttonStylesDown = buttonStylesUp + ' scale-95'
 
   const embedURL = 'https://www.youtube.com/embed/'

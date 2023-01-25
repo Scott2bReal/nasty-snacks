@@ -1,6 +1,4 @@
-import { createSignal, Setter } from 'solid-js'
-import { SubmitButton } from './SubmitButton'
-import { SuccessMessage } from './SuccessMessage'
+import { Accessor, createMemo, createSignal, onCleanup, Setter } from 'solid-js'
 
 export const ContactForm = () => {
   // Form fields
@@ -12,6 +10,10 @@ export const ContactForm = () => {
   const [botField, setBotField] = createSignal('')
 
   // Form handling
+  const isEmpty = (string: string) => {
+    if (string.trim().length === 0) return true
+    return false
+  }
   const setters = [
     setFirstName,
     setLastName,
@@ -19,7 +21,22 @@ export const ContactForm = () => {
     setMessage,
     setBotField,
   ]
-
+  const requiredGetters = [
+    firstName,
+    email,
+    subject,
+    message,
+  ]
+  const isFormComplete = (getters: Accessor<string>[]) => {
+    if (isSubmitted()) return false
+    for (let i = 0; i < getters.length; i++) {
+      const getter = getters[i]
+      if (typeof getter === 'function') {
+        if (isEmpty(getter())) return false
+      }
+    }
+    return true
+  }
   const [isSubmitted, setIsSubmitted] = createSignal(false)
   const clearForm = (funcs: Setter<string>[]) => {
     funcs.forEach((func) => {
@@ -27,6 +44,14 @@ export const ContactForm = () => {
     })
     return null
   }
+  const isActive = createMemo(() => {
+    console.log(isFormComplete(requiredGetters))
+    return isFormComplete(requiredGetters)
+  })
+  onCleanup(() => {
+    setIsSubmitted(false)
+    clearForm(setters)
+  })
 
   return (
     <form
@@ -37,7 +62,6 @@ export const ContactForm = () => {
       method='post'
       onSubmit={async (e) => {
         e.preventDefault()
-
         const data = {
           firstName: firstName(),
           lastName: lastName(),
@@ -46,7 +70,6 @@ export const ContactForm = () => {
           subject: subject(),
           message: message(),
         }
-
         const encode = (data: { [key: string]: string }) => {
           return Object.keys(data)
             .map(
@@ -55,8 +78,7 @@ export const ContactForm = () => {
             )
             .join('&')
         }
-
-        await fetch('/forms/contact', {
+        await fetch('/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -142,13 +164,15 @@ export const ContactForm = () => {
         required
       ></textarea>
 
-      {isSubmitted() ? (
-        <SuccessMessage />
-      ) : (
-        <SubmitButton
-          isDisabled={!(firstName() && email() && subject() && message())}
-        />
-      )}
+      {
+        <button
+          type='submit'
+          disabled={!isActive()}
+          class={`${isActive() ? `` : `opacity-50`} tracking-widest p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 transition duration-300 ease-in-out`}
+        >
+          {isSubmitted() ? `Thanks for reaching out!` : `Submit`}
+        </button>
+      }
     </form>
   )
 }
