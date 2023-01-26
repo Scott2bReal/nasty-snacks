@@ -6,9 +6,11 @@ const photoResult = await sanityAPI("bandPhoto");
 const photos = photoResult.result;
 const photo = photos[0] as GroupPhoto;
 const builder = sanityImageUrl(photo.image);
-const siteURL = Astro.url
+const baseURL = `https://scotthoecker.com`
+const pathname = Astro.url.pathname
+const url = `${baseURL}${pathname}`
 ---
-<link rel="canonical" href={siteURL}/>
+<link rel="canonical" href={url}/>
 <meta name="title" content="Nasty Snacks" />
 <meta
   name="description"
@@ -18,7 +20,7 @@ const siteURL = Astro.url
 <meta charset="utf-8" />
 <meta property="og:site_name" content="Nasty Snacks"/>
 <meta property="og:title" content="Nasty Snacks"/>
-<meta property="og:url" content={siteURL}/>
+<meta property="og:url" content={url}/>
 <meta property="og:type" content="website"/>
 <meta property="og:description" content="Hard-hitting funk from Chicago, IL"/>
 <meta property="og:image" content={builder.auto("format").url()} />
@@ -26,6 +28,6 @@ const siteURL = Astro.url
 <meta property="og:image:height" content="1082"/>
 <meta name="twitter:title" content="Nasty Snacks"/>
 <meta name="twitter:image" content={builder.auto("format").url()}/>
-<meta name="twitter:url" content={siteURL}/>
+<meta name="twitter:url" content={url}/>
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:description" content="Hard-hitting funk from Chicago, IL"/>
