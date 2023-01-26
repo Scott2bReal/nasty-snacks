@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply scroll-smooth tracking-widest h-fit overflow-x-hidden
+    @apply scroll-smooth tracking-widest h-fit overflow-x-hidden selection:bg-pink-700 selection:text-neutral-900
     /* scroll-behavior: smooth; */;
   }
 
