@@ -6,13 +6,12 @@ interface Props {
   snacksVids: SnacksVid[]
 }
 export const RandomSnacksVid = ({ snacksVids }: Props) => {
-  const buttonStylesUp = 'bg-gradient-to-br to-purple-700 from-pink-700 tracking-widest mt-4 p-2 rounded-lg shadow-black shadow-md transition duration-150 ease-in-out'
-  const buttonStylesDown = buttonStylesUp + ' scale-95'
-
   const embedURL = 'https://www.youtube.com/embed/'
 
-  const [vid, setVid] = createSignal(snacksVids[randomNumber(snacksVids.length)])
-  const [buttonStyles, setButtonStyles] = createSignal(buttonStylesUp)
+  const [vid, setVid] = createSignal(
+    snacksVids[randomNumber(snacksVids.length)]
+  )
+  const [isClicked, setIsClicked] = createSignal(false)
   const [headerStyles, setHeaderStyles] = createSignal(
     'pb-2 text-xl opacity-0 transition duration-500 ease-in-out'
   )
@@ -45,9 +44,11 @@ export const RandomSnacksVid = ({ snacksVids }: Props) => {
       ></iframe>
       <button
         onClick={() => setVid(findNewVid(vid()))}
-        onMouseDown={() => setButtonStyles(buttonStylesDown)}
-        onMouseUp={() => setButtonStyles(buttonStylesUp)}
-        class={`${buttonStyles}`}
+        onMouseDown={() => setIsClicked(true)}
+        onMouseUp={() => setIsClicked(false)}
+        class={`${
+          isClicked() ? `scale-95` : ``
+        } bg-gradient-to-br to-purple-700 from-pink-700 tracking-widest mt-4 p-2 rounded-lg`}
       >
         Random Video
       </button>
