@@ -33,7 +33,7 @@ const builder = sanityImageUrl(banner.image);
     <!-- Scroll Prompt -->
     <span
       id="scrollPrompt"
-      class="fixed left-[50%] right-[50%] bottom-12 opacity-0 transition duration-700 ease-in-out translate-y-6"
+      class={`fixed hidden left-[50%] right-[50%] bottom-12 opacity-0 transition duration-700 ease-in-out`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ const builder = sanityImageUrl(banner.image);
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="w-8 h-8"
+        class="w-8 h-8 scrollPrompt"
       >
         <path
           stroke-linecap="round"
@@ -97,35 +97,39 @@ const builder = sanityImageUrl(banner.image);
 </Layout>
 <script>
   const prompt = document.getElementById("scrollPrompt");
-  const top = document.getElementById("toTop");
+  const toTopArrow = document.getElementById("toTop");
 
   const fadeInScrollPrompt = () => {
-    if (!prompt || window.scrollY !== 0) return;
+    if (!prompt) return;
     setTimeout(() => {
-      if (document.body.scrollTop === 0) {
-        prompt.classList.add("opacity-100");
-        prompt.classList.remove("translate-y-6");
-        prompt.classList.remove('-z-60')
+      if (window.scrollY === 0) {
+        prompt.classList.remove('hidden')
+        setTimeout(() => {
+          prompt.classList.add("opacity-100");
+          prompt.classList.remove("translate-y-6");
+          prompt.classList.remove('-z-60')
+        }, 500)
       }
     }, 2000);
   };
 
   const hideScrollPrompt = () => {
     if (!prompt) return;
-    if (window.scrollY !== 0) {
-      prompt.classList.remove("opacity-100");
-      prompt.classList.add('-z-60');
-    }
+    prompt.classList.remove("opacity-100");
+    prompt.classList.add('-z-60');
+    setTimeout(() => {
+      prompt.classList.add('hidden')
+    }, 500)
   };
 
   const swapScrollPrompts = () => {
-    if (!prompt || !top) return;
+    if (!prompt || !toTopArrow) return;
     window.addEventListener("scroll", () => {
-      if (window.scrollY === 0) {
-        top.classList.add("opacity-0");
+      if (window.scrollY < 10) {
+        toTopArrow.classList.add("opacity-0");
         fadeInScrollPrompt();
       } else {
-        top.classList.remove("opacity-0");
+        toTopArrow.classList.remove("opacity-0");
         prompt.classList.add("opacity-0");
         hideScrollPrompt();
       }
@@ -152,11 +156,11 @@ const builder = sanityImageUrl(banner.image);
   };
 
   const toTop = () => {
-    if (!top) return;
+    if (!toTopArrow) return;
     if (document.body.scrollTop === 0) {
-      top.classList.add("opacity-0");
+      toTopArrow.classList.add("opacity-0");
     }
-    top.addEventListener(
+    toTopArrow.addEventListener(
       "click",
       () => {
         window.scrollTo(0, 0);
