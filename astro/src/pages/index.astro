@@ -33,7 +33,7 @@ const builder = sanityImageUrl(banner.image);
     <!-- Scroll Prompt -->
     <span
       id="scrollPrompt"
-      class={`fixed hidden left-[50%] right-[50%] bottom-12 opacity-0 transition duration-700 ease-in-out`}
+      class={`fixed hidden left-[50%] right-[50%] bottom-12 opacity-0 transition duration-700 ease-in-out translate-y-6`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -103,12 +103,12 @@ const builder = sanityImageUrl(banner.image);
     if (!prompt) return;
     setTimeout(() => {
       if (window.scrollY === 0) {
-        prompt.classList.remove('hidden')
+        prompt.classList.remove("hidden");
         setTimeout(() => {
           prompt.classList.add("opacity-100");
           prompt.classList.remove("translate-y-6");
-          prompt.classList.remove('-z-60')
-        }, 500)
+          prompt.classList.remove("-z-60");
+        }, 500);
       }
     }, 2000);
   };
@@ -116,10 +116,11 @@ const builder = sanityImageUrl(banner.image);
   const hideScrollPrompt = () => {
     if (!prompt) return;
     prompt.classList.remove("opacity-100");
-    prompt.classList.add('-z-60');
+    prompt.classList.add("-z-60");
     setTimeout(() => {
-      prompt.classList.add('hidden')
-    }, 500)
+      prompt.classList.add("translate-y-6");
+      prompt.classList.add("hidden");
+    }, 500);
   };
 
   const swapScrollPrompts = () => {
