@@ -22,12 +22,7 @@ export const ContactForm = () => {
     setMessage,
     setBotField,
   ]
-  const requiredGetters = [
-    firstName,
-    email,
-    subject,
-    message,
-  ]
+  const requiredGetters = [firstName, email, subject, message]
   const isFormComplete = (getters: Accessor<string>[]) => {
     if (isSubmitted()) return false
     for (let i = 0; i < getters.length; i++) {
@@ -45,8 +40,8 @@ export const ContactForm = () => {
     })
     return null
   }
-  const isActive = createMemo(() => {
-    return isFormComplete(requiredGetters)
+  const isDisabled = createMemo(() => {
+    return !isFormComplete(requiredGetters)
   })
   onCleanup(() => {
     setIsSubmitted(false)
@@ -167,8 +162,11 @@ export const ContactForm = () => {
       {
         <button
           type='submit'
-          disabled={!isActive()}
-          class={`${isActive() ? `` : `opacity-50`} tracking-widest p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 transition duration-300 ease-in-out`}
+          disabled={!isDisabled()}
+          classList={{
+            'opacity-50': isDisabled(),
+          }}
+          class='tracking-widest p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 transition duration-300 ease-in-out'
         >
           {isSubmitted() ? `Thanks for reaching out!` : `Submit`}
         </button>

@@ -46,9 +46,10 @@ export const RandomSnacksVid = ({ snacksVids }: Props) => {
         onClick={() => setVid(findNewVid(vid()))}
         onMouseDown={() => setIsClicked(true)}
         onMouseUp={() => setIsClicked(false)}
-        class={`${
-          isClicked() ? `scale-95` : ``
-        } bg-gradient-to-br to-purple-700 from-pink-700 tracking-widest mt-4 p-2 rounded-lg`}
+        classList={{
+          'scale-95': isClicked(),
+        }}
+        class='bg-gradient-to-br to-purple-700 from-pink-700 tracking-widest mt-4 p-2 rounded-lg'
       >
         Random Video
       </button>
