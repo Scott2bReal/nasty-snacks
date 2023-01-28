@@ -73,7 +73,7 @@ export const ContactForm = () => {
             )
             .join('&')
         }
-        await fetch('/contact', {
+        await fetch('/forms/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
