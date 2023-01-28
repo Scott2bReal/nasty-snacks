@@ -162,7 +162,7 @@ export const ContactForm = () => {
       {
         <button
           type='submit'
-          disabled={!isDisabled()}
+          disabled={isDisabled()}
           classList={{
             'opacity-50': isDisabled(),
           }}
