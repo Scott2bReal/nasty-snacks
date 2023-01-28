@@ -26,6 +26,17 @@ export function rosterSort(a: BandMember, b: BandMember) {
   }
 }
 
+export function showSortByDate(a: Show, b: Show) {
+  if (!b.date) return 1
+  if (!a.date || a.date > b.date) {
+    return 1
+  } else if (!b.date || a.date < b.date) {
+    return -1
+  } else {
+    return 0
+  }
+}
+
 export function getYoutubeId(url: string) {
   const id = url.split('=')[1]
   return id.length > 0 ? id : ''
