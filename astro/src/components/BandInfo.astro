@@ -15,12 +15,12 @@ const builder = sanityImageUrl(groupPhoto.image)
 <div id="bandInfo">
   <h2
     id="bandInfoHeader"
-    class="tracking-widest text-3xl py-6 opacity-0 transition duration-700 ease-in relative -translate-x-6"
+    class="tracking-widest text-3xl py-6 opacity-0 transition duration-700 ease-in relative -translate-x-6 z-10"
   >
     WE ARE NASTY SNACKS
   </h2>
   <div
-    class="flex md:flex-row flex-col max-w[850px] text-center md:justify-center px-4 opacity-0 transition duration-700 ease-in translate-y-6"
+    class="flex md:flex-row flex-col max-w[850px] text-center md:justify-center px-4 opacity-0 transition duration-700 ease-in translate-y-6 z-10"
     id="bandPic"
   >
     <img
@@ -29,10 +29,10 @@ const builder = sanityImageUrl(groupPhoto.image)
       height="434px"
       id="bandPic"
       alt={groupPhoto.alt}
-      class="relative -z-10"
+      class="relative z-10"
     />
     <ul
-      class="text-left px-4 child:py-2 child:text-sm opacity-0 transition duration-700 ease-in relative -z-10 translate-x-6"
+      class="text-left px-4 child:py-2 child:text-sm opacity-0 transition duration-700 ease-in relative translate-x-6 "
       id="roster"
     >
       {
@@ -62,7 +62,6 @@ const builder = sanityImageUrl(groupPhoto.image)
       const showHeader = (header: HTMLElement) => {
         header.classList.add("opacity-100");
         header.classList.remove("-translate-x-6");
-        header.classList.add("-z-10");
       };
 
       const showBandPic = (bandPic: HTMLElement) => {
