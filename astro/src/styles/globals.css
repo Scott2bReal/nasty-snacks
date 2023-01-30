@@ -15,11 +15,11 @@
 
 @layer components {
   input {
-    @apply p-1 text-neutral-900;
+    @apply p-1 text-neutral-900 focus:outline-pink-600 focus:outline-none;
   }
 
   textarea {
-    @apply p-1 text-neutral-900;
+    @apply p-1 text-neutral-900 focus:outline-pink-600 focus:outline-none;
   }
 
   label {
