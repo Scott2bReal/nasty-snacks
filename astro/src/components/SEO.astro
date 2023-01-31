@@ -6,7 +6,7 @@ const photoResult = await sanityAPI("bandPhoto");
 const photos = photoResult.result;
 const photo = photos[0] as GroupPhoto;
 const builder = sanityImageUrl(photo.image);
-const baseURL = `https://scotthoecker.com`
+const baseURL = `https://nastysnacks.com`
 const pathname = Astro.url.pathname
 const url = `${baseURL}${pathname}`
 ---
