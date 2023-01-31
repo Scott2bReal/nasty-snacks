@@ -1,6 +1,6 @@
 import { getYoutubeId, randomNumber } from '../utils/helpers'
 import type { SnacksVid } from '../types'
-import { createEffect, createSignal } from 'solid-js'
+import { createSignal } from 'solid-js'
 
 interface Props {
   snacksVids: SnacksVid[]
@@ -8,30 +8,24 @@ interface Props {
 export const RandomSnacksVid = ({ snacksVids }: Props) => {
   const embedURL = 'https://www.youtube.com/embed/'
 
+  const findNewVid = (currentVid: SnacksVid) => {
+    setUsedVids([...usedVids(), currentVid])
+    const unusedVids = snacksVids.filter(vid => !usedVids().includes(vid))
+    console.log(unusedVids.map(vid => vid.title))
+    const newVid = unusedVids[randomNumber(unusedVids.length)]
+    if (usedVids().length === snacksVids.length - 1) {
+      setUsedVids([currentVid])
+    }
+    return newVid
+  }
+  const [isClicked, setIsClicked] = createSignal(false)
   const [vid, setVid] = createSignal(
     snacksVids[randomNumber(snacksVids.length)]
   )
-  const [isClicked, setIsClicked] = createSignal(false)
-  const [headerStyles, setHeaderStyles] = createSignal(
-    'pb-2 text-xl opacity-0 transition duration-500 ease-in-out'
-  )
-
-  const findNewVid = (currentVid: SnacksVid) => {
-    const unusedVids = snacksVids.filter((vid) => vid.url !== currentVid.url)
-    return unusedVids[randomNumber(unusedVids.length)]
-  }
-
-  createEffect(() => {
-    setTimeout(() => {
-      setHeaderStyles(
-        'pb-2 text-xl opacity-100 transition duration-500 ease-in-out'
-      )
-    }, 1000)
-  })
+  const [usedVids, setUsedVids] = createSignal<SnacksVid[]>([])
 
   return (
     <div class={`flex flex-col items-center justify-center`}>
-      <h1 class={headerStyles()}>{vid().title}</h1>
       <iframe
         width='560px'
         height='315px'
