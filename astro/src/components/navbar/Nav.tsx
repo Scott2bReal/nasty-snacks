@@ -6,25 +6,24 @@ const homeSections = ['shows', 'band', 'video', 'music']
 
 function TopNav() {
   return (
-    <nav class='text-center bg-neutral-900/20 flex justify-between fixed w-[100vw] top-0 left-0 backdrop-blur-xl z-40 pr-2'>
-      <h1 class='py-4 min-w-[357px]'>
+    <nav class='fixed top-0 left-0 z-40 flex w-[100vw] justify-between bg-neutral-900/20 pr-2 text-center backdrop-blur-xl'>
+      <h1 class='min-w-[357px] py-4'>
         <a href='/'>
           <span class='text-gradient text-4xl font-extrabold tracking-widest'>
             NASTY SNACKS
           </span>
         </a>
       </h1>
-      <ul class='reverse-text-gradient font-extrabold wide:flex gap-12 flex-row hidden wide:visible items-end justify-evenly p-3 max-w-[100vw]'>
+      <ul class='reverse-text-gradient hidden max-w-[100vw] flex-row items-end justify-evenly gap-12 p-3 font-extrabold wide:visible wide:flex'>
         {sections.map((section) => {
           return (
             <li>
               <a
                 rel='prefetch'
-                href={`${
-                  homeSections.includes(section)
+                href={`${homeSections.includes(section)
                     ? `/#${section}`
                     : `/${section}`
-                }`}
+                  }`}
               >
                 {section.toUpperCase()}
               </a>
@@ -35,13 +34,13 @@ function TopNav() {
       <button
         id='openMobileNav'
         aria-label='Open mobile nav'
-        class='pr-12 wide:hidden -translate-x-2'
+        class='-translate-x-2 pr-12 wide:hidden'
         onClick={() => {
           setIsMobileOpen(true)
         }}
       >
         <svg
-          class='w-8 h-8'
+          class='h-8 w-8'
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
           viewBox='0 0 24 24'
@@ -61,9 +60,11 @@ function TopNav() {
 
 function MobileNav() {
   return (
-    <nav class={`h-[100vh] w-[100vw] z-[5] text-center bg-neutral-900 top-0 bottom-0 pr-2`}>
-      <div class='flex gap-2 justify-between items-center'>
-        <h1 class='p-4 md:pl-4 min-w-[357px] opacity-0'>
+    <nav
+      class={`top-0 bottom-0 z-[5] h-[100vh] w-[100vw] bg-neutral-900 pr-2 text-center`}
+    >
+      <div class='flex items-center justify-between gap-2'>
+        <h1 class='min-w-[357px] p-4 opacity-0 md:pl-4'>
           <a href='/'>
             <span class='text-gradient text-4xl font-extrabold tracking-widest'>
               NASTY SNACKS
@@ -71,7 +72,7 @@ function MobileNav() {
           </a>
         </h1>
         <button
-          class='pr-12 -translate-x-4'
+          class='-translate-x-4 pr-12'
           id='closeMobileNav'
           aria-label='Close mobile nav'
           onClick={() => {
@@ -79,7 +80,7 @@ function MobileNav() {
           }}
         >
           <svg
-            class='w-8 h-8'
+            class='h-8 w-8'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'
@@ -94,7 +95,7 @@ function MobileNav() {
           </svg>
         </button>
       </div>
-      <ul class='mt-6 text-gradient text-center font-extrabold my-auto lg:flex gap-12 flex flex-col items-center justify-center p-6 max-w-[100vw]'>
+      <ul class='text-gradient my-auto mt-6 flex max-w-[100vw] flex-col items-center justify-center gap-12 p-6 text-center font-extrabold lg:flex'>
         <li>
           <a
             href='/'
@@ -110,8 +111,8 @@ function MobileNav() {
             <li>
               <a
                 href={`${homeSections.includes(section)
-                  ? `/#${section}`
-                  : `/${section}`
+                    ? `/#${section}`
+                    : `/${section}`
                   }`}
                 onClick={() => {
                   setIsMobileOpen(false)
@@ -129,10 +130,7 @@ function MobileNav() {
 
 export default function Nav() {
   return (
-    <Show
-      when={isMobileOpen()}
-      fallback={<TopNav />}
-    >
+    <Show when={isMobileOpen()} fallback={<TopNav />}>
       <MobileNav />
     </Show>
   )

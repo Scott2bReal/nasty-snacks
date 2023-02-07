@@ -1,35 +1,36 @@
 ---
-import SpotifyPreview from "../components/SpotifyPreview.astro";
-import type { Album } from "../types";
-import { sanityAPI } from "../utils/sanity";
-const result = await sanityAPI("albums");
-const albums = result.result as Album[];
+import SpotifyPreview from '../components/SpotifyPreview.astro'
+import type { Album } from '../types'
+import { sanityAPI } from '../utils/sanity'
+const result = await sanityAPI('albums')
+const albums = result.result as Album[]
 ---
-<div class="flex flex-col md:flex-row gap-4 justify-center">
+
+<div class='flex flex-col justify-center gap-4 md:flex-row'>
   {
     albums.map((album) => {
-      return <SpotifyPreview album={album} />;
+      return <SpotifyPreview album={album} />
     })
   }
 </div>
 <script>
-  const music = document.getElementById("music");
+  const music = document.getElementById('music')
   const watchMusic = () => {
-    if (!music) return;
+    if (!music) return
     const options = {
       threshold: 0.1,
-      rootMargin: "-50px",
-    };
+      rootMargin: '-50px',
+    }
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && window.scrollY !== 0) {
-          entry.target.classList.add("opacity-100");
+          entry.target.classList.add('opacity-100')
         } else {
-          entry.target.classList.remove("opacity-100");
+          entry.target.classList.remove('opacity-100')
         }
-      });
-    }, options);
-    observer.observe(music);
-  };
-  watchMusic();
+      })
+    }, options)
+    observer.observe(music)
+  }
+  watchMusic()
 </script>

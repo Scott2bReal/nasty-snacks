@@ -10,8 +10,8 @@ export const RandomSnacksVid = ({ snacksVids }: Props) => {
 
   const findNewVid = (currentVid: SnacksVid) => {
     setUsedVids([...usedVids(), currentVid])
-    const unusedVids = snacksVids.filter(vid => !usedVids().includes(vid))
-    console.log(unusedVids.map(vid => vid.title))
+    const unusedVids = snacksVids.filter((vid) => !usedVids().includes(vid))
+    console.log(unusedVids.map((vid) => vid.title))
     const newVid = unusedVids[randomNumber(unusedVids.length)]
     if (usedVids().length === snacksVids.length - 1) {
       setUsedVids([currentVid])
@@ -43,7 +43,7 @@ export const RandomSnacksVid = ({ snacksVids }: Props) => {
         classList={{
           'scale-95': isClicked(),
         }}
-        class='bg-gradient-to-br to-purple-700 from-pink-700 tracking-widest mt-4 p-2 rounded-lg'
+        class='mt-4 rounded-lg bg-gradient-to-br from-pink-700 to-purple-700 p-2 tracking-widest'
       >
         Random Video
       </button>

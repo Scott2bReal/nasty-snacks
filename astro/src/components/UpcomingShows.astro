@@ -1,17 +1,22 @@
 ---
-import type { Show } from "../types";
-import { dateFormatter, isUpcoming, showSortByDate } from "../utils/helpers";
-import { sanityAPI } from "../utils/sanity";
+import type { Show } from '../types'
+import { dateFormatter, isUpcoming, showSortByDate } from '../utils/helpers'
+import { sanityAPI } from '../utils/sanity'
 
-const result = await sanityAPI("shows");
-const allShows = result.result as Show[];
-const shows = allShows.filter(isUpcoming).sort(showSortByDate);
+const result = await sanityAPI('shows')
+const allShows = result.result as Show[]
+const shows = allShows.filter(isUpcoming).sort(showSortByDate)
 ---
 
-<h1 id="showListHeader" class="tracking-wider text-3xl pb-6 opacity-0 -translate-y-4 transition duration-500 ease-in-out -z-10">UPCOMING SHOWS</h3>
+<h1
+  id='showListHeader'
+  class='-z-10 -translate-y-4 pb-6 text-3xl tracking-wider opacity-0 transition duration-500 ease-in-out'
+>
+  UPCOMING SHOWS
+</h1>
 <ul
-  class="mx-auto tracking-wider w-fit flex flex-col gap-2 text-left pl-2 opacity-0 transition duration-500 ease-in-out -z-10"
-  id="showList"
+  class='-z-10 mx-auto flex w-fit flex-col gap-2 pl-2 text-left tracking-wider opacity-0 transition duration-500 ease-in-out'
+  id='showList'
 >
   {
     shows?.map((show) => {
@@ -22,24 +27,24 @@ const shows = allShows.filter(isUpcoming).sort(showSortByDate);
               {show.venueName.toUpperCase()}
               {show.city && show.state
                 ? `- ${show.city.toUpperCase()}, ${show.state.toUpperCase()}`
-                : ""}
+                : ''}
             </strong>
-            {show.subtitle?.toUpperCase() ?? ""}{" "}
-            {show.description ? `// ${show.description.toUpperCase()}` : ""}
-            {show.date ? `// ${dateFormatter(show.date)}` : ""}
+            {show.subtitle?.toUpperCase() ?? ''}{' '}
+            {show.description ? `// ${show.description.toUpperCase()}` : ''}
+            {show.date ? `// ${dateFormatter(show.date)}` : ''}
             <strong>
               {show.ticketLink ? (
-                <a href={show.ticketLink} target="_blank">
-                  {" "}
+                <a href={show.ticketLink} target='_blank'>
+                  {' '}
                   &gt;&gt; <span class='text-gradient'>TICKETS</span>
                 </a>
               ) : (
-                ""
+                ''
               )}
             </strong>
           </em>
         </li>
-      );
+      )
     })
   }
 </ul>
@@ -47,30 +52,30 @@ const shows = allShows.filter(isUpcoming).sort(showSortByDate);
   function fadeInShows() {
     const options = {
       threshold: 0.2,
-      rootMargin: "-40px",
-    };
+      rootMargin: '-40px',
+    }
 
-    const shows = document.getElementById("showList");
-    const header = document.getElementById("showListHeader");
-    if (!shows || !header) return;
+    const shows = document.getElementById('showList')
+    const header = document.getElementById('showListHeader')
+    if (!shows || !header) return
 
     const observer = new IntersectionObserver((entries) => {
       const showShows = (shows: HTMLElement) => {
-        shows.classList.add("opacity-100");
-        shows.classList.remove("-translate-x-6");
-      };
+        shows.classList.add('opacity-100')
+        shows.classList.remove('-translate-x-6')
+      }
       const showHeader = (header: HTMLElement) => {
-        header.classList.add("opacity-100");
-        header.classList.remove("-translate-y-4");
-      };
+        header.classList.add('opacity-100')
+        header.classList.remove('-translate-y-4')
+      }
       const hideShows = (shows: HTMLElement) => {
-        shows.classList.remove("opacity-100");
-        shows.classList.add("-translate-x-6");
-      };
+        shows.classList.remove('opacity-100')
+        shows.classList.add('-translate-x-6')
+      }
       const hideHeader = (header: HTMLElement) => {
-        header.classList.remove("opacity-100");
-        header.classList.add("-translate-y-4");
-      };
+        header.classList.remove('opacity-100')
+        header.classList.add('-translate-y-4')
+      }
 
       const show = () => {
         showShows(shows)
@@ -86,11 +91,11 @@ const shows = allShows.filter(isUpcoming).sort(showSortByDate);
         } else {
           hide()
         }
-      });
-    }, options);
+      })
+    }, options)
 
-    observer.observe(shows);
+    observer.observe(shows)
   }
 
-  fadeInShows();
+  fadeInShows()
 </script>

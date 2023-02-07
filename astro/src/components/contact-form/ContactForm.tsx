@@ -53,7 +53,7 @@ export const ContactForm = () => {
       data-netlify='true'
       netlify-honeypot='botField'
       name='contactUs'
-      class='flex flex-col gap-2 flex-grow flex-wrap p-4 items-center md:w-[50vw] w-full mx-auto child:w-full'
+      class='mx-auto flex w-full flex-grow flex-col flex-wrap items-center gap-2 p-4 child:w-full md:w-[50vw]'
       method='post'
       onSubmit={async (e) => {
         e.preventDefault()
@@ -152,7 +152,7 @@ export const ContactForm = () => {
       <textarea
         id='message'
         rows={4}
-        class='text-neutral-900 p-1'
+        class='p-1 text-neutral-900'
         name='message'
         value={message()}
         onInput={(e) => setMessage(e.currentTarget.value)}
@@ -166,7 +166,7 @@ export const ContactForm = () => {
           classList={{
             'opacity-50': isDisabled(),
           }}
-          class='tracking-widest p-2 rounded-lg bg-gradient-to-br to-purple-700 from-pink-700 mt-2 -mb-6 transition duration-300 ease-in-out'
+          class='mt-2 -mb-6 rounded-lg bg-gradient-to-br from-pink-700 to-purple-700 p-2 tracking-widest transition duration-300 ease-in-out'
         >
           {isSubmitted() ? `Thanks for reaching out!` : `Submit`}
         </button>
