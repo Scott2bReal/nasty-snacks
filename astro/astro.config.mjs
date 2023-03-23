@@ -4,7 +4,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
-import netlify from "@astrojs/netlify/edge-functions";
+import netlify from "@astrojs/netlify/functions";
 
 // https://astro.build/config
 import prefetch from "@astrojs/prefetch";
