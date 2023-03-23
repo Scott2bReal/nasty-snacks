@@ -5,8 +5,14 @@ import { createSignal } from 'solid-js'
 interface Props {
   snacksVids: SnacksVid[]
 }
-export const RandomSnacksVid = ({ snacksVids }: Props) => {
+export function RandomSnacksVid({ snacksVids }: Props) {
   const embedURL = 'https://www.youtube.com/embed/'
+  const [isClicked, setIsClicked] = createSignal(false)
+  const [isFaded, setIsFaded] = createSignal(false)
+  const [vid, setVid] = createSignal(
+    snacksVids[randomNumber(snacksVids.length)]
+  )
+  const [usedVids, setUsedVids] = createSignal<SnacksVid[]>([])
 
   const findNewVid = (currentVid: SnacksVid) => {
     setUsedVids([...usedVids(), currentVid])
@@ -18,26 +24,31 @@ export const RandomSnacksVid = ({ snacksVids }: Props) => {
     }
     return newVid
   }
-  const [isClicked, setIsClicked] = createSignal(false)
-  const [vid, setVid] = createSignal(
-    snacksVids[randomNumber(snacksVids.length)]
-  )
-  const [usedVids, setUsedVids] = createSignal<SnacksVid[]>([])
+  const handleVideoTransition = () => {
+    setIsFaded(true)
+    setVid(findNewVid(vid()))
+    setTimeout(() => {
+      setIsFaded(false)
+    }, 1000)
+  }
 
   return (
     <div class={`flex flex-col items-center justify-center`}>
       <iframe
         width='560px'
         height='315px'
-        class='mx-auto max-w-full'
+        class={`mx-auto max-w-full transition-opacity duration-500 ease-in-out`}
         id='iframe'
         src={`${embedURL}${getYoutubeId(vid().url)}`}
         title='YouTube video player'
         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
         allowfullscreen
+        classList={{
+          'opacity-0': isFaded(),
+        }}
       ></iframe>
       <button
-        onClick={() => setVid(findNewVid(vid()))}
+        onClick={handleVideoTransition}
         onMouseDown={() => setIsClicked(true)}
         onMouseUp={() => setIsClicked(false)}
         classList={{
