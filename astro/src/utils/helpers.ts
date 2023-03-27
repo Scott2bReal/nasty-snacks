@@ -1,14 +1,14 @@
-import type { BandMember, Show } from '../types'
+import type { BandMember, Show } from "../types"
 
 export function randomNumber(max: number): number {
   return Math.floor(Math.random() * max)
 }
 
 export function dateFormatter(dateString: string) {
-  const formatter = new Intl.DateTimeFormat('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
   })
 
   return formatter
@@ -27,19 +27,20 @@ export function rosterSort(a: BandMember, b: BandMember) {
 }
 
 export function showSortByDate(a: Show, b: Show) {
-  if (!b.date) return 1
-  if (!a.date || a.date > b.date) {
-    return 1
-  } else if (!b.date || a.date < b.date) {
+  // Shows may not have a date. In this case, we want them to appear first in
+  // the list. Otherwise, sort from earliest to latest
+  if (!a.date) {
     return -1
-  } else {
-    return 0
   }
+  if (!b.date) {
+    return 1
+  }
+  return new Date(a.date).getTime() - new Date(b.date).getTime()
 }
 
 export function getYoutubeId(url: string) {
-  const id = url.split('=')[1]
-  return id.length > 0 ? id : ''
+  const id = url.split("=")[1]
+  return id.length > 0 ? id : ""
 }
 
 export function isUpcoming(show: Show) {
@@ -60,7 +61,7 @@ export function generateSpotifyEmbed(spotifyLink: string) {
   const getSpotifyId = (spotifyLink: string) => {
     const regex = new RegExp(/album\/(.*?)\?/)
     const match = spotifyLink.match(regex)
-    return match ? match[0].replace('album/', '').replace('?', '') : null
+    return match ? match[0].replace("album/", "").replace("?", "") : null
   }
   const id = getSpotifyId(spotifyLink)
   if (!id) return
