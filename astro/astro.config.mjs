@@ -20,5 +20,12 @@ export default defineConfig({
       applyBaseStyles: false
     }
   }), prefetch(), solidJs()],
-  adapter: netlify()
+  adapter: netlify(),
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ['@motionone/solid']
+      }
+    }
+  }
 });

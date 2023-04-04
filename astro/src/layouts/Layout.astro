@@ -1,7 +1,7 @@
 ---
 import Nav from "../components/navbar/Nav"
 import SEO from "../components/SEO.astro"
-import Socials from "../components/socials/Socials.astro"
+import AnimatedSocials from "../components/socials/AnimatedSocials"
 
 export interface Props {
   title: string
@@ -25,7 +25,7 @@ const { title } = Astro.props
     <slot />
   </body>
   <footer class="bg-neutral-900 pt-12 pb-4 text-center">
-    <Socials />
+    <AnimatedSocials client:visible />
     <p class="pb-4 pt-6 text-sm">
       <em
         >Made with <a
