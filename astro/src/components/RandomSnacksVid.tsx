@@ -5,6 +5,7 @@ import { createSignal } from 'solid-js'
 interface Props {
   snacksVids: SnacksVid[]
 }
+
 export function RandomSnacksVid({ snacksVids }: Props) {
   const embedURL = 'https://www.youtube.com/embed/'
   const [isClicked, setIsClicked] = createSignal(false)
