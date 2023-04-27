@@ -1,6 +1,6 @@
-import { getYoutubeId, randomNumber } from '../utils/helpers'
-import type { SnacksVid } from '../types'
 import { createSignal } from 'solid-js'
+import type { SnacksVid } from '../types'
+import { getYoutubeId, randomNumber } from '../utils/helpers'
 
 interface Props {
   snacksVids: SnacksVid[]
@@ -18,7 +18,6 @@ export function RandomSnacksVid({ snacksVids }: Props) {
   const findNewVid = (currentVid: SnacksVid) => {
     setUsedVids([...usedVids(), currentVid])
     const unusedVids = snacksVids.filter((vid) => !usedVids().includes(vid))
-    console.log(unusedVids.map((vid) => vid.title))
     const newVid = unusedVids[randomNumber(unusedVids.length)]
     if (usedVids().length === snacksVids.length - 1) {
       setUsedVids([currentVid])
