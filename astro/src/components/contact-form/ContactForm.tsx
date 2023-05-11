@@ -14,6 +14,7 @@ export const ContactForm = () => {
     if (string.trim().length === 0) return true
     return false
   }
+
   const setters = [
     setFirstName,
     setLastName,
@@ -22,7 +23,9 @@ export const ContactForm = () => {
     setMessage,
     setBotField,
   ]
+
   const requiredGetters = [firstName, email, subject, message]
+
   const isFormComplete = (getters: Accessor<string>[]) => {
     if (isSubmitted()) return false
     for (let i = 0; i < getters.length; i++) {
@@ -33,16 +36,20 @@ export const ContactForm = () => {
     }
     return true
   }
+
   const [isSubmitted, setIsSubmitted] = createSignal(false)
+
   const clearForm = (funcs: Setter<string>[]) => {
     funcs.forEach((func) => {
       func('')
     })
     return null
   }
+
   const isDisabled = createMemo(() => {
     return !isFormComplete(requiredGetters)
   })
+
   onCleanup(() => {
     setIsSubmitted(false)
     clearForm(setters)
