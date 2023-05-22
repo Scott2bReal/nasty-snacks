@@ -59,46 +59,46 @@ const builder = sanityImageUrl(groupPhoto.image)
     if (!bandPic || !header || !roster || !bandInfo) return
 
     const showInfo = () => {
-      const showHeader = (header: HTMLElement) => {
+      const showHeader = () => {
         header.classList.add('opacity-100')
         header.classList.remove('-translate-x-6')
       }
 
-      const showBandPic = (bandPic: HTMLElement) => {
+      const showBandPic = () => {
         bandPic.classList.add('opacity-100')
         bandPic.classList.remove('translate-y-6')
       }
 
-      const showRoster = (roster: HTMLElement) => {
+      const showRoster = () => {
         roster.classList.add('opacity-100')
         roster.classList.remove('translate-x-6')
       }
 
-      showHeader(header)
-      showBandPic(bandPic)
-      showRoster(roster)
+      showHeader()
+      showBandPic()
+      showRoster()
     }
 
     const hideInfo = () => {
-      const hideHeader = (header: HTMLElement) => {
+      const hideHeader = () => {
         header.classList.remove('opacity-100')
         header.classList.add('-translate-x-6')
         header.classList.remove('-z-10')
       }
 
-      const hideBandPic = (bandPic: HTMLElement) => {
+      const hideBandPic = () => {
         bandPic.classList.remove('opacity-100')
         bandPic.classList.add('translate-y-6')
       }
 
-      const hideRoster = (roster: HTMLElement) => {
+      const hideRoster = () => {
         roster.classList.remove('opacity-100')
         roster.classList.add('translate-x-6')
       }
 
-      hideHeader(header)
-      hideBandPic(bandPic)
-      hideRoster(roster)
+      hideHeader()
+      hideBandPic()
+      hideRoster()
     }
 
     const options = {
