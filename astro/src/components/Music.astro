@@ -25,8 +25,7 @@ const albums = result.result as Album[]
       entries.forEach((entry) => {
         if (entry.isIntersecting && window.scrollY !== 0) {
           entry.target.classList.add('opacity-100')
-        } else {
-          entry.target.classList.remove('opacity-100')
+          observer.disconnect()
         }
       })
     }, options)

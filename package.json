@@ -3,7 +3,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "check": "pnpm outdated -r",
-    "up": "pnpm up -r",
+    "up-all": "pnpm up -r",
     "astro:dev": "pnpm --filter astro dev",
     "sanity:deploy": "pnpm --filter sanity sendIt",
     "sanity:dev": "pnpm --filter sanity dev"
