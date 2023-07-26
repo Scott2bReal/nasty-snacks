@@ -19,7 +19,7 @@ const builder = sanityImageUrl(banner.image)
 
 <Layout title='Nasty Snacks'>
   <main class='relative flex flex-col'>
-    <div class='fixed top-0 -z-10 overflow-hidden opacity-60 md:h-[100vh]'>
+    <div class='fixed -z-10 top-0 overflow-hidden opacity-60 md:h-[100vh]'>
       <img
         alt={banner.alt}
         src={builder.auto('format').url()}
@@ -173,7 +173,7 @@ const builder = sanityImageUrl(banner.image)
     )
   }
 
-  fadeInScrollPrompt()
+    fadeInScrollPrompt()
   swapScrollPrompts()
   toTop()
   showVideo()
