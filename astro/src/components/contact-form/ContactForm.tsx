@@ -1,13 +1,13 @@
-import { Accessor, createMemo, createSignal, onCleanup, Setter } from 'solid-js'
+import { Accessor, createMemo, createSignal, onCleanup, Setter } from "solid-js"
 
 export const ContactForm = () => {
   // Form fields
-  const [firstName, setFirstName] = createSignal('')
-  const [lastName, setLastName] = createSignal('')
-  const [email, setEmail] = createSignal('')
-  const [subject, setSubject] = createSignal('')
-  const [message, setMessage] = createSignal('')
-  const [botField, setBotField] = createSignal('')
+  const [firstName, setFirstName] = createSignal("")
+  const [lastName, setLastName] = createSignal("")
+  const [email, setEmail] = createSignal("")
+  const [subject, setSubject] = createSignal("")
+  const [message, setMessage] = createSignal("")
+  const [botField, setBotField] = createSignal("")
 
   // Form handling
   const isEmpty = (string: string) => {
@@ -30,7 +30,7 @@ export const ContactForm = () => {
     if (isSubmitted()) return false
     for (let i = 0; i < getters.length; i++) {
       const getter = getters[i]
-      if (typeof getter === 'function') {
+      if (typeof getter === "function") {
         if (isEmpty(getter())) return false
       }
     }
@@ -41,7 +41,7 @@ export const ContactForm = () => {
 
   const clearForm = (funcs: Setter<string>[]) => {
     funcs.forEach((func) => {
-      func('')
+      func("")
     })
     return null
   }
@@ -57,11 +57,11 @@ export const ContactForm = () => {
 
   return (
     <form
-      data-netlify='true'
-      netlify-honeypot='botField'
-      name='contactUs'
-      class='mx-auto flex w-full flex-grow flex-col flex-wrap items-center gap-2 p-4 child:w-full md:w-[50vw]'
-      method='post'
+      data-netlify="true"
+      netlify-honeypot="botField"
+      name="contactUs"
+      class="mx-auto flex w-full flex-grow flex-col flex-wrap items-center gap-2 p-4 child:w-full md:w-[50vw]"
+      method="post"
       onSubmit={async (e) => {
         e.preventDefault()
         const data = {
@@ -76,17 +76,17 @@ export const ContactForm = () => {
           return Object.keys(data)
             .map(
               (key) =>
-                encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+                encodeURIComponent(key) + "=" + encodeURIComponent(data[key]),
             )
-            .join('&')
+            .join("&")
         }
-        await fetch('/forms/contact', {
-          method: 'POST',
+        await fetch("/forms/contact", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            "Content-Type": "application/x-www-form-urlencoded",
           },
           body: encode({
-            'form-name': 'contactUs',
+            "form-name": "contactUs",
             ...data,
           }),
         }).then(() => {
@@ -95,72 +95,72 @@ export const ContactForm = () => {
         })
       }}
     >
-      <input class='hidden' name='form-name' value='contactUs' />
-      <div class='hidden'>
+      <input class="hidden" name="form-name" value="contactUs" />
+      <div class="hidden">
         Don't fill this out if you're human!
         <input
-          name='botField'
-          class='hidden'
+          name="botField"
+          class="hidden"
           onInput={(e) => setBotField(e.currentTarget.value)}
         />
       </div>
-      <div class='flex w-full gap-2 child:flex-grow'>
-        <div class='child:w-full'>
-          <label for='firstName'>
+      <div class="flex w-full gap-2 child:flex-grow">
+        <div class="child:w-full">
+          <label for="firstName">
             <em>First Name*</em>
           </label>
           <input
-            id='firstName'
-            name='firstName'
+            id="firstName"
+            name="firstName"
             value={firstName()}
             onInput={(e) => setFirstName(e.currentTarget.value)}
             required
           />
         </div>
-        <div class='child:w-full'>
-          <label for='lastName'>
+        <div class="child:w-full">
+          <label for="lastName">
             <em>Last Name</em>
           </label>
           <input
-            id='lastName'
-            name='lastName'
+            id="lastName"
+            name="lastName"
             value={lastName()}
             onInput={(e) => setLastName(e.currentTarget.value)}
           />
         </div>
       </div>
 
-      <label for='email'>
+      <label for="email">
         <em>Email Address*</em>
       </label>
       <input
-        id='email'
-        name='email'
-        type='email'
+        id="email"
+        name="email"
+        type="email"
         value={email()}
         onInput={(e) => setEmail(e.currentTarget.value)}
         required
       />
 
-      <label for='subject'>
+      <label for="subject">
         <em>Subject*</em>
       </label>
       <input
-        id='subject'
-        name='subject'
+        id="subject"
+        name="subject"
         required
         value={subject()}
         onInput={(e) => setSubject(e.currentTarget.value)}
       />
 
-      <label for='message'>
+      <label for="message">
         <em>Message*</em>
       </label>
       <textarea
-        id='message'
+        id="message"
         rows={4}
-        class='p-1 text-neutral-900'
-        name='message'
+        class="p-1 text-neutral-900"
+        name="message"
         value={message()}
         onInput={(e) => setMessage(e.currentTarget.value)}
         required
@@ -168,12 +168,12 @@ export const ContactForm = () => {
 
       {
         <button
-          type='submit'
+          type="submit"
           disabled={isDisabled()}
           classList={{
-            'opacity-50': isDisabled(),
+            "opacity-50": isDisabled(),
           }}
-          class='mt-2 -mb-6 rounded-lg bg-gradient-to-br from-pink-700 to-purple-700 p-2 tracking-widest transition duration-300 ease-in-out'
+          class="-mb-6 mt-2 rounded-lg bg-gradient-to-br from-pink-700 to-purple-700 p-2 tracking-widest transition duration-300 ease-in-out"
         >
           {isSubmitted() ? `Thanks for reaching out!` : `Submit`}
         </button>
