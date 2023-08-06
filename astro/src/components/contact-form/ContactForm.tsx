@@ -72,6 +72,12 @@ export const ContactForm = () => {
           subject: subject(),
           message: message(),
         }
+        // Alert the band via discord bot
+        const result = await fetch("/api/handleContactForm", {
+          method: "POST",
+          body: JSON.stringify(data),
+        })
+        console.log(`Sent form data to api route: ${result}`)
         const encode = (data: { [key: string]: string }) => {
           return Object.keys(data)
             .map(
