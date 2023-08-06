@@ -2,7 +2,7 @@ import type { APIRoute } from "astro"
 
 interface ContactForm {
   firstName: string
-  lastName: string
+  lastName: string | undefined
   email: string
   subject: string
   message: string
