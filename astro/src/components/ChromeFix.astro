@@ -1,0 +1,14 @@
+---
+const path = Astro.url.pathname
+/** On chrome, the body of the home page has this annoying gap at the bottom.
+ * This covers that up, but adds extra space at the bottom of pages where it's
+ * not needed. */
+const isHidden = path !== "/"
+---
+
+<div
+  class={`${
+    isHidden ? "hidden" : "block"
+  } z-[-9] h-12 bg-neutral-900 translate-y-12 w-screen`}
+>
+</div>
