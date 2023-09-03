@@ -7,7 +7,9 @@
     "astro:dev": "pnpm --filter astro dev",
     "sanity:deploy": "pnpm --filter sanity sendIt",
     "sanity:dev": "pnpm --filter sanity dev",
-    "format-check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,html,astro}\"",
-    "format-fix": "prettier --write \"**/*.{js,jsx,ts,tsx,css,html,astro}\""
+    "format": "./scripts/format-check.sh",
+    "format:fix": "./scripts/format-fix.sh",
+    "lint": "./scripts/lint-check.sh",
+    "lint:fix": "./scripts/lint-fix.sh"
   }
 }
