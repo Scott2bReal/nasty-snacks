@@ -60,7 +60,7 @@ export const ContactForm = () => {
       data-netlify="true"
       netlify-honeypot="botField"
       name="contactUs"
-      class="mx-auto flex w-full flex-grow flex-col flex-wrap items-center gap-2 p-4 child:w-full md:w-[50vw]"
+      class="mx-auto flex w-full grow flex-col flex-wrap items-center gap-2 p-4 child:w-full md:w-[50vw]"
       method="post"
       onSubmit={async (e) => {
         e.preventDefault()
@@ -110,7 +110,7 @@ export const ContactForm = () => {
           onInput={(e) => setBotField(e.currentTarget.value)}
         />
       </div>
-      <div class="flex w-full gap-2 child:flex-grow">
+      <div class="flex w-full gap-2 child:grow">
         <div class="child:w-full">
           <label for="firstName">
             <em>First Name*</em>
