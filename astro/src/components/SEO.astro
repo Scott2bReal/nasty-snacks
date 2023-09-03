@@ -1,8 +1,8 @@
 ---
-import type { GroupPhoto } from '../types'
-import { sanityAPI, sanityImageUrl } from '../utils/sanity'
+import type { GroupPhoto } from "../types"
+import { sanityAPI, sanityImageUrl } from "../utils/sanity"
 
-const photoResult = await sanityAPI('bandPhoto')
+const photoResult = await sanityAPI("bandPhoto")
 const photos = photoResult.result
 const photo = photos[0] as GroupPhoto
 const builder = sanityImageUrl(photo.image)
@@ -11,24 +11,24 @@ const pathname = Astro.url.pathname
 const url = `${baseURL}${pathname}`
 ---
 
-<link rel='canonical' href={url} />
-<meta name='title' content='Nasty Snacks' />
+<link rel="canonical" href={url} />
+<meta name="title" content="Nasty Snacks" />
 <meta
-  name='description'
-  content='Website for the band Nasty Snacks from Chicago, IL'
+  name="description"
+  content="Website for the band Nasty Snacks from Chicago, IL"
 />
-<meta name='viewport' content='width=device-width' />
-<meta charset='utf-8' />
-<meta property='og:site_name' content='Nasty Snacks' />
-<meta property='og:title' content='Nasty Snacks' />
-<meta property='og:url' content={url} />
-<meta property='og:type' content='website' />
-<meta property='og:description' content='Hard-hitting funk from Chicago, IL' />
-<meta property='og:image' content={builder.auto('format').url()} />
-<meta property='og:image:width' content='1500' />
-<meta property='og:image:height' content='1082' />
-<meta name='twitter:title' content='Nasty Snacks' />
-<meta name='twitter:image' content={builder.auto('format').url()} />
-<meta name='twitter:url' content={url} />
-<meta name='twitter:card' content='summary' />
-<meta name='twitter:description' content='Hard-hitting funk from Chicago, IL' />
+<meta name="viewport" content="width=device-width" />
+<meta charset="utf-8" />
+<meta property="og:site_name" content="Nasty Snacks" />
+<meta property="og:title" content="Nasty Snacks" />
+<meta property="og:url" content={url} />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Hard-hitting funk from Chicago, IL" />
+<meta property="og:image" content={builder.auto("format").url()} />
+<meta property="og:image:width" content="1500" />
+<meta property="og:image:height" content="1082" />
+<meta name="twitter:title" content="Nasty Snacks" />
+<meta name="twitter:image" content={builder.auto("format").url()} />
+<meta name="twitter:url" content={url} />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Hard-hitting funk from Chicago, IL" />

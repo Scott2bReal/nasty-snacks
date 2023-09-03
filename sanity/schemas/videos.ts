@@ -12,6 +12,6 @@ export default {
       name: 'url',
       type: 'string',
       title: 'YouTube Link',
-    }
+    },
   ],
 }

@@ -17,6 +17,6 @@ export default {
       name: 'cover',
       type: 'image',
       title: 'Album Cover',
-    }
-  ]
+    },
+  ],
 }

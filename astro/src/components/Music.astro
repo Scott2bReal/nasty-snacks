@@ -1,12 +1,12 @@
 ---
-import SpotifyPreview from '../components/SpotifyPreview.astro'
-import type { Album } from '../types'
-import { sanityAPI } from '../utils/sanity'
-const result = await sanityAPI('albums')
+import SpotifyPreview from "../components/SpotifyPreview.astro"
+import type { Album } from "../types"
+import { sanityAPI } from "../utils/sanity"
+const result = await sanityAPI("albums")
 const albums = result.result as Album[]
 ---
 
-<div class='flex flex-col justify-center gap-4 md:flex-row'>
+<div class="flex flex-col justify-center gap-4 md:flex-row">
   {
     albums.map((album) => {
       return <SpotifyPreview album={album} />
@@ -19,12 +19,12 @@ const albums = result.result as Album[]
     if (!music) return
     const options = {
       threshold: 0.1,
-      rootMargin: '-50px',
+      rootMargin: "-50px",
     }
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && window.scrollY !== 0) {
-          entry.target.classList.add('opacity-100')
+          entry.target.classList.add("opacity-100")
           observer.disconnect()
         }
       })

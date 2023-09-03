@@ -31,12 +31,12 @@ export default {
     {
       name: 'ticketLink',
       type: 'string',
-      title: 'Ticket Link'
+      title: 'Ticket Link',
     },
     {
       name: 'description',
       type: 'string',
       title: 'Description',
-    }
+    },
   ],
 }

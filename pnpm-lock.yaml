@@ -45,8 +45,11 @@ importers:
         version: 3.3.3
     devDependencies:
       '@types/node':
-        specifier: ^20.5.9
-        version: 20.5.9
+        specifier: ^18.17.3
+        version: 18.17.3
+      prettier:
+        specifier: ^3.0.1
+        version: 3.0.1
       prettier-plugin-astro:
         specifier: ^0.12.0
         version: 0.12.0

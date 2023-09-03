@@ -4,42 +4,42 @@
 
 @layer base {
   html {
-    @apply scroll-smooth tracking-widest h-fit overflow-x-hidden selection:bg-pink-700 selection:text-neutral-900
-    /* scroll-behavior: smooth; */;
+    @apply /* scroll-behavior: smooth; */ h-fit overflow-x-hidden
+    scroll-smooth tracking-widest selection:bg-pink-700 selection:text-neutral-900;
   }
 
   body {
-    @apply bg-neutral-900 text-neutral-100 scroll-smooth text-center overflow-x-hidden pt-14;
+    @apply overflow-x-hidden scroll-smooth bg-neutral-900 pt-14 text-center text-neutral-100;
   }
 }
 
 @layer components {
   input {
-    @apply p-1 text-neutral-900 focus:outline-pink-600 focus:outline-none;
+    @apply p-1 text-neutral-900 focus:outline-none focus:outline-pink-600;
   }
 
   textarea {
-    @apply p-1 text-neutral-900 focus:outline-pink-600 focus:outline-none;
+    @apply p-1 text-neutral-900 focus:outline-none focus:outline-pink-600;
   }
 
   label {
-    @apply text-sm text-start;
+    @apply text-start text-sm;
   }
 
   section {
-    @apply scroll-m-24 text-center p-4
+    @apply scroll-m-24 p-4 text-center;
   }
 
   .page-header-main {
-    @apply text-3xl tracking-widest text-center pt-8;
+    @apply pt-8 text-center text-3xl tracking-widest;
   }
 
   .text-gradient {
-    @apply text-transparent bg-gradient-to-r from-purple-700 to-pink-700 bg-clip-text;
+    @apply bg-gradient-to-r from-purple-700 to-pink-700 bg-clip-text text-transparent;
   }
 
   .reverse-text-gradient {
-    @apply text-transparent bg-gradient-to-r from-pink-700 to-purple-700 bg-clip-text;
+    @apply bg-gradient-to-r from-pink-700 to-purple-700 bg-clip-text text-transparent;
   }
 
   .hover-grow {
@@ -51,11 +51,11 @@
     height: 300px;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url('inverted_snacks.jpg');
+    background-image: url("inverted_snacks.jpg");
   }
 
   .bg-image {
-    background-image: url('images/inverted_snacks.jpg');
+    background-image: url("images/inverted_snacks.jpg");
     background-size: cover;
     background-position: center;
   }
