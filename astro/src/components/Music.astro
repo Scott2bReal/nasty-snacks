@@ -14,8 +14,8 @@ const albums = result.result as Album[]
   }
 </div>
 <script>
-  const music = document.getElementById('music')
   const watchMusic = () => {
+    const music = document.getElementById('music')
     if (!music) return
     const options = {
       threshold: 0.1,
@@ -32,4 +32,5 @@ const albums = result.result as Album[]
     observer.observe(music)
   }
   watchMusic()
+  document.addEventListener("astro:page-load", watchMusic)
 </script>

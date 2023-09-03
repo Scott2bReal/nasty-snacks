@@ -1,4 +1,5 @@
 ---
+import {Image} from "astro:assets"
 import type { BandMember, GroupPhoto } from "../types"
 import { rosterSort } from "../utils/helpers"
 import { sanityAPI, sanityImageUrl } from "../utils/sanity"
@@ -23,10 +24,10 @@ const builder = sanityImageUrl(groupPhoto.image)
     class="max-w[850px] z-10 flex translate-y-6 flex-col px-4 text-center opacity-0 transition duration-1000 ease-in-out md:flex-row md:justify-center"
     id="bandPic"
   >
-    <img
+    <Image
       src={builder.auto("format").url()}
-      width="500px"
-      height="434px"
+      width={500}
+      height={434}
       id="bandPic"
       alt={groupPhoto.alt}
       class="relative z-10"
@@ -50,12 +51,12 @@ const builder = sanityImageUrl(groupPhoto.image)
   </div>
 </div>
 <script>
-  const bandPic = document.getElementById("bandPic")
-  const header = document.getElementById("bandInfoHeader")
-  const roster = document.getElementById("roster")
-  const bandInfo = document.getElementById("bandInfo")
 
   const animateOnScroll = () => {
+    const bandPic = document.getElementById("bandPic")
+    const header = document.getElementById("bandInfoHeader")
+    const roster = document.getElementById("roster")
+    const bandInfo = document.getElementById("bandInfo")
     if (!bandPic || !header || !roster || !bandInfo) return
 
     const showInfo = () => {
@@ -120,6 +121,5 @@ const builder = sanityImageUrl(groupPhoto.image)
   }
 
   animateOnScroll()
-
-  // fadeIn();
+  document.addEventListener("astro:page-load", animateOnScroll)
 </script>

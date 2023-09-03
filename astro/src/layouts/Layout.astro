@@ -2,7 +2,7 @@
 import Nav from "../components/navbar/Nav"
 import SEO from "../components/SEO.astro"
 import Socials from "../components/socials/Socials.astro"
-import ChromeFix from "../components/ChromeFix.astro"
+import { ViewTransitions } from "astro:transitions"
 
 export interface Props {
   title: string
@@ -15,6 +15,7 @@ const { title } = Astro.props
 <html lang="en">
   <head>
     <SEO />
+    <ViewTransitions />
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <link rel="dns-prefetch" href="https://cdn.sanity.io" />
@@ -47,7 +48,6 @@ const { title } = Astro.props
           >
         </em>
       </p>
-      <ChromeFix />
     </footer>
   </body>
 
