@@ -50,35 +50,37 @@ const builder = sanityImageUrl(banner.image)
       </svg>
     </span>
 
-    <div class="sm:pt-[100vh] pt-[30vh] bg-none"><div class="bg-neutral-900">
-      <!-- Upcoming Shows -->
-      <section id="shows" class="scroll-m-48 lg:pt-16">
-        <UpcomingShows />
-      </section>
+    <div class="bg-none pt-[30vh] sm:pt-[100vh]">
+      <div class="bg-neutral-900">
+        <!-- Upcoming Shows -->
+        <section id="shows" class="scroll-m-48 lg:pt-16">
+          <UpcomingShows />
+        </section>
 
-      <!-- Music -->
-      <section
-        id="music"
-        class="mt-20 opacity-0 transition duration-1000 ease-in-out"
-      >
-        <h2 class="p-4 text-3xl">MUSIC</h2>
-        <Music />
-      </section>
+        <!-- Music -->
+        <section
+          id="music"
+          class="mt-20 opacity-0 transition duration-1000 ease-in-out"
+        >
+          <h2 class="p-4 text-3xl">MUSIC</h2>
+          <Music />
+        </section>
 
-      <!-- Video -->
-      <section
-        id="video"
-        class="opacity-0 transition duration-1000 ease-in-out"
-      >
-        <h2 class="p-4 text-3xl">VIDEO</h2>
-        <RandomSnacksVid snacksVids={snacksVids} client:idle />
-      </section>
+        <!-- Video -->
+        <section
+          id="video"
+          class="opacity-0 transition duration-1000 ease-in-out"
+        >
+          <h2 class="p-4 text-3xl">VIDEO</h2>
+          <RandomSnacksVid snacksVids={snacksVids} client:idle />
+        </section>
 
-      <!-- Band info -->
-      <section id="band">
-        <BandInfo />
-      </section>
-    </div></div>
+        <!-- Band info -->
+        <section id="band">
+          <BandInfo />
+        </section>
+      </div>
+    </div>
 
     <!-- Go to top -->
     <button
