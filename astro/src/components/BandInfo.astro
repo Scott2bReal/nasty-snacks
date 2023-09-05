@@ -1,5 +1,5 @@
 ---
-import {Image} from "astro:assets"
+import { Image } from "astro:assets"
 import type { BandMember, GroupPhoto } from "../types"
 import { rosterSort } from "../utils/helpers"
 import { sanityAPI, sanityImageUrl } from "../utils/sanity"
@@ -21,7 +21,7 @@ const builder = sanityImageUrl(groupPhoto.image)
     WE ARE NASTY SNACKS
   </h2>
   <div
-    class="max-w[850px] z-10 flex translate-y-6 flex-col px-4 text-center opacity-0 transition duration-1000 ease-in-out md:flex-row md:justify-center"
+    class="z-10 flex max-w-[850px] translate-y-6 flex-col px-4 text-center opacity-0 transition duration-1000 ease-in-out md:flex-row md:justify-center"
     id="bandPic"
   >
     <Image
@@ -51,7 +51,6 @@ const builder = sanityImageUrl(groupPhoto.image)
   </div>
 </div>
 <script>
-
   const animateOnScroll = () => {
     const bandPic = document.getElementById("bandPic")
     const header = document.getElementById("bandInfoHeader")

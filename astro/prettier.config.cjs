@@ -2,6 +2,7 @@
 module.exports = {
   semi: false,
   tailwindConfig: "./tailwind.config.cjs",
+  pluginSearchDirs: false,
   overrides: [
     {
       files: "*.astro",
@@ -14,5 +15,4 @@ module.exports = {
     require.resolve("prettier-plugin-astro"),
     require.resolve("prettier-plugin-tailwindcss"),
   ],
-  pluginSearchDirs: false
 };

@@ -33,7 +33,7 @@ const builder = sanityImageUrl(banner.image)
     <!-- Scroll Prompt -->
     <span
       id="scrollPrompt"
-      class={`ease-custom fixed hidden inset-x-1/2 -translate-x-6 bottom-12 opacity-0 transition duration-2000 translate-y-6`}
+      class={`fixed inset-x-1/2 bottom-12 hidden -translate-x-6 translate-y-6 opacity-0 transition duration-2000 ease-custom`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ const builder = sanityImageUrl(banner.image)
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="scrollPrompt h-12 w-12"
+        class="h-12 w-12"
       >
         <path
           stroke-linecap="round"
