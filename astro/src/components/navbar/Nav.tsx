@@ -63,7 +63,7 @@ function TopNav() {
 function MobileNav() {
   return (
     <nav
-      class={`bottom-0 top-0 z-[5] h-[100vh] w-[100vw] bg-neutral-900 pr-2 text-center`}
+      class={`inset-y-0 z-[5] h-[100vh] w-[100vw] bg-neutral-900 pr-2 text-center`}
     >
       <div class="flex items-center justify-between gap-2">
         <h1 class="min-w-[357px] p-4 opacity-0 md:pl-4">
