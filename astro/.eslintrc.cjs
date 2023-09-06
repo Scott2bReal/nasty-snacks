@@ -1,8 +1,12 @@
-module.exports = {
+// @ts-check
+var config = require("eslint-define-config")
+var defineConfig = config.defineConfig
+
+module.exports = defineConfig({
   parserOptions: {
     project: "./tsconfig.json",
   },
-  extends: ["plugin:tailwindcss/recommended"],
+  extends: ["plugin:tailwindcss/recommended", "plugin:astro/recommended"],
   overrides: [
     {
       files: ["*.ts", "*.tsx", "*.js"],
@@ -19,6 +23,10 @@ module.exports = {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
       },
+      rules: {
+        // override/add rules settings here, such as:
+        // "astro/no-set-html-directive": "error"
+      },
     },
   ],
   settings: {
@@ -27,4 +35,4 @@ module.exports = {
       classRegex: "^\\w*?[Cc]lass(Name)?$",
     },
   },
-}
+})
