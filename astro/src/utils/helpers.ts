@@ -1,5 +1,13 @@
 import type { BandMember, Show } from "../types"
 
+/**
+ * A nice helper to enable tailwind linting
+ * @example tw`h-12 w-12 bg-red-500`
+ */
+export function tw(strings: TemplateStringsArray): string {
+  return strings.join('')
+}
+
 export function randomNumber(max: number): number {
   return Math.floor(Math.random() * max)
 }
