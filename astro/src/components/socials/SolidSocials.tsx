@@ -140,7 +140,7 @@ function Twitter() {
 
 export default function SolidSocials() {
   return (
-    <div id="nav-socials" class="mt-10 flex justify-center gap-4">
+    <div id="nav-socials" class="mt-20 flex justify-center gap-2">
       <Spotify />
       <Instagram />
       <Facebook />
