@@ -11,9 +11,19 @@ allowing us to easily update our upcoming shows via Discord slash commands.
 
 ## Project setup
 
-This is a [pnpm](https://pnpm.io) project. If you don't have pnpm installed, you can follow the installation instructions [here](https://pnpm.io/installation).
+First, clone the repo:
 
-Once you have `pnpm` installed, you can run the following command:
+```bash
+git clone https://github.com/Scott2bReal/nasty-snacks
+```
+
+This is a `pnpm` project. If you don't have `pnpm` installed already, you can
+install it by following the instructions [here](https://pnpm.io/installation).
+We are using the workspaces feature of `pnpm` to manage dependencies for both
+the Astro site and the Sanity Studio.
+
+Once you have `pnpm` installed, you can run the following command from the
+project root:
 
 ```bash
 pnpm install
@@ -25,12 +35,12 @@ This will install all dependencies for both the `astro` and `sanity` projects.
 
 To run the project, you'll need to run two commands in separate terminals:
 
-Starts the local dev server for the Astro site
+Starts the local dev server for the Astro site (default port is `4321`)
 ```bash
 pnpm astro:dev
 ```
 
-Starts a local server for the Sanity Studio (CMS)
+Starts a local server for the Sanity Studio (default port is `3333`)
 ```bash
 pnpm sanity:dev
 ```
