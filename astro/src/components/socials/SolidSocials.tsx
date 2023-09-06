@@ -1,3 +1,7 @@
+import { tw } from "../../utils/helpers"
+
+const iconStyles = tw`h-10 w-10 fill-purple-700 transition duration-300 ease-in-out hover:fill-pink-700`
+
 function Spotify() {
   return (
     <a
@@ -7,7 +11,7 @@ function Spotify() {
       class="transition duration-500 ease-in-out"
     >
       <svg
-        class="h-10 w-10 fill-purple-700 transition duration-300 ease-in-out hover:fill-pink-700"
+        class={iconStyles}
         version="1.1"
         id="Capa_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +53,7 @@ function Instagram() {
       class="transition duration-500 ease-in-out"
     >
       <svg
-        class="h-10 w-10 fill-purple-700 transition duration-300 ease-in-out hover:fill-pink-700"
+        class={iconStyles}
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +105,7 @@ function Facebook() {
       class="transition duration-500 ease-in-out"
     >
       <svg
-        class="h-10 w-10 fill-purple-700 transition duration-300 ease-in-out hover:fill-pink-700"
+        class={iconStyles}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -122,7 +126,7 @@ function Twitter() {
       class="transition duration-500 ease-in-out"
     >
       <svg
-        class="h-10 w-10 fill-purple-700 transition duration-300 ease-in-out hover:fill-pink-700"
+        class={iconStyles}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -136,7 +140,7 @@ function Twitter() {
 
 export default function SolidSocials() {
   return (
-    <div id="nav-socials" class="flex justify-center gap-4 mt-10">
+    <div id="nav-socials" class="mt-10 flex justify-center gap-4">
       <Spotify />
       <Instagram />
       <Facebook />
