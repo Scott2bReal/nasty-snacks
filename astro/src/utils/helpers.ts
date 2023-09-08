@@ -5,7 +5,7 @@ import type { BandMember, Show } from "../types"
  * @example tw`h-12 w-12 bg-red-500`
  */
 export function tw(strings: TemplateStringsArray): string {
-  return strings.join('')
+  return strings.join("")
 }
 
 export function randomNumber(max: number): number {
