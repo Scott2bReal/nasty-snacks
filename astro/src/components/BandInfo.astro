@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets"
 import type { BandMember, GroupPhoto } from "../types"
 import { rosterSort } from "../utils/helpers"
 import { sanityAPI, sanityImageUrl } from "../utils/sanity"
@@ -12,7 +13,7 @@ const roster = rosterResult.result as BandMember[]
 const builder = sanityImageUrl(groupPhoto.image)
 ---
 
-<div id="bandInfo">
+<div id="bandInfo" class="mx-auto w-fit">
   <h2
     id="bandInfoHeader"
     class="relative z-10 -translate-x-6 py-6 text-3xl tracking-widest opacity-0 transition duration-1000 ease-in-out"
@@ -20,13 +21,13 @@ const builder = sanityImageUrl(groupPhoto.image)
     WE ARE NASTY SNACKS
   </h2>
   <div
-    class="max-w[850px] z-10 flex translate-y-6 flex-col px-4 text-center opacity-0 transition duration-1000 ease-in-out md:flex-row md:justify-center"
+    class="z-10 flex max-w-[850px] translate-y-6 flex-col px-4 text-center opacity-0 transition duration-1000 ease-in-out md:flex-row md:justify-center"
     id="bandPic"
   >
-    <img
+    <Image
       src={builder.auto("format").url()}
-      width="500px"
-      height="434px"
+      width={500}
+      height={434}
       id="bandPic"
       alt={groupPhoto.alt}
       class="relative z-10"
@@ -50,12 +51,11 @@ const builder = sanityImageUrl(groupPhoto.image)
   </div>
 </div>
 <script>
-  const bandPic = document.getElementById("bandPic")
-  const header = document.getElementById("bandInfoHeader")
-  const roster = document.getElementById("roster")
-  const bandInfo = document.getElementById("bandInfo")
-
   const animateOnScroll = () => {
+    const bandPic = document.getElementById("bandPic")
+    const header = document.getElementById("bandInfoHeader")
+    const roster = document.getElementById("roster")
+    const bandInfo = document.getElementById("bandInfo")
     if (!bandPic || !header || !roster || !bandInfo) return
 
     const showInfo = () => {
@@ -120,6 +120,5 @@ const builder = sanityImageUrl(groupPhoto.image)
   }
 
   animateOnScroll()
-
-  // fadeIn();
+  document.addEventListener("astro:page-load", animateOnScroll)
 </script>

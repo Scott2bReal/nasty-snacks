@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       transitionTimingFunction: {
-        custom: `cubic-bezier(0.83, 0, 0.17, 1)`,
+        custom: "cubic-bezier(0.83, 0, 0.17, 1)",
       },
       transitionDuration: {
         2000: "2000ms",
@@ -18,7 +18,7 @@ module.exports = {
     },
   },
   plugins: [
-    function ({ addVariant }) {
+    function({ addVariant }) {
       addVariant("child", "& > *")
       addVariant("child-hover", "& > *:hover")
     },

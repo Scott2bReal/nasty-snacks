@@ -94,4 +94,5 @@ const shows = allShows.filter(isUpcoming).sort(showSortByDate)
   }
 
   fadeInShows()
+  document.addEventListener("astro:page-load", fadeInShows)
 </script>

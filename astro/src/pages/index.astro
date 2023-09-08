@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets"
 import Layout from "../layouts/Layout.astro"
 import UpcomingShows from "../components/UpcomingShows.astro"
 import BandInfo from "../components/BandInfo.astro"
@@ -19,19 +20,20 @@ const builder = sanityImageUrl(banner.image)
 
 <Layout title="Nasty Snacks">
   <main class="relative flex flex-col">
-    <div class="-z-10 fixed top-0 overflow-hidden opacity-60 md:h-[100vh]">
-      <img
+    <div class="fixed top-0 -z-10 overflow-hidden opacity-60 md:h-[99.9vh]">
+      <Image
         alt={banner.alt}
         src={builder.auto("format").url()}
-        height="1000px"
-        width="1500px"
+        height={1000}
+        width={1500}
+        sizes="100vw"
       />
     </div>
 
     <!-- Scroll Prompt -->
     <span
       id="scrollPrompt"
-      class={`ease-custom fixed hidden inset-x-1/2 -translate-x-6 bottom-12 opacity-0 transition duration-2000 translate-y-6`}
+      class={`fixed inset-x-1/2 bottom-12 hidden -translate-x-6 translate-y-6 opacity-0 transition duration-2000 ease-custom`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +41,7 @@ const builder = sanityImageUrl(banner.image)
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="scrollPrompt h-12 w-12"
+        class="h-12 w-12"
       >
         <path
           stroke-linecap="round"
@@ -48,35 +50,36 @@ const builder = sanityImageUrl(banner.image)
       </svg>
     </span>
 
-    <div class="h-[40vh] md:h-[100vh]"></div>
-    <div class="bg-neutral-900">
-      <!-- Upcoming Shows -->
-      <section id="shows" class="scroll-m-48 lg:pt-16">
-        <UpcomingShows />
-      </section>
+    <div class="bg-none pt-[30vh] sm:pt-[100vh]">
+      <div class="bg-neutral-900">
+        <!-- Upcoming Shows -->
+        <section id="shows" class="scroll-m-48 lg:pt-16">
+          <UpcomingShows />
+        </section>
 
-      <!-- Music -->
-      <section
-        id="music"
-        class="mt-20 opacity-0 transition duration-1000 ease-in-out"
-      >
-        <h2 class="p-4 text-3xl">MUSIC</h2>
-        <Music />
-      </section>
+        <!-- Music -->
+        <section
+          id="music"
+          class="mt-20 opacity-0 transition duration-1000 ease-in-out"
+        >
+          <h2 class="p-4 text-3xl">MUSIC</h2>
+          <Music />
+        </section>
 
-      <!-- Video -->
-      <section
-        id="video"
-        class="opacity-0 transition duration-1000 ease-in-out"
-      >
-        <h2 class="p-4 text-3xl">VIDEO</h2>
-        <RandomSnacksVid snacksVids={snacksVids} client:idle />
-      </section>
+        <!-- Video -->
+        <section
+          id="video"
+          class="opacity-0 transition duration-1000 ease-in-out"
+        >
+          <h2 class="p-4 text-3xl">VIDEO</h2>
+          <RandomSnacksVid snacksVids={snacksVids} client:idle />
+        </section>
 
-      <!-- Band info -->
-      <section id="band">
-        <BandInfo />
-      </section>
+        <!-- Band info -->
+        <section id="band">
+          <BandInfo />
+        </section>
+      </div>
     </div>
 
     <!-- Go to top -->
@@ -100,10 +103,16 @@ const builder = sanityImageUrl(banner.image)
   </main>
 </Layout>
 <script>
-  const prompt = document.getElementById("scrollPrompt")
-  const toTopArrow = document.getElementById("toTop")
+  const getPrompt = () => {
+    return document.getElementById("scrollPrompt")
+  }
+
+  const getTopArrow = () => {
+    return document.getElementById("toTop")
+  }
 
   const fadeInScrollPrompt = () => {
+    const prompt = getPrompt()
     if (!prompt) return
     setTimeout(() => {
       if (window.scrollY === 0) {
@@ -118,10 +127,10 @@ const builder = sanityImageUrl(banner.image)
   }
 
   const hideScrollPrompt = () => {
+    const prompt = getPrompt()
     if (!prompt) return
     prompt.classList.remove("opacity-100")
-    prompt.classList.add("-translate-y-12")
-    prompt.classList.add("-z-60")
+    prompt.classList.add("-translate-y-12", "-z-60")
     setTimeout(() => {
       prompt.classList.add("translate-y-6")
       prompt.classList.remove("-translate-y-12")
@@ -130,6 +139,8 @@ const builder = sanityImageUrl(banner.image)
   }
 
   const swapScrollPrompts = () => {
+    const prompt = getPrompt()
+    const toTopArrow = getTopArrow()
     if (!prompt || !toTopArrow) return
     window.addEventListener("scroll", () => {
       if (window.scrollY < 10) {
@@ -162,6 +173,7 @@ const builder = sanityImageUrl(banner.image)
   }
 
   const toTop = () => {
+    const toTopArrow = getTopArrow()
     if (!toTopArrow) return
     if (document.body.scrollTop === 0) {
       toTopArrow.classList.add("opacity-0")
@@ -175,8 +187,13 @@ const builder = sanityImageUrl(banner.image)
     )
   }
 
-  fadeInScrollPrompt()
-  swapScrollPrompts()
-  toTop()
-  showVideo()
+  const animatePageElements = () => {
+    fadeInScrollPrompt()
+    swapScrollPrompts()
+    toTop()
+    showVideo()
+  }
+
+  animatePageElements()
+  document.addEventListener("astro:page-load", animatePageElements)
 </script>
