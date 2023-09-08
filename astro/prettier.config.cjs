@@ -2,6 +2,7 @@
 module.exports = {
   semi: false,
   tailwindConfig: "./tailwind.config.cjs",
+  pluginSearchDirs: false,
   overrides: [
     {
       files: "*.astro",

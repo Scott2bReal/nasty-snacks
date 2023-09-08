@@ -2,6 +2,7 @@
 import Nav from "../components/navbar/Nav"
 import SEO from "../components/SEO.astro"
 import Footer from "../components/layout/Footer.astro"
+import { ViewTransitions } from "astro:transitions"
 
 export interface Props {
   title: string
@@ -14,19 +15,15 @@ const { title } = Astro.props
 <html lang="en">
   <head>
     <SEO />
+    <ViewTransitions />
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <link rel="dns-prefetch" href="https://cdn.sanity.io" />
     <link rel="dns-prefetch" href="https://open.spotifycdn.com" />
     <link rel="dns-prefetch" href="https://nastysnacks.com" />
     <link rel="preconnect" href="https;//nastysnacks.com" />
-    <link
-      rel="dns-prefetch"
-      href="https://google.com"
-      <link
-      rel="preconnect"
-      href="https://cdn.sanity.io"
-    />
+    <link rel="dns-prefetch" href="https://google.com" />
+    <link rel="preconnect" href="https://cdn.sanity.io" />
     <title>{title}</title>
   </head>
   <header class="fixed top-0 z-40 w-[100vw]">
