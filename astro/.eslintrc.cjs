@@ -6,7 +6,7 @@ module.exports = defineConfig({
   parserOptions: {
     project: "./tsconfig.json",
   },
-  extends: ["plugin:tailwindcss/recommended", "plugin:astro/recommended"],
+  extends: ["plugin:tailwindcss/recommended", "plugin:astro/jsx-a11y-recommended"],
   overrides: [
     {
       files: ["*.ts", "*.tsx", "*.js"],
