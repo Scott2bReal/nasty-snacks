@@ -8,7 +8,6 @@ function Spotify() {
       href="https://open.spotify.com/artist/7tIYEywXhVp5F2QjrxSLgw"
       target="_blank"
       aria-label="Spotify"
-      class="transition duration-500 ease-in-out"
     >
       <svg
         class={iconStyles}
@@ -50,7 +49,6 @@ function Instagram() {
       href="https://www.instagram.com/NastySnacks/"
       target="blank"
       aria-label="Instagram"
-      class="transition duration-500 ease-in-out"
     >
       <svg
         class={iconStyles}
@@ -102,7 +100,6 @@ function Facebook() {
       href="https://www.facebook.com/NastySnacks"
       target="blank"
       aria-label="Facebook"
-      class="transition duration-500 ease-in-out"
     >
       <svg
         class={iconStyles}
@@ -123,7 +120,6 @@ function Twitter() {
       href="https://twitter.com/NastySnacks"
       target="blank"
       aria-label="Twitter"
-      class="transition duration-500 ease-in-out"
     >
       <svg
         class={iconStyles}
