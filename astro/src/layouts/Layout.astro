@@ -1,7 +1,7 @@
 ---
 import Nav from "../components/navbar/Nav"
 import SEO from "../components/SEO.astro"
-import Socials from "../components/socials/Socials.astro"
+import Footer from "../components/layout/Footer.astro"
 import { ViewTransitions } from "astro:transitions"
 
 export interface Props {
@@ -31,19 +31,7 @@ const { title } = Astro.props
   </header>
   <body class="relative">
     <slot />
-    <footer class="bg-neutral-900 pb-4 pt-12 text-center">
-      <Socials />
-      <p class="pb-4 pt-6 text-sm">
-        <em
-          >Made with <a
-            href="https://astro.build"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><span class="text-gradient">{Astro.generator}</span> 🚀</a
-          >
-        </em>
-      </p>
-    </footer>
+    <Footer />
   </body>
 
   <style is:global>

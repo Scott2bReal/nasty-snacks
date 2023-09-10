@@ -1,4 +1,5 @@
 import { createSignal, Show } from "solid-js"
+import SolidSocials from "../socials/SolidSocials"
 
 const [isMobileOpen, setIsMobileOpen] = createSignal(false)
 const sections = ["shows", "music", "video", "band", "contact"]
@@ -126,6 +127,7 @@ function MobileNav() {
           )
         })}
       </ul>
+      <SolidSocials />
     </nav>
   )
 }
