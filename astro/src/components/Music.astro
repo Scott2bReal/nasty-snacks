@@ -18,7 +18,6 @@ const albums = result.result as Album[]
     const music = document.getElementById("music")
     if (!music) return
     const options = {
-      threshold: 0.1,
       rootMargin: "-50px",
     }
     const observer = new IntersectionObserver((entries) => {
