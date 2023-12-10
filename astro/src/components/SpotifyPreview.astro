@@ -15,7 +15,7 @@ const builder = sanityImageUrl(album.cover)
 <div class="" id={album.title}>
   <a href={album.spotifyLink} target="_blank" rel="noopener noreferrer">
     <img
-      src={builder.auto("format").url()}
+      src={builder.auto("format").width(450).url()}
       loading="lazy"
       width="450px"
       height="450px"
