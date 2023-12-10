@@ -1,7 +1,8 @@
 ---
-import type { Album } from "../types"
-import { generateSpotifyEmbed } from "../utils/helpers"
-import { sanityImageUrl } from "../utils/sanity"
+import type { Album } from "../../types"
+import { generateSpotifyEmbed } from "../../utils/helpers"
+import { sanityImageUrl } from "../../utils/sanity"
+import SpotifyButton from "./SpotifyButton.tsx"
 
 interface Props {
   album: Album
@@ -10,6 +11,7 @@ interface Props {
 const { album } = Astro.props
 const embedUrl = generateSpotifyEmbed(album.spotifyLink)
 const builder = sanityImageUrl(album.cover)
+
 ---
 
 <div class="" id={album.title}>
@@ -19,15 +21,10 @@ const builder = sanityImageUrl(album.cover)
       loading="lazy"
       width="450px"
       height="450px"
-      class="mx-auto"
+      class="mx-auto pt-4"
       alt={`${album.title} Cover`}
     />
   </a>
 
-  <iframe
-    src={embedUrl}
-    title={`${album.title} Spotify Preview`}
-    allowfullscreen=""
-    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    class="mx-auto pt-4"></iframe>
+  <SpotifyButton url={embedUrl ?? ""} title={album.title} client:visible />
 </div>
