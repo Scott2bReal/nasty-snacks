@@ -25,7 +25,7 @@ const builder = sanityImageUrl(groupPhoto.image)
     id="bandPic"
   >
     <Image
-      src={builder.auto("format").url()}
+      src={builder.auto("format").width(500).url()}
       width={500}
       height={434}
       id="bandPic"
