@@ -4,29 +4,24 @@ import Layout from "../layouts/Layout.astro"
 import UpcomingShows from "../components/UpcomingShows.astro"
 import BandInfo from "../components/BandInfo.astro"
 import { RandomSnacksVid } from "../components/RandomSnacksVid"
-import { sanityAPI, sanityImageUrl } from "../utils/sanity"
-import type { SnacksVid, BannerImage } from "../types"
+import { sanityAPI } from "../utils/sanity"
+import type { SnacksVid } from "../types"
 import Music from "../components/Music.astro"
-
-const bannerResult = await sanityAPI("banner")
-const banners = bannerResult.result
-const banner = banners[0] as BannerImage
+import heroImage from "../assets/hero-image.jpg"
 
 const vidResult = await sanityAPI("videos")
 const snacksVids = vidResult.result as SnacksVid[]
-
-const builder = sanityImageUrl(banner.image)
 ---
 
 <Layout title="Nasty Snacks">
   <main class="relative flex flex-col">
     <div class="fixed top-0 -z-10 overflow-hidden opacity-60 md:h-[99.9vh]">
       <Image
-        alt={banner.alt}
-        src={builder.auto("format").url()}
-        height={1000}
-        width={1500}
-        sizes="100vw"
+        alt="Nasty snacks at the Chop Shop in Chicago"
+        loading="eager"
+        src={heroImage}
+        widths={[390, 640, 750, 828, 1080, 1200, 1440, 1920, 2560]}
+        sizes="(max-width: 390px) 390px, (max-width: 640px) 640px, (max-width: 750px) 750px, (max-width: 828px) 828px, (max-width: 1080px) 1080px, (max-width: 1200px) 1200px, (max-width: 1440px) 1440px, (max-width: 1920px) 1920px, 2560px"
       />
     </div>
 
