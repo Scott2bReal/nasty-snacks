@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js"
+import { spawn } from "child_process"
 
 /** @todo find a better type to extend */
 interface SpotifyButtonProps {
@@ -8,28 +8,34 @@ interface SpotifyButtonProps {
   className?: string
 }
 
-const SpotifyButton = ({ url, title }: SpotifyButtonProps) => {
-  const [isEmbedVisible, setIsEmbedVisible] = createSignal(false)
+const createSpotifyEmbed = (url: string, title: string) => {
+  const document = window.document
+  const spawningButton = document.getElementById(`spotify-button-${title}`)
+  if (!spawningButton) return
 
+  const embed = document.createElement("iframe")
+
+  embed.src = url
+  embed.title = `${title} Spotify Preview`
+  embed.allowFullscreen = false
+  embed.allow =
+    "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+  embed.classList.add("mx-auto", "pt-4")
+  spawningButton.replaceWith(embed)
+}
+
+const SpotifyButton = ({ url, title }: SpotifyButtonProps) => {
   return (
     <>
       <button
-        class={`${
-          isEmbedVisible() ? "hidden" : "block"
-        } mx-auto mb-[70px] mt-4 h-[80px] w-[300px] rounded-xl bg-gradient-to-br from-pink-700 to-purple-700`}
+        id={`spotify-button-${title}`}
+        class={`mx-auto mb-[70px] mt-4 h-[80px] w-[300px] rounded-xl bg-gradient-to-br from-pink-700 to-purple-700 text-lg tracking-widest`}
         onClick={() => {
-          setIsEmbedVisible(true)
+          createSpotifyEmbed(url, title)
         }}
       >
-        Listen
+        LISTEN
       </button>
-      <iframe
-        src={url}
-        title={`${title} Spotify Preview`}
-        allowfullscreen={false}
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        class={`${isEmbedVisible() ? "block" : "hidden"} mx-auto pt-4`}
-      ></iframe>
     </>
   )
 }

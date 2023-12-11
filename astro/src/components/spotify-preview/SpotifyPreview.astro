@@ -25,5 +25,13 @@ const builder = sanityImageUrl(album.cover)
     />
   </a>
 
+  <!-- <iframe -->
+  <!--   src={embedUrl} -->
+  <!--   loading="lazy" -->
+  <!--   title={`${album.title} Spotify Preview`} -->
+  <!--   allowfullscreen={false} -->
+  <!--   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" -->
+  <!--   class={`mx-auto pt-4`} -->
+  <!-- ></iframe> -->
   <SpotifyButton url={embedUrl ?? ""} title={album.title} client:visible />
 </div>
