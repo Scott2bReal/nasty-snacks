@@ -1,0 +1,37 @@
+---
+import type { Album } from "../../types"
+import { generateSpotifyEmbed } from "../../utils/helpers"
+import { sanityImageUrl } from "../../utils/sanity"
+import SpotifyButton from "./SpotifyButton.tsx"
+
+interface Props {
+  album: Album
+}
+
+const { album } = Astro.props
+const embedUrl = generateSpotifyEmbed(album.spotifyLink)
+const builder = sanityImageUrl(album.cover)
+---
+
+<div class="" id={album.title}>
+  <a href={album.spotifyLink} target="_blank" rel="noopener noreferrer">
+    <img
+      src={builder.auto("format").width(450).url()}
+      loading="lazy"
+      width="450px"
+      height="450px"
+      class="mx-auto pt-4"
+      alt={`${album.title} Cover`}
+    />
+  </a>
+
+  <!-- <iframe -->
+  <!--   src={embedUrl} -->
+  <!--   loading="lazy" -->
+  <!--   title={`${album.title} Spotify Preview`} -->
+  <!--   allowfullscreen={false} -->
+  <!--   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" -->
+  <!--   class={`mx-auto pt-4`} -->
+  <!-- ></iframe> -->
+  <SpotifyButton url={embedUrl ?? ""} title={album.title} client:visible />
+</div>

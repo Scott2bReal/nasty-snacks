@@ -42,6 +42,7 @@ export function RandomSnacksVid({ snacksVids }: Props) {
         src={`${embedURL}${getYoutubeId(vid().url)}`}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        loading="lazy"
         allowfullscreen
         classList={{
           "opacity-0": isFaded(),

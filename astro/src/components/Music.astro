@@ -1,7 +1,7 @@
 ---
-import SpotifyPreview from "../components/SpotifyPreview.astro"
 import type { Album } from "../types"
 import { sanityAPI } from "../utils/sanity"
+import SpotifyPreview from "./spotify-preview/SpotifyPreview.astro"
 const result = await sanityAPI("albums")
 const albums = result.result as Album[]
 ---
