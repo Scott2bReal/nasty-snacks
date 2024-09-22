@@ -7,9 +7,9 @@ const homeSections = ["shows", "band", "video", "music"]
 
 function TopNav() {
   return (
-    <nav class="fixed left-0 top-0 z-40 flex w-[100vw] justify-between bg-neutral-900/20 pr-2 text-center backdrop-blur-xl">
+    <nav class="fixed left-0 top-0 z-40 flex w-screen justify-between bg-neutral-900/20 pr-2 text-center backdrop-blur-xl">
       <h1 class="min-w-[357px] py-4">
-        <a href="/">
+        <a href="/" data-astro-prefetch>
           <span class="text-gradient text-4xl font-extrabold tracking-widest">
             NASTY SNACKS
           </span>
@@ -20,7 +20,7 @@ function TopNav() {
           return (
             <li>
               <a
-                rel="prefetch"
+                data-astro-prefetch
                 href={`${
                   homeSections.includes(section)
                     ? `/#${section}`
@@ -42,7 +42,7 @@ function TopNav() {
         }}
       >
         <svg
-          class="h-8 w-8"
+          class="size-8"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -63,7 +63,7 @@ function TopNav() {
 function MobileNav() {
   return (
     <nav
-      class={`inset-y-0 z-[5] h-[100vh] w-[100vw] bg-neutral-900 pr-2 text-center`}
+      class={`inset-y-0 z-[5] h-screen w-screen bg-neutral-900 pr-2 text-center`}
     >
       <div class="flex items-center justify-between gap-2">
         <h1 class="min-w-[357px] p-4 opacity-0 md:pl-4">
@@ -82,7 +82,7 @@ function MobileNav() {
           }}
         >
           <svg
-            class="h-8 w-8"
+            class="size-8"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

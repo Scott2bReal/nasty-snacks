@@ -1,5 +1,3 @@
-import { spawn } from "child_process"
-
 /** @todo find a better type to extend */
 interface SpotifyButtonProps {
   url: string
