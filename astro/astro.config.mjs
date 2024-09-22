@@ -23,5 +23,7 @@ export default defineConfig({
     }),
     solidJs(),
   ],
-  adapter: netlify(),
+  adapter: netlify({
+    imageCDN: false,
+  }),
 })
