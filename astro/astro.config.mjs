@@ -4,10 +4,7 @@ import { defineConfig } from "astro/config"
 import tailwind from "@astrojs/tailwind"
 
 // https://astro.build/config
-import netlify from "@astrojs/netlify/functions"
-
-// https://astro.build/config
-import prefetch from "@astrojs/prefetch"
+import netlify from "@astrojs/netlify"
 
 // https://astro.build/config
 import solidJs from "@astrojs/solid-js"
@@ -15,14 +12,18 @@ import solidJs from "@astrojs/solid-js"
 // https://astro.build/config
 export default defineConfig({
   output: "server",
+  prefetch: {
+    prefetchAll: true,
+  },
   integrations: [
     tailwind({
       config: {
         applyBaseStyles: false,
       },
     }),
-    prefetch(),
     solidJs(),
   ],
-  adapter: netlify(),
+  adapter: netlify({
+    imageCDN: false,
+  }),
 })
