@@ -1,4 +1,10 @@
-import { Accessor, createMemo, createSignal, onCleanup, Setter } from "solid-js"
+import {
+  type Accessor,
+  createMemo,
+  createSignal,
+  onCleanup,
+  type Setter,
+} from "solid-js"
 
 export const ContactForm = () => {
   // Form fields
@@ -73,7 +79,7 @@ export const ContactForm = () => {
           message: message(),
         }
         // Alert the band via discord bot
-        const result = await fetch("/api/handleContactForm", {
+        const result = await fetch("/api/handle-contact-form", {
           method: "POST",
           body: JSON.stringify(data),
         })

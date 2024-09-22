@@ -23,7 +23,7 @@ const isContactFormData = (data: any): data is ContactForm => {
 const secret = (import.meta.env.CONTACT_FORM_SECRET ?? "") as string
 const botEndpoint = (import.meta.env.DISCORD_BOT_ENDPOINT ?? "") as string
 
-export const post: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
     const formData = await request.json()
     if (!formData) {
