@@ -16,6 +16,9 @@ importers:
       '@astrojs/netlify':
         specifier: ^5.5.3
         version: 5.5.3(@types/node@18.19.50)(astro@4.15.8(@types/node@18.19.50)(rollup@4.22.4)(typescript@5.6.2))
+      '@astrojs/partytown':
+        specifier: ^2.1.2
+        version: 2.1.2
       '@astrojs/solid-js':
         specifier: ^4.4.2
         version: 4.4.2(solid-js@1.8.22)(vite@5.4.7(@types/node@18.19.50))
@@ -157,6 +160,9 @@ packages:
     resolution: {integrity: sha512-MDbbJY/Qp02WY9TFusXGA9TFSfaRwc/nlyYhk0YZ2ll2KW2DKrXLCJLC17kdhGqKDyg6w4P6juOOgbcGEpfaUw==}
     peerDependencies:
       astro: ^4.2.0
+
+  '@astrojs/partytown@2.1.2':
+    resolution: {integrity: sha512-1a9T5lqxtnrw0qLPo1KwliUvaaUzPNPtWucD8VxdwT7zqcpODFk1RzGgAgqVo+YhutFrTu/qclbtnOfXBuskjw==}
 
   '@astrojs/prism@3.1.0':
     resolution: {integrity: sha512-Z9IYjuXSArkAUx3N6xj6+Bnvx8OdUSHA8YoOgyepp3+zJmtVYJIl/I18GozdJVW1p5u/CNpl3Km7/gwTJK85cw==}
@@ -842,6 +848,11 @@ packages:
   '@babel/types@7.25.6':
     resolution: {integrity: sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==}
     engines: {node: '>=6.9.0'}
+
+  '@builder.io/partytown@0.10.2':
+    resolution: {integrity: sha512-A9U+4PREWcS+CCYzKGIPovtGB/PBgnH/8oQyCE6Nr9drDJk6cMPpLQIEajpGPmG9tYF7N3FkRvhXm/AS9+0iKg==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
 
   '@codemirror/autocomplete@6.18.1':
     resolution: {integrity: sha512-iWHdj/B1ethnHRTwZj+C1obmmuCzquH29EbcKr0qIjA9NfDeBDJ7vs+WOHsFeLeflE4o+dHfYndJloMKHUkWUA==}
@@ -6237,6 +6248,11 @@ snapshots:
       - supports-color
       - terser
 
+  '@astrojs/partytown@2.1.2':
+    dependencies:
+      '@builder.io/partytown': 0.10.2
+      mrmime: 2.0.0
+
   '@astrojs/prism@3.1.0':
     dependencies:
       prismjs: 1.29.0
@@ -7142,6 +7158,8 @@ snapshots:
       '@babel/helper-string-parser': 7.24.8
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
+
+  '@builder.io/partytown@0.10.2': {}
 
   '@codemirror/autocomplete@6.18.1(@codemirror/language@6.10.3)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)(@lezer/common@1.2.1)':
     dependencies:
