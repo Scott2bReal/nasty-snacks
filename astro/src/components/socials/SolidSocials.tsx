@@ -1,6 +1,6 @@
 import { tw } from "../../utils/helpers"
 
-const iconStyles = tw`h-8 w-8 fill-purple-700 transition duration-300 ease-in-out hover:fill-pink-700`
+const iconStyles = tw`size-8 fill-purple-700 transition duration-300 ease-in-out hover:fill-pink-700`
 
 function Spotify() {
   return (
