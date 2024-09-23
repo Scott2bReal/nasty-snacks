@@ -22,7 +22,7 @@ const albums = result.result as Album[]
     }
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && window.scrollY !== 0) {
+        if (entry.isIntersecting) {
           entry.target.classList.add("opacity-100")
           observer.disconnect()
         }
