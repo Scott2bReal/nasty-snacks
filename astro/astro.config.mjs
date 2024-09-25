@@ -9,7 +9,7 @@ import netlify from "@astrojs/netlify"
 // https://astro.build/config
 import solidJs from "@astrojs/solid-js"
 
-import partytown from "@astrojs/partytown";
+import partytown from "@astrojs/partytown"
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,11 +17,19 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true,
   },
-  integrations: [tailwind({
-    config: {
-      applyBaseStyles: false,
-    },
-  }), solidJs(), partytown()],
+  integrations: [
+    tailwind({
+      config: {
+        applyBaseStyles: false,
+      },
+    }),
+    solidJs(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+  ],
   adapter: netlify({
     imageCDN: false,
   }),
