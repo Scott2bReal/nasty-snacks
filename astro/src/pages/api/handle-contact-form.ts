@@ -20,8 +20,8 @@ const isContactFormData = (data: any): data is ContactForm => {
   )
 }
 
-const secret = (import.meta.env.CONTACT_FORM_SECRET ?? "") as string
-const botEndpoint = (import.meta.env.DISCORD_BOT_ENDPOINT ?? "") as string
+// const secret = (import.meta.env.CONTACT_FORM_SECRET ?? "") as string
+// const botEndpoint = (import.meta.env.DISCORD_BOT_ENDPOINT ?? "") as string
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -32,22 +32,22 @@ export const POST: APIRoute = async ({ request }) => {
     if (!isContactFormData(formData)) {
       throw new Error("Invalid form data")
     }
-    const { firstName, lastName = "", email, subject, message } = formData
+    // const { firstName, lastName = "", email, subject, message } = formData
     if (formData.botField && formData.botField.length > 0) {
       throw new Error("Bot detected")
     }
     // Send the discord bot the stuff
-    await fetch(botEndpoint, {
-      method: "POST",
-      body: JSON.stringify({
-        secret,
-        firstName,
-        lastName,
-        email,
-        subject,
-        message,
-      }),
-    })
+    // await fetch(botEndpoint, {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     secret,
+    //     firstName,
+    //     lastName,
+    //     email,
+    //     subject,
+    //     message,
+    //   }),
+    // })
     return new Response(
       JSON.stringify({
         message: `Success`,
