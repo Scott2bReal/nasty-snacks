@@ -4,7 +4,7 @@ import GoogleAnalytics from "../components/GoogleAnalytics.astro"
 import StructuredData from "../components/StructuredData.astro"
 import SEO from "../components/SEO.astro"
 import Footer from "../components/layout/Footer.astro"
-import { ViewTransitions } from "astro:transitions"
+import { ClientRouter } from "astro:transitions"
 
 export interface Props {
   title: string
@@ -17,7 +17,7 @@ const { title } = Astro.props
 <html lang="en">
   <head>
     <SEO />
-    <ViewTransitions />
+    <ClientRouter />
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <link rel="dns-prefetch" href="https://cdn.sanity.io" />
