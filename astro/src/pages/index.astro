@@ -8,6 +8,7 @@ import { sanityAPI } from "../utils/sanity"
 import type { SnacksVid } from "../types"
 import Music from "../components/Music.astro"
 import heroImage from "../assets/hero-image.jpg"
+import PosterLink from "../components/PosterLink.astro"
 
 const vidResult = await sanityAPI("videos")
 const snacksVids = vidResult.result as SnacksVid[]
@@ -15,7 +16,7 @@ const snacksVids = vidResult.result as SnacksVid[]
 
 <Layout title="Nasty Snacks">
   <main class="relative flex flex-col">
-    <div class="fixed top-0 -z-10 overflow-hidden opacity-60 md:h-[99.9vh]">
+    <div class="fixed top-0 -z-20 overflow-hidden opacity-60 md:h-[99.9vh]">
       <Image
         alt="Nasty snacks at the Chop Shop in Chicago"
         loading="eager"
@@ -45,7 +46,11 @@ const snacksVids = vidResult.result as SnacksVid[]
       </svg>
     </span>
 
-    <div class="bg-none pt-[30vh] sm:pt-[100vh]">
+    <div class="z-10 bg-none">
+      <!-- <div class="z-10 bg-none pt-[30vh] sm:pt-[100vh]"> -->
+      <div class="relative h-screen pt-28 max-sm:mx-4">
+        <PosterLink />
+      </div>
       <div class="bg-neutral-900">
         <!-- Upcoming Shows -->
         <section id="shows" class="scroll-m-48 lg:pt-16">
