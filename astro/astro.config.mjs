@@ -31,6 +31,6 @@ export default defineConfig({
     }),
   ],
   adapter: netlify({
-    imageCDN: true,
+    imageCDN: false,
   }),
 })
