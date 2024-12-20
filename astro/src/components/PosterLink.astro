@@ -1,6 +1,12 @@
 ---
+import { sanityAPI, sanityImageUrl } from "../utils/sanity"
 import { Image } from "astro:assets"
-import poster from "../assets/snacks-10-year-poster.webp"
+// import poster from "../assets/snacks-10-year-poster.webp"
+
+const posterResult = await sanityAPI("promoPoster")
+const poster = posterResult.result[0]
+
+const builder = sanityImageUrl(poster.image)
 ---
 
 <a
@@ -10,8 +16,8 @@ import poster from "../assets/snacks-10-year-poster.webp"
   ><Image
     loading="eager"
     class="mx-auto h-auto object-contain sm:w-[453px]"
-    src={poster}
-    width={653}
-    alt="Nasty Snacks 10 year anniversary show poster"
+    src={builder.auto("format").width(453).url()}
+    inferSize={true}
+    alt={poster.alt}
   /></a
 >
