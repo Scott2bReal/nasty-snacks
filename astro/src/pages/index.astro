@@ -7,7 +7,6 @@ import { RandomSnacksVid } from "../components/RandomSnacksVid"
 import { sanityAPI, sanityImageUrl } from "../utils/sanity"
 import type { BannerImage, SnacksVid } from "../types"
 import Music from "../components/Music.astro"
-import PosterLink from "../components/PosterLink.astro"
 
 const heroImageResult = await sanityAPI("banner")
 const heroImage = heroImageResult.result[0] as BannerImage
@@ -50,153 +49,151 @@ const builder = sanityImageUrl(heroImage.image)
     </span>
 
     <div class="z-10 bg-none">
-      <!-- <div class="z-10 bg-none pt-[30vh] sm:pt-[100vh]"> -->
-      <div class="relative h-screen pt-28 max-sm:mx-4">
-        <PosterLink />
+      <div class="z-10 bg-none pt-[30vh] sm:pt-[100vh]">
+        <div class="bg-neutral-900">
+          <!-- Upcoming Shows -->
+          <section id="shows" class="scroll-m-48 lg:pt-16">
+            <UpcomingShows />
+          </section>
+
+          <!-- Music -->
+          <section
+            id="music"
+            class="mt-20 opacity-0 transition duration-1000 ease-in-out"
+          >
+            <h2 class="p-4 text-3xl">MUSIC</h2>
+            <Music />
+          </section>
+
+          <!-- Video -->
+          <section
+            id="video"
+            class="opacity-0 transition duration-1000 ease-in-out"
+          >
+            <h2 class="p-4 text-3xl">VIDEO</h2>
+            <RandomSnacksVid snacksVids={snacksVids} client:idle />
+          </section>
+
+          <!-- Band info -->
+          <section id="band">
+            <BandInfo />
+          </section>
+        </div>
       </div>
-      <div class="bg-neutral-900">
-        <!-- Upcoming Shows -->
-        <section id="shows" class="scroll-m-48 lg:pt-16">
-          <UpcomingShows />
-        </section>
 
-        <!-- Music -->
-        <section
-          id="music"
-          class="mt-20 opacity-0 transition duration-1000 ease-in-out"
-        >
-          <h2 class="p-4 text-3xl">MUSIC</h2>
-          <Music />
-        </section>
-
-        <!-- Video -->
-        <section
-          id="video"
-          class="opacity-0 transition duration-1000 ease-in-out"
-        >
-          <h2 class="p-4 text-3xl">VIDEO</h2>
-          <RandomSnacksVid snacksVids={snacksVids} client:idle />
-        </section>
-
-        <!-- Band info -->
-        <section id="band">
-          <BandInfo />
-        </section>
-      </div>
-    </div>
-
-    <!-- Go to top -->
-    <button
-      aria-label="scroll to top of page"
-      id="toTop"
-      class="fixed bottom-6 right-6 z-20 p-2 opacity-0 transition duration-700 ease-in-out"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        class="z-20 size-12"
+      <!-- Go to top -->
+      <button
+        aria-label="scroll to top of page"
+        id="toTop"
+        class="fixed bottom-6 right-6 z-20 p-2 opacity-0 transition duration-700 ease-in-out"
       >
-        <path
-          fill-rule="evenodd"
-          d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z"
-          clip-rule="evenodd"></path>
-      </svg>
-    </button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="z-20 size-12"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    </div>
   </main>
-</Layout>
-<script>
-  const getPrompt = () => {
-    return document.getElementById("scrollPrompt")
-  }
-
-  const getTopArrow = () => {
-    return document.getElementById("toTop")
-  }
-
-  const fadeInScrollPrompt = () => {
-    const prompt = getPrompt()
-    if (!prompt) return
-    setTimeout(() => {
-      if (window.scrollY === 0) {
-        prompt.classList.remove("hidden")
-        setTimeout(() => {
-          prompt.classList.add("opacity-100")
-          prompt.classList.remove("translate-y-6")
-          prompt.classList.remove("-z-60")
-        }, 500)
-      }
-    }, 2000)
-  }
-
-  const hideScrollPrompt = () => {
-    const prompt = getPrompt()
-    if (!prompt) return
-    prompt.classList.remove("opacity-100")
-    prompt.classList.add("-translate-y-12", "-z-60")
-    setTimeout(() => {
-      prompt.classList.add("translate-y-6")
-      prompt.classList.remove("-translate-y-12")
-      prompt.classList.add("hidden")
-    }, 2000)
-  }
-
-  const swapScrollPrompts = () => {
-    const prompt = getPrompt()
-    const toTopArrow = getTopArrow()
-    if (!prompt || !toTopArrow) return
-    window.addEventListener("scroll", () => {
-      if (window.scrollY < 10) {
-        toTopArrow.classList.add("opacity-0")
-        fadeInScrollPrompt()
-      } else {
-        toTopArrow.classList.remove("opacity-0")
-        prompt.classList.add("opacity-0")
-        hideScrollPrompt()
-      }
-    })
-  }
-
-  const showVideo = () => {
-    const video = document.getElementById("video")
-    const options = {
-      threshold: 0.2,
-      rootMargin: "-50px",
+  <script>
+    const getPrompt = () => {
+      return document.getElementById("scrollPrompt")
     }
-    if (!video) return
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("opacity-100")
-          observer.disconnect()
+
+    const getTopArrow = () => {
+      return document.getElementById("toTop")
+    }
+
+    const fadeInScrollPrompt = () => {
+      const prompt = getPrompt()
+      if (!prompt) return
+      setTimeout(() => {
+        if (window.scrollY === 0) {
+          prompt.classList.remove("hidden")
+          setTimeout(() => {
+            prompt.classList.add("opacity-100")
+            prompt.classList.remove("translate-y-6")
+            prompt.classList.remove("-z-60")
+          }, 500)
+        }
+      }, 2000)
+    }
+
+    const hideScrollPrompt = () => {
+      const prompt = getPrompt()
+      if (!prompt) return
+      prompt.classList.remove("opacity-100")
+      prompt.classList.add("-translate-y-12", "-z-60")
+      setTimeout(() => {
+        prompt.classList.add("translate-y-6")
+        prompt.classList.remove("-translate-y-12")
+        prompt.classList.add("hidden")
+      }, 2000)
+    }
+
+    const swapScrollPrompts = () => {
+      const prompt = getPrompt()
+      const toTopArrow = getTopArrow()
+      if (!prompt || !toTopArrow) return
+      window.addEventListener("scroll", () => {
+        if (window.scrollY < 10) {
+          toTopArrow.classList.add("opacity-0")
+          fadeInScrollPrompt()
+        } else {
+          toTopArrow.classList.remove("opacity-0")
+          prompt.classList.add("opacity-0")
+          hideScrollPrompt()
         }
       })
-    }, options)
-    observer.observe(video)
-  }
-
-  const toTop = () => {
-    const toTopArrow = getTopArrow()
-    if (!toTopArrow) return
-    if (document.body.scrollTop === 0) {
-      toTopArrow.classList.add("opacity-0")
     }
-    toTopArrow.addEventListener(
-      "click",
-      () => {
-        window.scrollTo(0, 0)
-      },
-      { passive: true },
-    )
-  }
 
-  const animatePageElements = () => {
-    fadeInScrollPrompt()
-    swapScrollPrompts()
-    toTop()
-    showVideo()
-  }
+    const showVideo = () => {
+      const video = document.getElementById("video")
+      const options = {
+        threshold: 0.2,
+        rootMargin: "-50px",
+      }
+      if (!video) return
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100")
+            observer.disconnect()
+          }
+        })
+      }, options)
+      observer.observe(video)
+    }
 
-  animatePageElements()
-  document.addEventListener("astro:page-load", animatePageElements)
-</script>
+    const toTop = () => {
+      const toTopArrow = getTopArrow()
+      if (!toTopArrow) return
+      if (document.body.scrollTop === 0) {
+        toTopArrow.classList.add("opacity-0")
+      }
+      toTopArrow.addEventListener(
+        "click",
+        () => {
+          window.scrollTo(0, 0)
+        },
+        { passive: true },
+      )
+    }
+
+    const animatePageElements = () => {
+      fadeInScrollPrompt()
+      swapScrollPrompts()
+      toTop()
+      showVideo()
+    }
+
+    animatePageElements()
+    document.addEventListener("astro:page-load", animatePageElements)
+  </script>
+</Layout>
