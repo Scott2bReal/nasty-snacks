@@ -14,6 +14,11 @@ export default {
       title: 'Spotify Link',
     },
     {
+      name: 'bandcampLink',
+      type: 'string',
+      title: 'Bandcamp Link',
+    },
+    {
       name: 'cover',
       type: 'image',
       title: 'Album Cover',
